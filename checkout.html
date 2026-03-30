@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Complete Your Booking | Windsor Executive Rentals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --primary:#e63946;--primary-dark:#c1121f;
+  --gold:#c9a84c;--gold-light:#e8c97a;
+  --dark:#1a1a1a;--dark2:#2a2a2a;
+  --gray-900:#1f2937;--gray-700:#374151;--gray-600:#4b5563;
+  --gray-500:#6b7280;--gray-400:#9ca3af;--gray-300:#d1d5db;
+  --gray-200:#e5e7eb;--gray-100:#f3f4f6;--gray-50:#f9fafb;
+  --white:#ffffff;--green:#10b981;
+  --radius:12px;--radius-lg:16px;
+  --shadow:0 4px 20px rgba(0,0,0,.08);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.12);
+  --max-w:1000px;
+}
+body{font-family:'Inter',sans-serif;background:var(--gray-50);color:var(--gray-900);line-height:1.6;min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+
+/* NAV */
+nav{background:var(--dark);padding:16px 32px;display:flex;justify-content:space-between;align-items:center;}
+.nav-logo{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.15rem;}
+.nav-back{color:#aaa;font-size:.85rem;display:flex;align-items:center;gap:6px;transition:color .2s;}
+.nav-back:hover{color:var(--gold);}
+.nav-back svg{width:16px;height:16px;}
+
+/* LAYOUT */
+.page-wrap{max-width:var(--max-w);margin:0 auto;padding:36px 20px 60px;display:grid;grid-template-columns:1fr 400px;gap:32px;align-items:start;}
+@media(max-width:800px){.page-wrap{grid-template-columns:1fr;}.order-summary{order:-1;}}
+
+/* SECTION HEADERS */
+.section-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--dark);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--gray-200);}
+
+/* PAYMENT FORM */
+.form-card{background:var(--white);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow);}
+.form-group{margin-bottom:18px;}
+.form-group label{display:block;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gray-600);margin-bottom:6px;}
+.form-group input,.form-group select{width:100%;padding:12px 14px;border:1.5px solid var(--gray-300);border-radius:8px;font-family:'Inter',sans-serif;font-size:.92rem;color:var(--gray-900);background:var(--white);outline:none;transition:border-color .2s;}
+.form-group input:focus,.form-group select:focus{border-color:var(--gold);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-divider{height:1px;background:var(--gray-200);margin:24px 0;}
+.stripe-field-wrap{padding:12px 14px;border:1.5px solid var(--gray-300);border-radius:8px;background:var(--white);transition:border-color .2s;}
+.stripe-field-wrap.focused{border-color:var(--gold);}
+.card-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px;}
+
+/* STRIPE ELEMENT */
+#card-number-element,#card-expiry-element,#card-cvc-element{min-height:20px;}
+
+/* SUBMIT BUTTON */
+.pay-btn{width:100%;background:linear-gradient(135deg,var(--primary),#ff6b6b);color:white;border:none;padding:17px;border-radius:var(--radius);font-size:1.05rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;margin-top:24px;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;}
+.pay-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 24px rgba(230,57,70,.35);}
+.pay-btn:disabled{opacity:.65;cursor:not-allowed;transform:none;}
+.pay-btn svg{width:18px;height:18px;}
+.secure-note{text-align:center;font-size:.78rem;color:var(--gray-500);margin-top:12px;display:flex;align-items:center;justify-content:center;gap:5px;}
+.secure-note svg{width:13px;height:13px;color:var(--green);}
+
+/* ERROR */
+#card-error{color:var(--primary);font-size:.82rem;margin-top:10px;display:none;padding:10px 12px;background:#fef2f2;border-radius:6px;border:1px solid #fecaca;}
+
+/* ORDER SUMMARY */
+.summary-card{background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow);position:sticky;top:24px;}
+.prop-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:50px;margin-bottom:16px;}
+.summary-prop-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--dark);margin-bottom:4px;}
+.summary-prop-sub{font-size:.82rem;color:var(--gray-500);margin-bottom:20px;}
+.dates-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.date-pill{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:8px;padding:10px 12px;}
+.date-pill-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-500);margin-bottom:2px;}
+.date-pill-value{font-size:.88rem;font-weight:600;color:var(--dark);}
+.guests-row{font-size:.85rem;color:var(--gray-600);margin-bottom:20px;display:flex;align-items:center;gap:6px;}
+.guests-row svg{width:15px;height:15px;color:var(--gray-400);}
+.price-lines{border-top:1px solid var(--gray-200);padding-top:16px;}
+.price-line{display:flex;justify-content:space-between;font-size:.88rem;color:var(--gray-600);margin-bottom:10px;}
+.price-line.subtotal-group{margin-bottom:6px;}
+.price-line.indented{padding-left:12px;font-size:.82rem;color:var(--gray-500);}
+.price-line.tax-line{color:var(--gray-600);}
+.price-divider{height:1px;background:var(--gray-200);margin:12px 0;}
+.price-line.total{font-weight:700;font-size:1rem;color:var(--dark);}
+.price-line.total span:last-child{color:var(--dark);}
+.savings-badge{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:10px 14px;margin-top:14px;display:flex;align-items:center;gap:8px;}
+.savings-badge svg{width:16px;height:16px;color:var(--green);flex-shrink:0;}
+.savings-text{font-size:.78rem;color:#065f46;font-weight:500;line-height:1.4;}
+.tax-note{font-size:.72rem;color:var(--gray-400);margin-top:10px;line-height:1.5;}
+
+/* SUCCESS */
+#success-screen{display:none;text-align:center;padding:60px 20px;}
+.success-icon{width:72px;height:72px;background:#ecfdf5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;}
+.success-icon svg{width:36px;height:36px;color:var(--green);}
+.success-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--dark);margin-bottom:12px;}
+.success-sub{color:var(--gray-500);max-width:420px;margin:0 auto 28px;font-size:.95rem;line-height:1.7;}
+.success-details{background:var(--white);border-radius:var(--radius);padding:24px;max-width:420px;margin:0 auto 28px;text-align:left;border:1px solid var(--gray-200);}
+.success-detail-row{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:8px;color:var(--gray-600);}
+.success-detail-row:last-child{margin-bottom:0;font-weight:700;color:var(--dark);}
+.back-home-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:50px;background:var(--dark);color:var(--gold);font-weight:600;font-size:.92rem;border:1px solid var(--gold);transition:all .2s;}
+.back-home-btn:hover{background:var(--gold);color:var(--dark);}
+
+/* LOADING SPINNER */
+.spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;display:none;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+footer{background:var(--dark);color:#666;text-align:center;padding:24px;font-size:.8rem;margin-top:auto;}
+footer a{color:#555;margin:0 10px;}
+
+@media(max-width:600px){.form-row,.card-row,.dates-row{grid-template-columns:1fr;}.form-card{padding:20px;}.summary-card{padding:20px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Windsor Executive Rentals</a>
+  <a href="javascript:history.back()" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Back
+  </a>
+</nav>
+
+<!-- SUCCESS SCREEN -->
+<div id="success-screen">
+  <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+  <div class="success-title">Booking Confirmed! 🎉</div>
+  <div class="success-sub">Thank you for booking with Windsor Executive Rentals! You'll receive a confirmation email shortly with check-in instructions and all the details for your stay.</div>
+  <div class="success-details" id="success-details"></div>
+  <a href="index.html" class="back-home-btn">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    Back to Home
+  </a>
+</div>
+
+<!-- MAIN CHECKOUT -->
+<div id="checkout-screen">
+  <div class="page-wrap">
+
+    <!-- LEFT: PAYMENT FORM -->
+    <div>
+      <div class="form-card">
+        <div class="section-title">Guest Information</div>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" id="firstName" placeholder="John" required/></div>
+          <div class="form-group"><label>Last Name</label><input type="text" id="lastName" placeholder="Smith" required/></div>
+        </div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="john@email.com" required/></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" id="phone" placeholder="+1 (555) 000-0000" required/></div>
+        <div class="form-group">
+          <label>Number of Guests</label>
+          <select id="guestsSelect">
+            <option>1 guest</option><option>2 guests</option><option>3 guests</option><option>4 guests</option>
+            <option>5 guests</option><option>6 guests</option><option>7 guests</option><option>8 guests</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Special Requests (optional)</label><input type="text" id="requests" placeholder="Early check-in, anniversary setup, etc."/></div>
+
+        <div class="form-divider"></div>
+        <div class="section-title" style="margin-bottom:16px">Payment Details</div>
+
+        <div class="form-group">
+          <label>Card Number</label>
+          <div class="stripe-field-wrap" id="card-number-wrap"><div id="card-number-element"></div></div>
+        </div>
+        <div class="card-row">
+          <div class="form-group" style="margin-bottom:0">
+            <label>Expiry Date</label>
+            <div class="stripe-field-wrap" id="card-expiry-wrap"><div id="card-expiry-element"></div></div>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label>CVC</label>
+            <div class="stripe-field-wrap" id="card-cvc-wrap"><div id="card-cvc-element"></div></div>
+          </div>
+        </div>
+        <div id="card-error"></div>
+
+        <button class="pay-btn" id="pay-btn" onclick="handlePayment()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          <span id="pay-btn-text">Pay Now</span>
+          <div class="spinner" id="spinner"></div>
+        </button>
+        <div class="secure-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Secured by Stripe · 256-bit SSL encryption
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: ORDER SUMMARY -->
+    <div class="order-summary">
+      <div class="summary-card">
+        <div class="section-title">Booking Summary</div>
+        <div class="prop-badge">🏠 Windsor Executive Rentals</div>
+        <div class="summary-prop-name" id="sum-prop-name">5-Star Luxury Home</div>
+        <div class="summary-prop-sub" id="sum-prop-sub">Windsor, ON</div>
+
+        <div class="dates-row">
+          <div class="date-pill">
+            <div class="date-pill-label">Check-in</div>
+            <div class="date-pill-value" id="sum-checkin">—</div>
+          </div>
+          <div class="date-pill">
+            <div class="date-pill-label">Check-out</div>
+            <div class="date-pill-value" id="sum-checkout">—</div>
+          </div>
+        </div>
+
+        <div class="guests-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span id="sum-guests">—</span>
+        </div>
+
+        <div class="price-lines">
+          <div id="sum-night-rows"></div>
+          <div class="price-line subtotal-group">
+            <span>Subtotal</span>
+            <span id="sum-subtotal">—</span>
+          </div>
+          <div class="price-divider"></div>
+          <div class="price-line tax-line">
+            <span>Windsor MAT (6%)</span>
+            <span id="sum-mat">—</span>
+          </div>
+          <div class="price-line tax-line">
+            <span>Ontario HST (13%)</span>
+            <span id="sum-hst">—</span>
+          </div>
+          <div class="price-divider"></div>
+          <div class="price-line total">
+            <span>Total</span>
+            <span id="sum-total">—</span>
+          </div>
+        </div>
+
+        <div class="savings-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <div class="savings-text">You save ~15% vs booking on Airbnb — no platform service fees when you book direct!</div>
+        </div>
+
+        <div class="tax-note">
+          Taxes include Windsor Municipal Accommodation Tax (MAT) at 6% and Ontario Harmonized Sales Tax (HST) at 13%, applied to the nightly subtotal as required by law.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div>© 2026 Windsor Executive Rentals. All rights reserved.</div>
+  <div style="margin-top:6px"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="mailto:jaworskibnb@gmail.com">Contact</a></div>
+</footer>
+
+<script>
+// ── Read booking data from URL params ──────────────────────
+const params = new URLSearchParams(window.location.search);
+
+const PROP_MAP = {
+  luxury:    { name: '5-Star Inspired Luxury Home', sub: 'Windsor, ON — South', maxGuests: 8 },
+  riverside: { name: 'Brand New Riverside Retreat', sub: 'Windsor, ON — Riverside', maxGuests: 4 },
+  downtown:  { name: 'Stylish Downtown 2-Bedroom', sub: 'Windsor, ON — Downtown', maxGuests: 4 },
+};
+
+const propId    = params.get('prop') || 'luxury';
+const checkin   = params.get('checkin') || '';
+const checkout  = params.get('checkout') || '';
+const guests    = params.get('guests') || '2 guests';
+const nightsRaw = params.get('nights') || '1';
+const subtotal  = parseFloat(params.get('subtotal') || '0');
+
+const prop = PROP_MAP[propId] || PROP_MAP.luxury;
+
+// ── Tax Calculation ────────────────────────────────────────
+const MAT_RATE  = 0.06;   // Windsor Municipal Accommodation Tax
+const HST_RATE  = 0.13;   // Ontario HST
+
+const matAmt  = subtotal * MAT_RATE;
+const hstAmt  = subtotal * HST_RATE;
+const total   = subtotal + matAmt + hstAmt;
+
+// ── Populate summary ───────────────────────────────────────
+function fmtDate(ymd) {
+  if (!ymd) return '—';
+  const [y,m,d] = ymd.split('-');
+  const mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return mo[parseInt(m)-1] + ' ' + parseInt(d) + ', ' + y;
+}
+function fmtMoney(n) { return '$' + n.toLocaleString('en-CA', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+document.getElementById('sum-prop-name').textContent = prop.name;
+document.getElementById('sum-prop-sub').textContent  = prop.sub;
+document.getElementById('sum-checkin').textContent   = fmtDate(checkin);
+document.getElementById('sum-checkout').textContent  = fmtDate(checkout);
+document.getElementById('sum-guests').textContent    = guests;
+document.getElementById('sum-subtotal').textContent  = fmtMoney(subtotal);
+document.getElementById('sum-mat').textContent       = fmtMoney(matAmt);
+document.getElementById('sum-hst').textContent       = fmtMoney(hstAmt);
+document.getElementById('sum-total').textContent     = fmtMoney(total);
+
+// Night rows from URL (format: "4x350,1x400")
+const nightData = params.get('nightrows') || '';
+const nightRowsEl = document.getElementById('sum-night-rows');
+if (nightData) {
+  nightData.split(',').forEach(chunk => {
+    const [cnt, price] = chunk.split('x');
+    if (cnt && price) {
+      const div = document.createElement('div');
+      div.className = 'price-line';
+      div.innerHTML = `<span>${cnt} night${parseInt(cnt)>1?'s':''} × $${price}</span><span>${fmtMoney(parseInt(cnt)*parseInt(price))}</span>`;
+      nightRowsEl.appendChild(div);
+    }
+  });
+}
+
+// Pre-fill guests select
+const gSel = document.getElementById('guestsSelect');
+Array.from(gSel.options).forEach(o => { if(o.value === guests || o.text === guests) o.selected = true; });
+
+// Update pay button with total
+document.getElementById('pay-btn-text').textContent = `Pay ${fmtMoney(total)}`;
+
+// ── Stripe Setup ───────────────────────────────────────────
+// ⚠️  Replace with your actual Stripe publishable key
+const STRIPE_PK = 'pk_live_YOUR_STRIPE_PUBLISHABLE_KEY_HERE';
+const stripe = Stripe(STRIPE_PK);
+const elements = stripe.elements();
+
+const style = {
+  base: {
+    fontFamily: "'Inter', sans-serif",
+    fontSize: '15px',
+    color: '#1f2937',
+    '::placeholder': { color: '#9ca3af' },
+  },
+  invalid: { color: '#e63946' },
+};
+
+const cardNumber  = elements.create('cardNumber',  { style });
+const cardExpiry  = elements.create('cardExpiry',  { style });
+const cardCvc     = elements.create('cardCvc',     { style });
+
+cardNumber.mount('#card-number-element');
+cardExpiry.mount('#card-expiry-element');
+cardCvc.mount('#card-cvc-element');
+
+// Focus border effect
+[['card-number-element','card-number-wrap'],['card-expiry-element','card-expiry-wrap'],['card-cvc-element','card-cvc-wrap']].forEach(([elId, wrapId]) => {
+  const el  = elId === 'card-number-element' ? cardNumber : elId === 'card-expiry-element' ? cardExpiry : cardCvc;
+  const wrap = document.getElementById(wrapId);
+  el.on('focus', ()  => wrap.classList.add('focused'));
+  el.on('blur',  ()  => wrap.classList.remove('focused'));
+  el.on('change', e  => { if (e.error) showError(e.error.message); else hideError(); });
+});
+
+function showError(msg) {
+  const el = document.getElementById('card-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hideError() {
+  document.getElementById('card-error').style.display = 'none';
+}
+
+// ── Payment Handler ────────────────────────────────────────
+async function handlePayment() {
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName  = document.getElementById('lastName').value.trim();
+  const email     = document.getElementById('email').value.trim();
+  const phone     = document.getElementById('phone').value.trim();
+
+  if (!firstName || !lastName || !email || !phone) {
+    alert('Please fill in all guest information fields.');
+    return;
+  }
+  if (!checkin || !checkout) {
+    alert('Missing booking dates. Please go back and select your dates.');
+    return;
+  }
+
+  const btn = document.getElementById('pay-btn');
+  const spinner = document.getElementById('spinner');
+  const btnText = document.getElementById('pay-btn-text');
+
+  btn.disabled = true;
+  spinner.style.display = 'block';
+  btnText.textContent = 'Processing...';
+  hideError();
+
+  try {
+    // Create payment method
+    const { paymentMethod, error } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardNumber,
+      billing_details: {
+        name: firstName + ' ' + lastName,
+        email: email,
+        phone: phone,
+      },
+    });
+
+    if (error) {
+      showError(error.message);
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      btnText.textContent = `Pay ${fmtMoney(total)}`;
+      return;
+    }
+
+    // ── IMPORTANT ──────────────────────────────────────────
+    // In production, send paymentMethod.id + booking details
+    // to YOUR backend server to create a PaymentIntent and
+    // confirm the charge. Never process payments client-side only.
+    //
+    // Example backend call:
+    // const response = await fetch('/api/create-payment', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     paymentMethodId: paymentMethod.id,
+    //     amount: Math.round(total * 100), // cents
+    //     currency: 'cad',
+    //     property: prop.name,
+    //     checkin, checkout, guests, email,
+    //     name: firstName + ' ' + lastName,
+    //   })
+    // });
+    // ──────────────────────────────────────────────────────
+
+    // For now, show success screen (replace with real backend call above)
+    showSuccess(firstName, lastName, email);
+
+  } catch (err) {
+    showError('Something went wrong. Please try again or call us at 647-470-7333.');
+    btn.disabled = false;
+    spinner.style.display = 'none';
+    btnText.textContent = `Pay ${fmtMoney(total)}`;
+  }
+}
+
+function showSuccess(firstName, lastName, email) {
+  document.getElementById('checkout-screen').style.display = 'none';
+  const screen = document.getElementById('success-screen');
+  screen.style.display = 'block';
+
+  const nights = nightsRaw;
+  document.getElementById('success-details').innerHTML = `
+    <div class="success-detail-row"><span>Guest</span><span>${firstName} ${lastName}</span></div>
+    <div class="success-detail-row"><span>Property</span><span>${prop.name}</span></div>
+    <div class="success-detail-row"><span>Check-in</span><span>${fmtDate(checkin)}</span></div>
+    <div class="success-detail-row"><span>Check-out</span><span>${fmtDate(checkout)}</span></div>
+    <div class="success-detail-row"><span>Guests</span><span>${guests}</span></div>
+    <div class="success-detail-row"><span>Confirmation sent to</span><span>${email}</span></div>
+    <div class="success-detail-row"><span>Total Paid</span><span>${fmtMoney(total)}</span></div>
+  `;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
