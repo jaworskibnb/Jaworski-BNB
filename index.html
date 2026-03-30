@@ -56,16 +56,20 @@
   <div class="date-box" id="checkin-box"><div class="date-box-label">CHECK-IN</div><div class="date-box-value" id="checkin-display">Select date</div></div>
   <div class="date-box" id="checkout-box"><div class="date-box-label">CHECK-OUT</div><div class="date-box-value" id="checkout-display">Select date</div></div>
 </div>
-<div class="price-est" id="price-summary" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:14px 16px;margin-bottom:16px;display:none;font-size:.85rem;">
-  <div style="font-weight:600;color:var(--dark,#1a1a1a);margin-bottom:10px;font-size:.88rem;">Price Estimate</div>
+<div id="price-summary" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:14px 16px;margin-bottom:16px;display:none;font-size:.85rem;">
+  <div style="font-weight:600;color:#1a1a1a;margin-bottom:10px;font-size:.88rem;">Price Estimate</div>
   <div id="price-summary-rows"></div>
-  <div class="price-est-divider"></div>
-  <div class="price-est-tax"><span>Windsor MAT (6%)</span><span id="sum-mat-val">—</span></div>
-  <div class="price-est-tax"><span>Ontario HST (13%)</span><span id="sum-hst-val">—</span></div>
-  <div class="price-est-total"><span id="price-summary-nights"></span><span id="price-summary-total"></span></div>
-  <div class="price-est-savings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>You save ~15% vs Airbnb — no platform service fees!</span></div>
+  <div style="height:1px;background:rgba(201,168,76,.3);margin:10px 0;"></div>
+  <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#777;margin-bottom:5px;"><span>Windsor MAT (6%)</span><span id="sum-mat-val">—</span></div>
+  <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#777;margin-bottom:5px;"><span>Ontario HST (13%)</span><span id="sum-hst-val">—</span></div>
+  <div style="height:1px;background:rgba(201,168,76,.3);margin:10px 0;"></div>
+  <div style="display:flex;justify-content:space-between;font-weight:700;color:#1a1a1a;font-size:.95rem;"><span id="price-summary-nights"></span><span id="price-summary-total"></span></div>
+  <div style="display:flex;align-items:flex-start;gap:7px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:7px;padding:9px 12px;margin-top:12px;">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#10b981" stroke-width="2" style="flex-shrink:0;margin-top:1px"><polyline points="20 6 9 17 4 12"/></svg>
+    <span style="font-size:.75rem;color:#065f46;font-weight:500;line-height:1.4;">You save ~15% vs Airbnb — no platform service fees!</span>
+  </div>
 </div>
-<a class="book-now-btn" id="book-now-btn" href="#" style="display:none;" onclick="goToCheckout(event)">Complete Booking →</a>
+<a id="book-now-btn" href="#" onclick="goToCheckout(event)" style="display:none;width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#1a1a1a;border:none;padding:15px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;text-align:center;margin-top:4px;transition:transform .2s;text-decoration:none;display:none;block;font-family:'Playfair Display',serif;letter-spacing:.04em;">Complete Booking →</a>
 <input type="hidden" id="checkin"/><input type="hidden" id="checkout"/>
 <div class="form-row"><div class="form-group"><label>First Name</label><input type="text" id="firstName" placeholder="John" required/></div><div class="form-group"><label>Last Name</label><input type="text" id="lastName" placeholder="Smith" required/></div></div>
 <div class="form-row"><div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="john@email.com" required/></div><div class="form-group"><label>Phone Number</label><input type="tel" id="phone" placeholder="+1 (555) 000-0000" required/></div></div>
@@ -129,6 +133,26 @@
 </div>
 
 <script>
+const MAT_RATE=0.06,HST_RATE=0.13;
+function fmtMoney(n){return '$'+n.toLocaleString('en-CA',{minimumFractionDigits:2,maximumFractionDigits:2});}
+
+function goToCheckout(e){
+  e.preventDefault();
+  if(!selStart||!selEnd){alert('Please select dates first.');return;}
+  const nights=calcNights(currentProperty,selStart,selEnd);
+  const subtotal=nights.reduce((s,n)=>s+n.price,0);
+  let i=0,rowChunks=[];
+  while(i<nights.length){let j=i;while(j<nights.length&&nights[j].price===nights[i].price)j++;rowChunks.push((j-i)+'x'+nights[i].price);i=j;}
+  const g=document.getElementById('guests');
+  const params='prop='+encodeURIComponent(currentProperty)
+    +'&checkin='+encodeURIComponent(selStart)
+    +'&checkout='+encodeURIComponent(selEnd)
+    +'&guests='+encodeURIComponent(g?g.value:'2 guests')
+    +'&nights='+nights.length
+    +'&subtotal='+subtotal.toFixed(2)
+    +'&nightrows='+encodeURIComponent(rowChunks.join(','));
+  window.location.href='checkout.html?'+params;
+}
 const ADMIN_PASSWORD='Ep6911167!';
 const PROXY='https://corsproxy.io/?';
 const ICAL_URLS={
@@ -276,8 +300,8 @@ function updateDateInputs(){
     document.getElementById('price-summary-total').textContent=fmtMoney(tot);
     document.getElementById('price-summary-nights').textContent=nights.length+' night'+(nights.length>1?'s':'')+' total (incl. taxes)';
     const btn=document.getElementById('book-now-btn');
-    btn.style.display='block';
-    ps.classList.add('show');
+    if(btn){btn.style.display='block';btn.style.setProperty('display','block','important');}
+    ps.style.display='block';
   }else{
     const btn=document.getElementById('book-now-btn');
     if(btn) btn.style.display='none';

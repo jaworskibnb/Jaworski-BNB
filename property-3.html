@@ -317,11 +317,20 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
           <div class="date-box" id="ciBox"><div class="date-box-label">CHECK-IN</div><div class="date-box-value" id="ciDisp">Select date</div></div>
           <div class="date-box" id="coBox"><div class="date-box-label">CHECK-OUT</div><div class="date-box-value" id="coDisp">Select date</div></div>
         </div>
-        <div class="price-est" id="priceEst">
-          <div class="price-est-title">Price Estimate</div>
+        <div class="price-est" id="priceEst" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:14px 16px;margin-top:14px;display:none;font-size:.85rem;">
+          <div style="font-weight:600;color:#1f2937;margin-bottom:10px;font-size:.88rem;">Price Estimate</div>
           <div id="priceRows"></div>
-          <div class="price-est-total"><span id="priceNights"></span><span id="priceTotal"></span></div>
+          <div style="height:1px;background:rgba(201,168,76,.3);margin:10px 0;"></div>
+          <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#6b7280;margin-bottom:5px;"><span>Windsor MAT (6%)</span><span id="propMatVal">—</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#6b7280;margin-bottom:5px;"><span>Ontario HST (13%)</span><span id="propHstVal">—</span></div>
+          <div style="height:1px;background:rgba(201,168,76,.3);margin:10px 0;"></div>
+          <div style="display:flex;justify-content:space-between;font-weight:700;color:#1f2937;font-size:.95rem;"><span id="priceNights"></span><span id="priceTotal"></span></div>
+          <div style="display:flex;align-items:flex-start;gap:7px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:7px;padding:9px 12px;margin-top:12px;">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#10b981" stroke-width="2" style="flex-shrink:0;margin-top:1px"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="font-size:.75rem;color:#065f46;font-weight:500;line-height:1.4;">You save ~15% vs Airbnb — no platform service fees!</span>
+          </div>
         </div>
+        <a id="propBookBtn" href="#" onclick="goToCheckout(event)" style="display:none;width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#1a1a1a;padding:15px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;text-align:center;margin-top:12px;text-decoration:none;font-family:'Playfair Display',serif;letter-spacing:.04em;">Complete Booking →</a>
       </div>
     </div>
 
@@ -457,6 +466,8 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 </div>
 
 <script>
+const MAT_RATE=0.06,HST_RATE=0.13;
+function fmtMoney(n){return '$'+n.toLocaleString('en-CA',{minimumFractionDigits:2,maximumFractionDigits:2});}
 // ── Property for this page ──
 const PROP_ID = 'downtown';
 const PROXY = 'https://corsproxy.io/?';
@@ -603,7 +614,7 @@ function updateDateDisplay(){
 
   }else{
     const bb=document.getElementById('propBookBtn');if(bb)bb.style.display='none';
-    pe.classList.remove('show');
+    pe.style.display='none';
   }
 }
 
@@ -629,8 +640,6 @@ document.getElementById('bookingModal').addEventListener('click',function(e){if(
 function openMobileNav(){document.getElementById('mobileNav').classList.add('active');}
 function closeMobileNav(){document.getElementById('mobileNav').classList.remove('active');}
 
-const MAT_RATE = 0.06, HST_RATE = 0.13;
-function fmtMoney(n){return '$'+n.toLocaleString('en-CA',{minimumFractionDigits:2,maximumFractionDigits:2});}
 
 function goToCheckout(e){
   e.preventDefault();
@@ -639,15 +648,15 @@ function goToCheckout(e){
   const subtotal=nights.reduce((s,n)=>s+n.price,0);
   let i=0,rowChunks=[];
   while(i<nights.length){let j=i;while(j<nights.length&&nights[j].price===nights[i].price)j++;rowChunks.push((j-i)+'x'+nights[i].price);i=j;}
-  const url=new URL('checkout.html',window.location.href);
-  url.searchParams.set('prop',PROP_ID);
-  url.searchParams.set('checkin',selStart);
-  url.searchParams.set('checkout',selEnd);
-  url.searchParams.set('guests',document.getElementById('guests')?document.getElementById('guests').value:'2 guests');
-  url.searchParams.set('nights',nights.length);
-  url.searchParams.set('subtotal',subtotal.toFixed(2));
-  url.searchParams.set('nightrows',rowChunks.join(','));
-  window.location.href=url.toString();
+  const g=document.getElementById('guests');
+  const params='prop='+encodeURIComponent(PROP_ID)
+    +'&checkin='+encodeURIComponent(selStart)
+    +'&checkout='+encodeURIComponent(selEnd)
+    +'&guests='+encodeURIComponent(g?g.value:'2 guests')
+    +'&nights='+nights.length
+    +'&subtotal='+subtotal.toFixed(2)
+    +'&nightrows='+encodeURIComponent(rowChunks.join(','));
+  window.location.href='checkout.html?'+params;
 }
 
 </script>
