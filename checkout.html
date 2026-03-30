@@ -192,6 +192,7 @@ footer a{color:#555;margin:0 10px;}
       <div class="summary-card">
         <div class="section-title">Booking Summary</div>
         <div class="prop-badge">🏠 Windsor Executive Rentals</div>
+        <img id="sum-prop-img" src="" alt="Property" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin-bottom:14px;display:none;"/>
         <div class="summary-prop-name" id="sum-prop-name">5-Star Luxury Home</div>
         <div class="summary-prop-sub" id="sum-prop-sub">Windsor, ON</div>
 
@@ -257,9 +258,9 @@ footer a{color:#555;margin:0 10px;}
 const params = new URLSearchParams(window.location.search);
 
 const PROP_MAP = {
-  luxury:    { name: '5-Star Inspired Luxury Home', sub: 'Windsor, ON — South', maxGuests: 8 },
-  riverside: { name: 'Brand New Riverside Retreat', sub: 'Windsor, ON — Riverside', maxGuests: 4 },
-  downtown:  { name: 'Stylish Downtown 2-Bedroom', sub: 'Windsor, ON — Downtown', maxGuests: 4 },
+  luxury:    { name: '5-Star Inspired Luxury Home', sub: 'Windsor, ON — South', maxGuests: 8, img: 'images/13-living-fireplace.png' },
+  riverside: { name: 'Brand New Riverside Retreat', sub: 'Windsor, ON — Riverside', maxGuests: 4, img: 'images/property-2/01-living-fireplace.png' },
+  downtown:  { name: 'Stylish Downtown 2-Bedroom', sub: 'Windsor, ON — Downtown', maxGuests: 4, img: 'images/property-3/17-living-open.png' },
 };
 
 const propId    = params.get('prop') || 'luxury';
@@ -289,6 +290,8 @@ function fmtDate(ymd) {
 function fmtMoney(n) { return '$' + n.toLocaleString('en-CA', {minimumFractionDigits:2, maximumFractionDigits:2}); }
 
 document.getElementById('sum-prop-name').textContent = prop.name;
+const imgEl = document.getElementById('sum-prop-img');
+if (prop.img) { imgEl.src = prop.img; imgEl.style.display = 'block'; }
 document.getElementById('sum-prop-sub').textContent  = prop.sub;
 document.getElementById('sum-checkin').textContent   = fmtDate(checkin);
 document.getElementById('sum-checkout').textContent  = fmtDate(checkout);
