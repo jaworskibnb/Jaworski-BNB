@@ -168,6 +168,7 @@ footer a{color:#555;margin:0 10px;}
 
 @media(max-width:600px){.form-row,.card-row,.dates-row{grid-template-columns:1fr;}.form-card{padding:20px;}.summary-card{padding:20px;}}
 </style>
+<meta name="stripe-pk" content="%%STRIPE_PUBLISHABLE_KEY%%"/>
 </head>
 <body>
 
@@ -430,7 +431,7 @@ document.getElementById('pay-btn-text').textContent = `Pay ${fmtMoney(total)}`;
 
 // ── Stripe Setup ───────────────────────────────────────────
 // ⚠️  Replace with your actual Stripe publishable key
-const STRIPE_PK = 'pk_live_YOUR_STRIPE_PUBLISHABLE_KEY_HERE';
+const STRIPE_PK = document.querySelector('meta[name="stripe-pk"]')?.content || '';
 const stripe = Stripe(STRIPE_PK);
 const elements = stripe.elements();
 
@@ -520,27 +521,54 @@ async function handlePayment() {
       return;
     }
 
-    // ── IMPORTANT ──────────────────────────────────────────
-    // In production, send paymentMethod.id + booking details
-    // to YOUR backend server to create a PaymentIntent and
-    // confirm the charge. Never process payments client-side only.
-    //
-    // Example backend call:
-    // const response = await fetch('/api/create-payment', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({
-    //     paymentMethodId: paymentMethod.id,
-    //     amount: Math.round(total * 100), // cents
-    //     currency: 'cad',
-    //     property: prop.name,
-    //     checkin, checkout, guests, email,
-    //     name: firstName + ' ' + lastName,
-    //   })
-    // });
-    // ──────────────────────────────────────────────────────
+    // Call Netlify Function to create PaymentIntent
+    const response = await fetch('/.netlify/functions/create-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        amount: grandTotal,
+        currency: 'cad',
+        name: firstName + ' ' + lastName,
+        email: email,
+        property: prop.name,
+        checkin: checkin,
+        checkout: checkout,
+        guests: guests,
+        addons: getAddonsList(),
+      }),
+    });
 
-    // For now, show success screen (replace with real backend call above)
+    const data = await response.json();
+
+    if (data.error) {
+      showError(data.error);
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      btnText.textContent = 'Pay ' + fmtMoney(grandTotal);
+      return;
+    }
+
+    // Confirm the payment with the card details
+    const { error: confirmError } = await stripe.confirmCardPayment(data.clientSecret, {
+      payment_method: {
+        card: cardNumber,
+        billing_details: {
+          name: firstName + ' ' + lastName,
+          email: email,
+          phone: phone,
+        },
+      },
+    });
+
+    if (confirmError) {
+      showError(confirmError.message);
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      btnText.textContent = 'Pay ' + fmtMoney(grandTotal);
+      return;
+    }
+
+    // Payment successful!
     showSuccess(firstName, lastName, email, addonSum);
 
   } catch (err) {
