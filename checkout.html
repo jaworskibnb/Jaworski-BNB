@@ -6,7 +6,50 @@
 <title>Complete Your Booking | Windsor Executive Rentals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="https://js.stripe.com/v3/"></script>
+<script src="https://js.stripe.com/v3/">
+// ── Add-ons ──────────────────────────────────────────────
+const ADDON_PRICES = { charcuterie: 95, wine: 60, flowers: 65, fridge: 50 };
+const selectedAddons = new Set();
+
+function toggleAddon(card, id, price) {
+  card.classList.toggle('selected');
+  if (card.classList.contains('selected')) {
+    selectedAddons.add(id);
+  } else {
+    selectedAddons.delete(id);
+  }
+  updateAddonTotal();
+}
+
+function updateAddonTotal() {
+  let addonSum = 0;
+  selectedAddons.forEach(id => { addonSum += ADDON_PRICES[id]; });
+  const row = document.getElementById('addon-total-row');
+  const val = document.getElementById('addon-subtotal-val');
+  if (addonSum > 0) {
+    row.style.display = 'block';
+    val.textContent = fmtMoney(addonSum);
+  } else {
+    row.style.display = 'none';
+  }
+  // Update pay button total
+  updatePayButtonTotal();
+}
+
+function updatePayButtonTotal() {
+  let addonSum = 0;
+  selectedAddons.forEach(id => { addonSum += ADDON_PRICES[id]; });
+  const grandTotal = total + addonSum;
+  document.getElementById('pay-btn-text').textContent = 'Pay ' + fmtMoney(grandTotal);
+}
+
+function getAddonsList() {
+  if (selectedAddons.size === 0) return 'None';
+  const names = { charcuterie: 'Charcuterie Board ($95)', wine: 'Welcome Wine/Champagne ($60)', flowers: 'Fresh Flower Bouquet ($65)', fridge: 'Fridge Stocked on Arrival ($50)' };
+  return Array.from(selectedAddons).map(id => names[id]).join(', ');
+}
+
+</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -48,6 +91,21 @@ nav{background:var(--dark);padding:16px 32px;display:flex;justify-content:space-
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .form-divider{height:1px;background:var(--gray-200);margin:24px 0;}
 .stripe-field-wrap{padding:12px 14px;border:1.5px solid var(--gray-300);border-radius:8px;background:var(--white);transition:border-color .2s;}
+
+/* ADD-ONS */
+.addon-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px;}
+@media(max-width:600px){.addon-grid{grid-template-columns:1fr;}}
+.addon-card{border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:14px;cursor:pointer;transition:border-color .2s,background .2s;position:relative;background:var(--white);}
+.addon-card:hover{border-color:var(--gold);background:#fffdf5;}
+.addon-card.selected{border-color:var(--gold);background:rgba(201,168,76,.06);}
+.addon-card input[type=checkbox]{position:absolute;opacity:0;pointer-events:none;}
+.addon-check{position:absolute;top:10px;right:12px;width:22px;height:22px;border-radius:50%;border:2px solid var(--gray-300);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:transparent;transition:all .2s;}
+.addon-card.selected .addon-check{background:var(--gold);border-color:var(--gold);color:var(--dark);}
+.addon-icon{font-size:1.6rem;margin-bottom:8px;}
+.addon-name{font-size:.88rem;font-weight:700;color:var(--gray-900);margin-bottom:3px;padding-right:28px;}
+.addon-desc{font-size:.75rem;color:var(--gray-500);line-height:1.4;margin-bottom:8px;}
+.addon-price{font-size:.9rem;font-weight:700;color:var(--gold);}
+.addon-note{font-size:.7rem;color:var(--gray-400);margin-top:2px;}
 .stripe-field-wrap.focused{border-color:var(--gold);}
 .card-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px;}
 
@@ -155,6 +213,53 @@ footer a{color:#555;margin:0 10px;}
           </select>
         </div>
         <div class="form-group"><label>Special Requests (optional)</label><input type="text" id="requests" placeholder="Early check-in, anniversary setup, etc."/></div>
+
+        <div class="form-divider"></div>
+        <div class="section-title" style="margin-bottom:6px">Enhance Your Stay</div>
+        <p style="font-size:.82rem;color:var(--gray-500);margin-bottom:18px;">Optional add-ons prepared and waiting for your arrival. Taxes included in price shown.</p>
+        <div class="addon-grid">
+          <div class="addon-card" onclick="toggleAddon(this,'charcuterie',95)">
+            <input type="checkbox" id="addon-charcuterie"/>
+            <div class="addon-check">✓</div>
+            <div class="addon-icon">🧀</div>
+            <div class="addon-name">Charcuterie Board</div>
+            <div class="addon-desc">Artisan board by Ps: Picnic Social — curated meats, cheeses, crackers & accompaniments. Ready 30 mins before your arrival.</div>
+            <div class="addon-price">+$95</div>
+            <div class="addon-note">Local Windsor favourite</div>
+          </div>
+          <div class="addon-card" onclick="toggleAddon(this,'wine',60)">
+            <input type="checkbox" id="addon-wine"/>
+            <div class="addon-check">✓</div>
+            <div class="addon-icon">🍾</div>
+            <div class="addon-name">Welcome Wine or Champagne</div>
+            <div class="addon-desc">A chilled bottle of wine or champagne waiting on ice when you arrive. Perfect for celebrations or a relaxing first night.</div>
+            <div class="addon-price">+$60</div>
+            <div class="addon-note">Chilled & ready on arrival</div>
+          </div>
+          <div class="addon-card" onclick="toggleAddon(this,'flowers',65)">
+            <input type="checkbox" id="addon-flowers"/>
+            <div class="addon-check">✓</div>
+            <div class="addon-icon">💐</div>
+            <div class="addon-name">Fresh Flower Bouquet</div>
+            <div class="addon-desc">A beautiful fresh flower arrangement placed in your suite before arrival. Great for anniversaries, birthdays, or a romantic getaway.</div>
+            <div class="addon-price">+$65</div>
+            <div class="addon-note">Arranged & displayed on arrival</div>
+          </div>
+          <div class="addon-card" onclick="toggleAddon(this,'fridge',50)">
+            <input type="checkbox" id="addon-fridge"/>
+            <div class="addon-check">✓</div>
+            <div class="addon-icon">🛒</div>
+            <div class="addon-name">Fridge Stocked on Arrival</div>
+            <div class="addon-desc">We'll stock your fridge with essentials — milk, eggs, bread, butter, juice, snacks & more so you're ready to settle in right away.</div>
+            <div class="addon-price">+$50</div>
+            <div class="addon-note">Grocery essentials included</div>
+          </div>
+        </div>
+        <div id="addon-total-row" style="display:none;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:10px 14px;margin-bottom:4px;font-size:.85rem;display:none;">
+          <div style="display:flex;justify-content:space-between;font-weight:600;color:var(--gray-900);">
+            <span>Add-ons subtotal</span><span id="addon-subtotal-val">$0</span>
+          </div>
+        </div>
 
         <div class="form-divider"></div>
         <div class="section-title" style="margin-bottom:16px">Payment Details</div>
@@ -392,6 +497,11 @@ async function handlePayment() {
 
   try {
     // Create payment method
+    // Add addons to total
+    let addonSum = 0;
+    selectedAddons.forEach(id => { addonSum += ADDON_PRICES[id]; });
+    const grandTotal = total + addonSum;
+
     const { paymentMethod, error } = await stripe.createPaymentMethod({
       type: 'card',
       card: cardNumber,
@@ -431,7 +541,7 @@ async function handlePayment() {
     // ──────────────────────────────────────────────────────
 
     // For now, show success screen (replace with real backend call above)
-    showSuccess(firstName, lastName, email);
+    showSuccess(firstName, lastName, email, addonSum);
 
   } catch (err) {
     showError('Something went wrong. Please try again or call us at 647-470-7333.');
@@ -441,7 +551,7 @@ async function handlePayment() {
   }
 }
 
-function showSuccess(firstName, lastName, email) {
+function showSuccess(firstName, lastName, email, addonSum=0) {
   document.getElementById('checkout-screen').style.display = 'none';
   const screen = document.getElementById('success-screen');
   screen.style.display = 'block';
@@ -454,10 +564,56 @@ function showSuccess(firstName, lastName, email) {
     <div class="success-detail-row"><span>Check-out</span><span>${fmtDate(checkout)}</span></div>
     <div class="success-detail-row"><span>Guests</span><span>${guests}</span></div>
     <div class="success-detail-row"><span>Confirmation sent to</span><span>${email}</span></div>
-    <div class="success-detail-row"><span>Total Paid</span><span>${fmtMoney(total)}</span></div>
+    <div class="success-detail-row"><span>Accommodation</span><span>${fmtMoney(total)}</span></div>
+    ${addonSum > 0 ? `<div class="success-detail-row"><span>Add-ons</span><span>${fmtMoney(addonSum)}</span></div>` : ''}
+    <div class="success-detail-row"><span>Total Paid</span><span>${fmtMoney(total + addonSum)}</span></div>
+    ${selectedAddons.size > 0 ? `<div class="success-detail-row" style="flex-direction:column;align-items:flex-start;gap:2px;"><span>Add-ons ordered</span><span style="color:var(--gray-500);font-size:.8rem;">${getAddonsList()}</span></div>` : ''}
   `;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// ── Add-ons ──────────────────────────────────────────────
+const ADDON_PRICES = { charcuterie: 95, wine: 60, flowers: 65, fridge: 50 };
+const selectedAddons = new Set();
+
+function toggleAddon(card, id, price) {
+  card.classList.toggle('selected');
+  if (card.classList.contains('selected')) {
+    selectedAddons.add(id);
+  } else {
+    selectedAddons.delete(id);
+  }
+  updateAddonTotal();
+}
+
+function updateAddonTotal() {
+  let addonSum = 0;
+  selectedAddons.forEach(id => { addonSum += ADDON_PRICES[id]; });
+  const row = document.getElementById('addon-total-row');
+  const val = document.getElementById('addon-subtotal-val');
+  if (addonSum > 0) {
+    row.style.display = 'block';
+    val.textContent = fmtMoney(addonSum);
+  } else {
+    row.style.display = 'none';
+  }
+  // Update pay button total
+  updatePayButtonTotal();
+}
+
+function updatePayButtonTotal() {
+  let addonSum = 0;
+  selectedAddons.forEach(id => { addonSum += ADDON_PRICES[id]; });
+  const grandTotal = total + addonSum;
+  document.getElementById('pay-btn-text').textContent = 'Pay ' + fmtMoney(grandTotal);
+}
+
+function getAddonsList() {
+  if (selectedAddons.size === 0) return 'None';
+  const names = { charcuterie: 'Charcuterie Board ($95)', wine: 'Welcome Wine/Champagne ($60)', flowers: 'Fresh Flower Bouquet ($65)', fridge: 'Fridge Stocked on Arrival ($50)' };
+  return Array.from(selectedAddons).map(id => names[id]).join(', ');
+}
+
 </script>
 </body>
 </html>
