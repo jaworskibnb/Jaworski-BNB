@@ -192,7 +192,6 @@ footer a{color:#555;margin:0 10px;}
 
 @media(max-width:600px){.form-row,.card-row,.dates-row{grid-template-columns:1fr;}.form-card{padding:20px;}.summary-card{padding:20px;}}
 </style>
-<meta name="stripe-pk" content="%%STRIPE_PUBLISHABLE_KEY%%"/>
 </head>
 <body>
 
@@ -455,36 +454,41 @@ document.getElementById('pay-btn-text').textContent = `Pay ${fmtMoney(total)}`;
 
 // ── Stripe Setup ───────────────────────────────────────────
 // ⚠️  Replace with your actual Stripe publishable key
-const STRIPE_PK = document.querySelector('meta[name="stripe-pk"]')?.content || '';
-const stripe = Stripe(STRIPE_PK);
-const elements = stripe.elements();
+let STRIPE_PK = '';
+let stripe;
+let elements;
+let cardNumber, cardExpiry, cardCvc;
 
-const style = {
-  base: {
-    fontFamily: "'Inter', sans-serif",
-    fontSize: '15px',
-    color: '#1f2937',
-    '::placeholder': { color: '#9ca3af' },
-  },
-  invalid: { color: '#e63946' },
-};
-
-const cardNumber  = elements.create('cardNumber',  { style });
-const cardExpiry  = elements.create('cardExpiry',  { style });
-const cardCvc     = elements.create('cardCvc',     { style });
-
-cardNumber.mount('#card-number-element');
-cardExpiry.mount('#card-expiry-element');
-cardCvc.mount('#card-cvc-element');
-
-// Focus border effect
-[['card-number-element','card-number-wrap'],['card-expiry-element','card-expiry-wrap'],['card-cvc-element','card-cvc-wrap']].forEach(([elId, wrapId]) => {
-  const el  = elId === 'card-number-element' ? cardNumber : elId === 'card-expiry-element' ? cardExpiry : cardCvc;
-  const wrap = document.getElementById(wrapId);
-  el.on('focus', ()  => wrap.classList.add('focused'));
-  el.on('blur',  ()  => wrap.classList.remove('focused'));
-  el.on('change', e  => { if (e.error) showError(e.error.message); else hideError(); });
-});
+async function initStripe() {
+  try {
+    const res = await fetch('/.netlify/functions/get-stripe-key');
+    const data = await res.json();
+    STRIPE_PK = data.publishableKey;
+    stripe = Stripe(STRIPE_PK);
+    elements = stripe.elements();
+    const style = {
+      base: { fontFamily: "'Inter', sans-serif", fontSize: '15px', color: '#1f2937', '::placeholder': { color: '#9ca3af' } },
+      invalid: { color: '#e63946' },
+    };
+    cardNumber = elements.create('cardNumber', { style });
+    cardExpiry = elements.create('cardExpiry', { style });
+    cardCvc    = elements.create('cardCvc',    { style });
+    cardNumber.mount('#card-number-element');
+    cardExpiry.mount('#card-expiry-element');
+    cardCvc.mount('#card-cvc-element');
+    [['card-number-element','card-number-wrap'],['card-expiry-element','card-expiry-wrap'],['card-cvc-element','card-cvc-wrap']].forEach(([elId, wrapId]) => {
+      const el = elId === 'card-number-element' ? cardNumber : elId === 'card-expiry-element' ? cardExpiry : cardCvc;
+      const wrap = document.getElementById(wrapId);
+      el.on('focus', () => wrap.classList.add('focused'));
+      el.on('blur',  () => wrap.classList.remove('focused'));
+      el.on('change', e => { if (e.error) showError(e.error.message); else hideError(); });
+    });
+  } catch(err) {
+    console.error('Failed to init Stripe:', err);
+  }
+}
+initStripe();
+// Stripe initialized in initStripe()
 
 function showError(msg) {
   const el = document.getElementById('card-error');
