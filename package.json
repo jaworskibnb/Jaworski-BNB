@@ -1,0 +1,8 @@
+{
+  "name": "windsor-executive-rentals",
+  "version": "1.0.0",
+  "description": "Windsor Executive Rentals booking site",
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}
