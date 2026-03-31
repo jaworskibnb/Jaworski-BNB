@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>Windsor Executive Rentals | Premium Furnished Properties</title><link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/><style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}:root{--gold:#c9a84c;--gold-light:#e8c97a;--dark:#1a1a1a;--dark2:#2a2a2a;--light:#f9f7f4;--text:#333;--text-muted:#777;--white:#ffffff;--radius:12px;}body{font-family:'Inter',sans-serif;background:var(--light);color:var(--text);}nav{background:var(--dark);padding:18px 40px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;}.nav-logo{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.3rem;text-decoration:none;}.nav-links{display:flex;gap:24px;list-style:none;}.nav-links a{color:#ccc;text-decoration:none;font-size:0.9rem;transition:color 0.2s;}.nav-links a:hover{color:var(--gold);}.hero{background:var(--dark);color:var(--white);text-align:center;padding:80px 20px 60px;}.hero-badge{display:inline-block;background:rgba(201,168,76,0.15);border:1px solid var(--gold);color:var(--gold);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:24px;}.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1.2;max-width:700px;margin:0 auto 20px;}.hero p{color:#aaa;max-width:540px;margin:0 auto 40px;line-height:1.7;}.stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;}.stat-item{text-align:center;}.stat-number{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold);}.stat-label{font-size:0.8rem;color:#999;margin-top:4px;}section{padding:70px 20px;}.section-header{text-align:center;margin-bottom:48px;}.section-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:var(--dark);margin-bottom:10px;}.section-header p{color:var(--text-muted);max-width:520px;margin:0 auto;}#properties{background:var(--white);}.properties-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px;max-width:1100px;margin:0 auto;}.property-card{background:var(--light);border-radius:var(--radius);overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;text-decoration:none;color:inherit;display:block;}.property-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.12);}.card-image{position:relative;height:220px;overflow:hidden;}.card-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}.property-card:hover .card-image img{transform:scale(1.05);}.card-badge{position:absolute;top:12px;left:12px;background:var(--dark);color:var(--gold);font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:4px 10px;border-radius:50px;}.card-body{padding:20px;}.card-rating{display:flex;align-items:center;gap:6px;margin-bottom:6px;}.card-rating .stars{color:var(--gold);}.card-rating span{font-size:0.82rem;color:var(--text-muted);}.card-location{font-size:0.78rem;color:var(--text-muted);margin-bottom:10px;}.card-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:12px;color:var(--dark);}.card-meta{display:flex;gap:14px;font-size:0.78rem;color:var(--text-muted);margin-bottom:14px;}.card-amenities{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}.amenity-tag{background:var(--white);border:1px solid #e0e0e0;border-radius:50px;padding:3px 10px;font-size:0.72rem;}.card-footer{display:flex;justify-content:space-between;align-items:center;}.card-pricing{display:flex;flex-direction:column;gap:2px;}.card-pricing .price-main{font-size:1rem;font-weight:700;color:var(--dark);}.card-pricing .price-main span{color:var(--gold);}.card-pricing .price-weekend{font-size:0.75rem;color:var(--text-muted);}.btn-view{background:var(--gold);color:var(--dark);border:none;padding:8px 18px;border-radius:50px;font-size:0.8rem;font-weight:600;text-decoration:none;white-space:nowrap;}#booking{background:var(--light);}.booking-container{max-width:700px;margin:0 auto;}.booking-form{background:var(--white);border-radius:var(--radius);padding:40px;box-shadow:0 4px 24px rgba(0,0,0,0.07);}.picker-label{font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:8px;display:block;}.property-picker{border:0.5px solid #e0e0e0;border-radius:var(--radius);overflow:hidden;max-height:200px;overflow-y:auto;margin-bottom:16px;}.property-option{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:0.5px solid #f0f0f0;cursor:pointer;transition:background 0.15s;}.property-option:last-child{border-bottom:none;}.property-option:hover{background:#faf8f4;}.property-option.selected{background:rgba(201,168,76,0.08);}.property-option img{width:48px;height:36px;object-fit:cover;border-radius:4px;flex-shrink:0;}.prop-info{flex:1;}.prop-name{font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:500;color:var(--dark);margin:0 0 2px;}.prop-sub{font-size:0.72rem;color:var(--text-muted);margin:0;}.prop-price{text-align:right;margin-right:8px;}.prop-price .price{font-size:0.82rem;font-weight:600;color:var(--gold);display:block;}.prop-price .wknd{font-size:0.7rem;color:var(--text-muted);}.radio{width:14px;height:14px;border-radius:50%;border:1.5px solid #ccc;flex-shrink:0;display:flex;align-items:center;justify-content:center;}.property-option.selected .radio{background:var(--gold);border-color:var(--gold);}.radio-dot{width:6px;height:6px;border-radius:50%;background:white;display:none;}.property-option.selected .radio-dot{display:block;}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}.form-group label{font-size:0.82rem;font-weight:600;color:var(--text);}.form-group input,.form-group select,.form-group textarea{padding:12px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--text);background:var(--white);outline:none;transition:border-color 0.2s;}.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);}.form-group textarea{resize:vertical;min-height:100px;}.btn-submit{width:100%;background:var(--gold);color:var(--dark);border:none;padding:16px;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;transition:background 0.2s;margin-top:8px;font-family:'Playfair Display',serif;letter-spacing:0.05em;}.btn-submit:hover{background:var(--gold-light);}.btn-submit:disabled{opacity:0.6;cursor:not-allowed;}.form-success{display:none;text-align:center;padding:40px 20px;}.form-success .success-icon{font-size:3rem;margin-bottom:16px;}.form-success h3{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:10px;}.form-success p{color:var(--text-muted);}.form-contact-info{text-align:center;margin-top:20px;font-size:0.85rem;color:var(--text-muted);}.form-contact-info a{color:var(--gold);text-decoration:none;font-weight:600;}#why-direct{background:var(--dark);}#why-direct .section-header h2{color:var(--white);}#why-direct .section-header p{color:#aaa;}.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px;max-width:900px;margin:0 auto;}.why-card{background:var(--dark2);border-radius:var(--radius);padding:28px 24px;border:1px solid #333;}.why-icon{font-size:1.8rem;margin-bottom:14px;}.why-card h3{color:var(--gold);font-size:1rem;margin-bottom:8px;}.why-card p{color:#aaa;font-size:0.85rem;line-height:1.6;}footer{background:#111;color:#777;text-align:center;padding:32px 20px;font-size:0.82rem;}footer a{color:#555;text-decoration:none;margin:0 10px;}footer a:hover{color:var(--gold);}.footer-links{margin-top:10px;}
+.calendar-section{margin-bottom:20px;}.calendar-label{font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;}.calendar-status{font-size:0.72rem;color:var(--text-muted);font-weight:400;}.calendar-wrap{border:1.5px solid #e0e0e0;border-radius:10px;overflow:hidden;background:var(--white);}.cal-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--dark);}.cal-header button{background:none;border:none;color:var(--gold);font-size:1.1rem;cursor:pointer;padding:2px 8px;border-radius:4px;transition:background 0.15s;}.cal-header button:hover{background:rgba(201,168,76,0.2);}.cal-month-title{font-family:'Playfair Display',serif;color:var(--white);font-size:0.95rem;}.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);}.cal-dow{text-align:center;font-size:0.68rem;font-weight:600;color:var(--text-muted);padding:8px 4px;background:#faf8f4;text-transform:uppercase;letter-spacing:0.05em;}.cal-day{text-align:center;padding:4px 2px 6px;font-size:0.78rem;cursor:pointer;transition:background 0.15s,color 0.15s;border:1px solid transparent;position:relative;min-height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;}.cal-day:hover:not(.blocked):not(.past):not(.empty){background:rgba(201,168,76,0.15);border-radius:4px;}.cal-day.empty{cursor:default;}.cal-day.past{color:#ccc;cursor:not-allowed;}.cal-day.blocked{background:#fee2e2;color:#dc2626;cursor:not-allowed;font-weight:600;}.cal-day.selected-start,.cal-day.selected-end{background:var(--gold);color:var(--dark);font-weight:700;border-radius:4px;}.cal-day.in-range{background:rgba(201,168,76,0.15);color:var(--dark);}.cal-day.today:not(.blocked):not(.selected-start):not(.selected-end){color:var(--gold);font-weight:700;}.cal-day-num{font-size:0.8rem;line-height:1;}.cal-day-price{font-size:0.6rem;color:var(--gold);font-weight:600;line-height:1;}.cal-day.blocked .cal-day-price,.cal-day.past .cal-day-price{display:none;}.cal-day.selected-start .cal-day-price,.cal-day.selected-end .cal-day-price{color:var(--dark);}.cal-legend{display:flex;gap:16px;padding:10px 16px;background:#faf8f4;border-top:1px solid #f0f0f0;flex-wrap:wrap;}.legend-item{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--text-muted);}.legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0;}.legend-dot.blocked{background:#fee2e2;border:1px solid #dc2626;}.legend-dot.selected{background:var(--gold);}.legend-dot.available{background:var(--white);border:1px solid #e0e0e0;}.cal-error{text-align:center;padding:12px;color:#dc2626;font-size:0.78rem;background:#fee2e2;border-radius:6px;margin-bottom:8px;}
+.date-display{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}.date-box{padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.85rem;color:var(--text-muted);background:var(--light);}.date-box.filled{border-color:var(--gold);color:var(--text);background:var(--white);}.date-box-label{font-size:0.72rem;font-weight:600;color:var(--text-muted);margin-bottom:2px;}.date-box-value{font-weight:600;}
+.price-summary{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:12px 16px;margin-bottom:16px;display:none;font-size:0.85rem;}.price-summary.show{display:block;}.price-summary-title{font-weight:600;color:var(--dark);margin-bottom:6px;}.price-summary-row{display:flex;justify-content:space-between;color:var(--text-muted);margin-bottom:4px;}.price-summary-total{display:flex;justify-content:space-between;font-weight:700;color:var(--dark);border-top:1px solid rgba(201,168,76,0.3);padding-top:6px;margin-top:6px;}
+#admin-trigger{position:fixed;bottom:20px;right:20px;background:var(--dark);color:var(--gold);border:1px solid var(--gold);padding:8px 14px;border-radius:50px;font-size:0.75rem;cursor:pointer;z-index:999;opacity:0.3;transition:opacity 0.2s;}#admin-trigger:hover{opacity:1;}
+#admin-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;overflow-y:auto;}#admin-overlay.show{display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;}
+#admin-panel{background:var(--white);border-radius:var(--radius);padding:36px;width:100%;max-width:580px;position:relative;margin:auto;}
+#admin-panel h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--dark);margin-bottom:6px;}#admin-panel>p{font-size:0.82rem;color:var(--text-muted);margin-bottom:24px;}
+.admin-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--text-muted);}
+.admin-input{width:100%;padding:12px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.9rem;margin-bottom:12px;outline:none;font-family:'Inter',sans-serif;}.admin-input:focus{border-color:var(--gold);}
+.admin-btn{background:var(--gold);color:var(--dark);border:none;padding:12px 24px;border-radius:50px;font-weight:700;cursor:pointer;font-size:0.9rem;width:100%;}.admin-btn:hover{background:var(--gold-light);}
+.admin-btn-sm{background:var(--gold);color:var(--dark);border:none;padding:9px 16px;border-radius:50px;font-weight:600;cursor:pointer;font-size:0.82rem;white-space:nowrap;align-self:end;}.admin-btn-sm:hover{background:var(--gold-light);}
+.admin-btn-del{background:#fee2e2;color:#dc2626;border:none;padding:6px 12px;border-radius:50px;font-weight:600;cursor:pointer;font-size:0.75rem;}.admin-btn-del:hover{background:#fecaca;}
+#admin-content{display:none;}.admin-section{margin-bottom:24px;}.admin-section h3{font-size:0.88rem;font-weight:700;color:var(--dark);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #f0f0f0;}
+.admin-prop-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}.admin-tab{padding:6px 14px;border-radius:50px;border:1.5px solid #e0e0e0;font-size:0.78rem;cursor:pointer;background:var(--white);color:var(--text);font-weight:500;transition:all 0.15s;}.admin-tab.active{background:var(--dark);color:var(--gold);border-color:var(--dark);}
+.admin-form-row{display:grid;grid-template-columns:1fr 1fr 80px auto;gap:8px;align-items:end;margin-bottom:8px;}.admin-form-row .afl{display:flex;flex-direction:column;gap:4px;}.admin-form-row label{font-size:0.72rem;font-weight:600;color:var(--text-muted);}.admin-form-row input{padding:9px 10px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:0.85rem;width:100%;outline:none;font-family:'Inter',sans-serif;}.admin-form-row input:focus{border-color:var(--gold);}
+.price-rules-list{margin-top:8px;}.price-rule-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--light);border-radius:8px;margin-bottom:6px;font-size:0.82rem;gap:8px;}.price-rule-info{flex:1;}.price-rule-dates{color:var(--text-muted);font-size:0.72rem;}.price-rule-price{font-weight:700;color:var(--gold);}
+.admin-note{font-size:0.75rem;color:var(--text-muted);margin-top:10px;background:#faf8f4;padding:10px 12px;border-radius:6px;border-left:3px solid var(--gold);}
+.admin-error{color:#dc2626;font-size:0.82rem;margin-top:8px;display:none;}
+@media(max-width:600px){nav{padding:14px 20px;}.nav-links{gap:14px;}.stats{gap:28px;}.form-row{grid-template-columns:1fr;}.booking-form{padding:24px;}.cal-day{min-height:38px;}.admin-form-row{grid-template-columns:1fr 1fr;gap:8px;}.admin-form-row .admin-btn-sm{grid-column:span 2;}}
+
+/* Enhanced price summary */
+.price-est-row{display:flex;justify-content:space-between;color:var(--gray-500,#6b7280);margin-bottom:6px;font-size:.85rem;}
+.price-est-divider{height:1px;background:rgba(201,168,76,.2);margin:10px 0;}
+.price-est-tax{display:flex;justify-content:space-between;font-size:.82rem;color:var(--gray-500,#6b7280);margin-bottom:5px;}
+.price-est-total{display:flex;justify-content:space-between;font-weight:700;color:var(--gray-900,#1f2937);border-top:1.5px solid rgba(201,168,76,.4);padding-top:10px;margin-top:6px;font-size:1rem;}
+.price-est-savings{display:flex;align-items:flex-start;gap:7px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:7px;padding:9px 12px;margin-top:12px;}
+.price-est-savings svg{width:14px;height:14px;color:#10b981;flex-shrink:0;margin-top:1px;}
+.price-est-savings span{font-size:.75rem;color:#065f46;font-weight:500;line-height:1.4;}
+.book-now-btn{display:block;width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#1a1a1a;border:none;padding:15px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;text-align:center;margin-top:14px;transition:transform .2s,box-shadow .2s;font-family:'Playfair Display',serif;letter-spacing:.04em;text-decoration:none;}
+.book-now-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,168,76,.4);}
+
+</style></head><body>
+<nav><a href="index.html" class="nav-logo">Windsor Executive Rentals</a><ul class="nav-links"><li><a href="#properties">Properties</a></li><li><a href="#booking">Book Now</a></li><li><a href="#why-direct">Why Book Direct</a></li><li><a href="mailto:jaworskibnb@gmail.com">Contact Us</a></li></ul></nav>
+<div class="hero"><div class="hero-badge">5 Star Hotel Inspired Properties</div><h1>Premium Furnished Stays in Windsor, ON</h1><p>Luxury properties with 5-star amenities, hotel-quality linens, and everything you need for a perfect stay. Book direct and save.</p><div class="stats"><div class="stat-item"><div class="stat-number">5.0</div><div class="stat-label">Guest Rating</div></div><div class="stat-item"><div class="stat-number">140+</div><div class="stat-label">5-Star Reviews</div></div><div class="stat-item"><div class="stat-number">3</div><div class="stat-label">Properties</div></div><div class="stat-item"><div class="stat-number">0%</div><div class="stat-label">Service Fees</div></div></div></div>
+<section id="properties"><div class="section-header"><h2>Our Properties</h2><p>Each property is personally curated with luxury furnishings and hotel-grade amenities</p></div><div class="properties-grid"><a href="property-1.html" class="property-card"><div class="card-image"><img src="images/13-living-fireplace.png" alt="Luxury Home"/><span class="card-badge">Featured</span></div><div class="card-body"><div class="card-rating"><span class="stars">★★★★★</span><span>5.0 (60)</span></div><div class="card-location">Windsor, ON — South Windsor</div><div class="card-title">5-Star Inspired Luxury Home — Over 3,400 SQ FT</div><div class="card-meta"><span>6-8 guests</span><span>4 bedrooms</span><span>3 bathrooms</span></div><div class="card-amenities"><span class="amenity-tag">Private Gym & Sauna</span><span class="amenity-tag">King Bed</span><span class="amenity-tag">6 TVs</span><span class="amenity-tag">Games Room</span></div><div class="card-footer"><span class="btn-view">View Property</span></div></div></a><a href="property-2.html" class="property-card"><div class="card-image"><img src="images/property-2/01-living-fireplace.png" alt="Riverside Retreat"/><span class="card-badge">New</span></div><div class="card-body"><div class="card-rating"><span class="stars">★★★★★</span><span>4.98 (51)</span></div><div class="card-location">Windsor, ON — Riverside</div><div class="card-title">Brand New Riverside Retreat — Stylish 2BR + Parking</div><div class="card-meta"><span>4 guests</span><span>2 bedrooms</span><span>1.5 bathrooms</span></div><div class="card-amenities"><span class="amenity-tag">Riverside Drive</span><span class="amenity-tag">Samsung Frame TV</span><span class="amenity-tag">Balcony</span><span class="amenity-tag">Free Parking</span></div><div class="card-footer"><span class="btn-view">View Property</span></div></div></a><a href="property-3.html" class="property-card"><div class="card-image"><img src="images/property-3/17-living-open.png" alt="Downtown 2BR"/><span class="card-badge">Superhost</span></div><div class="card-body"><div class="card-rating"><span class="stars">★★★★★</span><span>4.97 (31)</span></div><div class="card-location">Windsor, ON — Downtown</div><div class="card-title">Stylish Downtown — 2-Bedroom Home</div><div class="card-meta"><span>4 guests</span><span>2 bedrooms</span><span>1 bathroom</span></div><div class="card-amenities"><span class="amenity-tag">Downtown</span><span class="amenity-tag">Smart Lock</span><span class="amenity-tag">Garage</span><span class="amenity-tag">Backyard</span></div><div class="card-footer"><span class="btn-view">View Property</span></div></div></a></div></section>
+
+<section id="booking"><div class="section-header"><h2>Request a Booking</h2><p>Fill out the form below and we'll get back to you within a few hours</p></div><div class="booking-container"><div class="booking-form"><div id="form-fields">
+<span class="picker-label">Select Property</span>
+<div class="property-picker">
+<div class="property-option selected" onclick="selectProperty(this,'5-Star Inspired Luxury Home — From $500/night','luxury')"><img src="images/13-living-fireplace.png" alt="Luxury"/><div class="prop-info"><p class="prop-name">5-Star Luxury Home</p><p class="prop-sub">3,400 SQ FT · 8 guests</p></div><div class="radio"><div class="radio-dot"></div></div></div>
+<div class="property-option" onclick="selectProperty(this,'Brand New Riverside Retreat — From $350/night','riverside')"><img src="images/property-2/01-living-fireplace.png" alt="Riverside"/><div class="prop-info"><p class="prop-name">Riverside Retreat</p><p class="prop-sub">2BR · 4 guests · Balcony</p></div><div class="radio"><div class="radio-dot"></div></div></div>
+<div class="property-option" onclick="selectProperty(this,'Stylish Downtown 2-Bedroom Home — From $200/night','downtown')"><img src="images/property-3/17-living-open.png" alt="Downtown"/><div class="prop-info"><p class="prop-name">Downtown 2-Bedroom</p><p class="prop-sub">2BR · 4 guests · Garage</p></div><div class="radio"><div class="radio-dot"></div></div></div>
+</div>
+<input type="hidden" id="property" value="5-Star Inspired Luxury Home — From $500/night"/>
+<div class="calendar-section">
+  <div class="calendar-label">Select Your Dates <span class="calendar-status" id="cal-status">Loading availability...</span></div>
+  <div class="calendar-wrap">
+    <div class="cal-header"><button onclick="changeMonth(-1)">&#8249;</button><span class="cal-month-title" id="cal-title"></span><button onclick="changeMonth(1)">&#8250;</button></div>
+    <div class="cal-grid"><div class="cal-dow">Su</div><div class="cal-dow">Mo</div><div class="cal-dow">Tu</div><div class="cal-dow">We</div><div class="cal-dow">Th</div><div class="cal-dow">Fr</div><div class="cal-dow">Sa</div></div>
+    <div class="cal-grid" id="cal-days"></div>
+    <div class="cal-legend"><div class="legend-item"><div class="legend-dot available"></div>Available</div><div class="legend-item"><div class="legend-dot blocked"></div>Booked</div><div class="legend-item"><div class="legend-dot selected"></div>Your Selection</div></div>
+  </div>
+</div>
+<div class="date-display">
+  <div class="date-box" id="checkin-box"><div class="date-box-label">CHECK-IN</div><div class="date-box-value" id="checkin-display">Select date</div></div>
+  <div class="date-box" id="checkout-box"><div class="date-box-label">CHECK-OUT</div><div class="date-box-value" id="checkout-display">Select date</div></div>
+</div>
+<div id="price-summary" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:14px 16px;margin-bottom:16px;display:none;font-size:.85rem;">
+  <div style="font-weight:600;color:#1a1a1a;margin-bottom:10px;font-size:.88rem;">Price Estimate</div>
+  <div id="price-summary-rows"></div>
+  <div style="height:1px;background:rgba(201,168,76,.3);margin:10px 0;"></div>
+  <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#777;margin-bottom:5px;"><span>Windsor MAT (6%)</span><span id="sum-mat-val">—</span></div>
+  <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#777;margin-bottom:5px;"><span>Ontario HST (13%)</span><span id="sum-hst-val">—</span></div>
+  <div style="height:1px;background:rgba(201,168,76,.3);margin:10px 0;"></div>
+  <div style="display:flex;justify-content:space-between;font-weight:700;color:#1a1a1a;font-size:.95rem;"><span id="price-summary-nights"></span><span id="price-summary-total"></span></div>
+  <div style="display:flex;align-items:flex-start;gap:7px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:7px;padding:9px 12px;margin-top:12px;">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#10b981" stroke-width="2" style="flex-shrink:0;margin-top:1px"><polyline points="20 6 9 17 4 12"/></svg>
+    <span style="font-size:.75rem;color:#065f46;font-weight:500;line-height:1.4;">You save ~15% vs Airbnb — no platform service fees!</span>
+  </div>
+</div>
+<a id="book-now-btn" href="#" onclick="goToCheckout(event)" style="display:none;width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#1a1a1a;border:none;padding:15px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;text-align:center;margin-top:4px;transition:transform .2s;text-decoration:none;display:none;block;font-family:'Playfair Display',serif;letter-spacing:.04em;">Complete Booking →</a>
+<input type="hidden" id="checkin"/><input type="hidden" id="checkout"/>
+<div class="form-row"><div class="form-group"><label>First Name</label><input type="text" id="firstName" placeholder="John" required/></div><div class="form-group"><label>Last Name</label><input type="text" id="lastName" placeholder="Smith" required/></div></div>
+<div class="form-row"><div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="john@email.com" required/></div><div class="form-group"><label>Phone Number</label><input type="tel" id="phone" placeholder="+1 (555) 000-0000" required/></div></div>
+<div class="form-group"><label>Number of Guests</label><select id="guests" required><option value="" disabled selected>Select guests...</option><option>1 guest</option><option>2 guests</option><option>3 guests</option><option>4 guests</option><option>5 guests</option><option>6 guests</option><option>7 guests</option><option>8 guests</option></select></div>
+<div class="form-group"><label>Special Requests (optional)</label><textarea id="requests" placeholder="Any special requirements, questions, or requests..."></textarea></div>
+<button class="btn-submit" id="submitBtn" onclick="submitBooking()">Send Booking Request</button>
+</div><div class="form-success" id="form-success"><div class="success-icon">🎉</div><h3>Request Sent!</h3><p>Thank you! We've received your booking request and will contact you within a few hours.</p><p style="margin-top:12px">We'll reach out via email and phone to confirm your stay.</p></div></div>
+<div class="form-contact-info">Prefer to reach us directly? Call or text <a href="tel:6474707333">647-470-7333</a> or email <a href="mailto:jaworskibnb@gmail.com">jaworskibnb@gmail.com</a></div></div></section>
+
+<section id="why-direct"><div class="section-header"><h2>Why Book Direct?</h2><p>Skip the middleman — get the best rates and a personal touch when you book with us</p></div><div class="why-grid"><div class="why-card"><div class="why-icon">💰</div><h3>No Service Fees</h3><p>Save 15%+ compared to booking platforms. Our prices go straight to your stay, not middlemen.</p></div><div class="why-card"><div class="why-icon">🏆</div><h3>Best Price Guaranteed</h3><p>You'll never find a better rate anywhere else. We match or beat any platform price.</p></div><div class="why-card"><div class="why-icon">💬</div><h3>Direct Communication</h3><p>Talk to us directly — no bots, no ticket systems. Faster responses and personal service.</p></div><div class="why-card"><div class="why-icon">🔄</div><h3>Flexible Cancellation</h3><p>Life happens. We offer flexible cancellation policies so you can book with confidence.</p></div></div></section>
+<footer><div>© 2026 Windsor Executive Rentals. All rights reserved.</div><div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="mailto:jaworskibnb@gmail.com">Contact</a></div></footer>
+
+<!-- Admin button (subtle, bottom-right corner) -->
+<button id="admin-trigger" onclick="openAdmin()">⚙ Admin</button>
+
+<!-- Admin overlay -->
+<div id="admin-overlay" onclick="closeAdminIfOutside(event)">
+  <div id="admin-panel">
+    <button class="admin-close" onclick="closeAdmin()">✕</button>
+    <h2>Admin Panel</h2>
+    <p>Set custom nightly prices for each property by date range.</p>
+    <div id="admin-login">
+      <input class="admin-input" type="password" id="admin-pw" placeholder="Enter password..." onkeydown="if(event.key==='Enter')adminLogin()"/>
+      <button class="admin-btn" onclick="adminLogin()">Login</button>
+      <div class="admin-error" id="admin-error">Incorrect password. Try again.</div>
+    </div>
+    <div id="admin-content">
+      <div class="admin-section">
+        <h3>Property</h3>
+        <div class="admin-prop-tabs">
+          <div class="admin-tab active" onclick="adminSelectProp('luxury',this)">5-Star Luxury</div>
+          <div class="admin-tab" onclick="adminSelectProp('riverside',this)">Riverside</div>
+          <div class="admin-tab" onclick="adminSelectProp('downtown',this)">Downtown</div>
+        </div>
+      </div>
+      <div class="admin-section">
+        <h3>Add Price Rule</h3>
+        <div class="admin-form-row">
+          <div class="afl"><label>From</label><input type="date" id="admin-from"/></div>
+          <div class="afl"><label>To</label><input type="date" id="admin-to"/></div>
+          <div class="afl"><label>$/night</label><input type="number" id="admin-price" placeholder="450" min="1"/></div>
+          <button class="admin-btn-sm" onclick="addPriceRule()">+ Add</button>
+        </div>
+        <div class="admin-note">💡 Tip: You can overlap ranges — the most recently added rule takes priority for any date.</div>
+      </div>
+      <div class="admin-section">
+        <h3>Active Rules — <span id="admin-prop-label">5-Star Luxury</span></h3>
+        <div class="price-rules-list" id="admin-rules-list"></div>
+        <div id="admin-no-rules" style="font-size:0.82rem;color:var(--text-muted);">No custom rules yet. Default prices are being used.</div>
+      </div>
+      <div class="admin-section">
+        <h3>Default Prices (when no rule set)</h3>
+        <div style="font-size:0.82rem;color:var(--text-muted);line-height:2;">
+          5-Star Luxury: <strong>$500</strong> weekdays / <strong>$650</strong> weekends<br/>
+          Riverside Retreat: <strong>$350</strong> weekdays / <strong>$400</strong> weekends<br/>
+          Downtown 2BR: <strong>$200</strong> weekdays / <strong>$300</strong> weekends
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const MAT_RATE=0.06,HST_RATE=0.13;
+function fmtMoney(n){return '$'+n.toLocaleString('en-CA',{minimumFractionDigits:2,maximumFractionDigits:2});}
+
+function goToCheckout(e){
+  e.preventDefault();
+  if(!selStart||!selEnd){alert('Please select dates first.');return;}
+  const nights=calcNights(currentProperty,selStart,selEnd);
+  const subtotal=nights.reduce((s,n)=>s+n.price,0);
+  let i=0,rowChunks=[];
+  while(i<nights.length){let j=i;while(j<nights.length&&nights[j].price===nights[i].price)j++;rowChunks.push((j-i)+'x'+nights[i].price);i=j;}
+  const g=document.getElementById('guests');
+  const params='prop='+encodeURIComponent(currentProperty)
+    +'&checkin='+encodeURIComponent(selStart)
+    +'&checkout='+encodeURIComponent(selEnd)
+    +'&guests='+encodeURIComponent(g?g.value:'2 guests')
+    +'&nights='+nights.length
+    +'&subtotal='+subtotal.toFixed(2)
+    +'&nightrows='+encodeURIComponent(rowChunks.join(','));
+  window.location.href='checkout.html?'+params;
+}
+const ADMIN_PASSWORD='Ep6911167!';
+const PROXY='/.netlify/functions/fetch-ical?url=';
+const ICAL_URLS={
+  luxury:'https://www.airbnb.ca/calendar/ical/708933094130447096.ics?t=b0e6bdd7a5494edc8df96ee47e83cc8b',
+  riverside:'https://www.airbnb.ca/calendar/ical/989882813772586756.ics?t=29fe38aefe04402b8a60b5b63cc09ace',
+  downtown:'https://www.airbnb.ca/calendar/ical/45517705.ics?t=9c1e81cad08149a6a15fa207772e8adf'
+};
+const DEFAULT_PRICES={luxury:[500,650],riverside:[350,400],downtown:[200,300]};
+const PROP_LABELS={luxury:'5-Star Luxury',riverside:'Riverside',downtown:'Downtown'};
+
+let currentProperty='luxury',blockedDates={},calYear,calMonth,selStart=null,selEnd=null,adminLoggedIn=false,adminProp='luxury';
+
+function loadRules(){try{return JSON.parse(localStorage.getItem('wer_price_rules')||'{}');}catch{return {};}}
+function saveRules(r){localStorage.setItem('wer_price_rules',JSON.stringify(r));}
+
+const td=new Date();calYear=td.getFullYear();calMonth=td.getMonth();
+Object.keys(ICAL_URLS).forEach(id=>fetchBlocked(id));
+renderCalendar();
+
+async function fetchBlocked(propId){
+  try{
+    const res=await fetch(PROXY+encodeURIComponent(ICAL_URLS[propId]));
+    if(!res.ok)throw new Error();
+    blockedDates[propId]=parseIcal(await res.text());
+    if(propId===currentProperty){document.getElementById('cal-status').textContent='Live availability';renderCalendar();}
+  }catch{
+    blockedDates[propId]=new Set();
+    if(propId===currentProperty)document.getElementById('cal-status').textContent='Availability unavailable';
+  }
+}
+
+function parseIcal(text){
+  const dates=new Set();
+  const lines=text.replace(/\r\n /g,'').replace(/\r\n/g,'\n').split('\n');
+  let inEvent=false,dtstart=null,dtend=null;
+  for(const line of lines){
+    if(line==='BEGIN:VEVENT'){inEvent=true;dtstart=null;dtend=null;}
+    if(!inEvent)continue;
+    if(line.startsWith('DTSTART')){const v=line.split(':')[1]?.trim().replace(/T.*/,'');if(v&&v.length===8)dtstart=v;}
+    if(line.startsWith('DTEND')){const v=line.split(':')[1]?.trim().replace(/T.*/,'');if(v&&v.length===8)dtend=v;}
+    if(line==='END:VEVENT'){
+      if(dtstart&&dtend){let c=p8(dtstart);const e=p8(dtend);while(c<e){dates.add(toYMD(c));c.setDate(c.getDate()+1);}}
+      inEvent=false;
+    }
+  }
+  return dates;
+}
+function p8(s){return new Date(s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8));}
+function toYMD(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function todayYMD(){return toYMD(new Date());}
+function fmtDate(ymd){if(!ymd)return'';const[y,m,d]=ymd.split('-');const mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return mo[parseInt(m)-1]+' '+parseInt(d)+', '+y;}
+
+function getPriceForDate(propId,ymd){
+  const rules=(loadRules()[propId]||[]).slice().reverse();
+  for(const r of rules){if(ymd>=r.from&&ymd<=r.to)return r.price;}
+  const dow=new Date(ymd+'T12:00:00').getDay();
+  const[wd,we]=DEFAULT_PRICES[propId];
+  return(dow===5||dow===6)?we:wd;
+}
+
+function calcNights(propId,startYMD,endYMD){
+  const nights=[];let cur=new Date(startYMD+'T12:00:00');const end=new Date(endYMD+'T12:00:00');
+  while(cur<end){const ymd=toYMD(cur);nights.push({date:ymd,price:getPriceForDate(propId,ymd)});cur.setDate(cur.getDate()+1);}
+  return nights;
+}
+
+function renderCalendar(){
+  const MO=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('cal-title').textContent=MO[calMonth]+' '+calYear;
+  const grid=document.getElementById('cal-days');grid.innerHTML='';
+  const firstDay=new Date(calYear,calMonth,1).getDay();
+  const dim=new Date(calYear,calMonth+1,0).getDate();
+  const blocked=blockedDates[currentProperty]||new Set();
+  const tYMD=todayYMD();
+  for(let i=0;i<firstDay;i++){const e=document.createElement('div');e.className='cal-day empty';grid.appendChild(e);}
+  for(let d=1;d<=dim;d++){
+    const ymd=calYear+'-'+String(calMonth+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+    const el=document.createElement('div');el.className='cal-day';
+    const numEl=document.createElement('div');numEl.className='cal-day-num';numEl.textContent=d;el.appendChild(numEl);
+    if(ymd===tYMD)el.classList.add('today');
+    if(ymd<tYMD){el.classList.add('past');}
+    else if(blocked.has(ymd)){el.classList.add('blocked');}
+    else{
+      const price=getPriceForDate(currentProperty,ymd);
+      const priceEl=document.createElement('div');priceEl.className='cal-day-price';priceEl.textContent='$'+price;el.appendChild(priceEl);
+      el.onclick=()=>selectDay(ymd);
+      if(selStart&&selEnd){
+        if(ymd===selStart)el.classList.add('selected-start');
+        else if(ymd===selEnd)el.classList.add('selected-end');
+        else if(ymd>selStart&&ymd<selEnd)el.classList.add('in-range');
+      }else if(selStart&&ymd===selStart)el.classList.add('selected-start');
+    }
+    grid.appendChild(el);
+  }
+}
+
+function changeMonth(dir){
+  calMonth+=dir;
+  if(calMonth>11){calMonth=0;calYear++;}
+  if(calMonth<0){calMonth=11;calYear--;}
+  renderCalendar();
+}
+
+function selectDay(ymd){
+  if(!selStart||(selStart&&selEnd)){selStart=ymd;selEnd=null;}
+  else{
+    if(ymd<=selStart){selStart=ymd;selEnd=null;}
+    else{
+      const blocked=blockedDates[currentProperty]||new Set();
+      let cur=new Date(selStart+'T12:00:00');cur.setDate(cur.getDate()+1);
+      const end=new Date(ymd+'T12:00:00');let hasBlocked=false;
+      while(cur<end){if(blocked.has(toYMD(cur))){hasBlocked=true;break;}cur.setDate(cur.getDate()+1);}
+      if(hasBlocked){alert('Your range includes unavailable dates. Please choose different dates.');selStart=ymd;selEnd=null;}
+      else{selEnd=ymd;}
+    }
+  }
+  updateDateInputs();renderCalendar();
+}
+
+function updateDateInputs(){
+  document.getElementById('checkin-display').textContent=selStart?fmtDate(selStart):'Select date';
+  document.getElementById('checkout-display').textContent=selEnd?fmtDate(selEnd):'Select date';
+  document.getElementById('checkin-box').classList.toggle('filled',!!selStart);
+  document.getElementById('checkout-box').classList.toggle('filled',!!selEnd);
+  document.getElementById('checkin').value=selStart||'';
+  document.getElementById('checkout').value=selEnd||'';
+  const ps=document.getElementById('price-summary');
+  if(selStart&&selEnd){
+    const nights=calcNights(currentProperty,selStart,selEnd);
+    const total=nights.reduce((s,n)=>s+n.price,0);
+    let rows=[],i=0;
+    while(i<nights.length){let j=i;while(j<nights.length&&nights[j].price===nights[i].price)j++;const cnt=j-i;rows.push(`<div class="price-summary-row"><span>${cnt} night${cnt>1?'s':''} × $${nights[i].price}</span><span>$${cnt*nights[i].price}</span></div>`);i=j;}
+    document.getElementById('price-summary-rows').innerHTML=rows.join('');
+    document.getElementById('price-summary-nights').textContent=`${nights.length} night${nights.length>1?'s':''} total`;
+    document.getElementById('price-summary-total').textContent='$'+total.toLocaleString();
+    ps.classList.add('show');
+
+  // Taxes & book button
+  if(selStart&&selEnd){
+    const nights=calcNights(currentProperty,selStart,selEnd);
+    const sub=nights.reduce((s,n)=>s+n.price,0);
+    const mat=sub*MAT_RATE, hst=sub*HST_RATE, tot=sub+mat+hst;
+    document.getElementById('sum-mat-val').textContent=fmtMoney(mat);
+    document.getElementById('sum-hst-val').textContent=fmtMoney(hst);
+    document.getElementById('price-summary-total').textContent=fmtMoney(tot);
+    document.getElementById('price-summary-nights').textContent=nights.length+' night'+(nights.length>1?'s':'')+' total (incl. taxes)';
+    const btn=document.getElementById('book-now-btn');
+    if(btn){btn.style.display='block';btn.style.setProperty('display','block','important');}
+    ps.style.display='block';
+  }else{
+    const btn=document.getElementById('book-now-btn');
+    if(btn) btn.style.display='none';
+    ps.classList.remove('show');
+  }
+
+  }else{
+    document.getElementById('sum-mat-val').textContent='—';
+    document.getElementById('sum-hst-val').textContent='—';
+    const btn=document.getElementById('book-now-btn');if(btn)btn.style.display='none';
+    ps.classList.remove('show');
+  }
+}
+
+function selectProperty(el,val,propId){
+  document.querySelectorAll('.property-option').forEach(d=>d.classList.remove('selected'));
+  el.classList.add('selected');document.getElementById('property').value=val;
+  currentProperty=propId;selStart=null;selEnd=null;updateDateInputs();
+  document.getElementById('cal-status').textContent=blockedDates[propId]?'Live availability':'Loading...';
+  if(!blockedDates[propId])fetchBlocked(propId);
+  renderCalendar();
+}
+
+async function submitBooking(){
+  const v=id=>document.getElementById(id).value.trim();
+  const property=v('property'),firstName=v('firstName'),lastName=v('lastName'),email=v('email'),phone=v('phone'),checkin=v('checkin'),checkout=v('checkout'),guests=v('guests'),requests=v('requests');
+  if(!firstName||!lastName||!email||!phone||!checkin||!checkout||!guests){alert('Please fill out all required fields.');return;}
+  if(new Date(checkout)<=new Date(checkin)){alert('Check-out date must be after check-in date.');return;}
+  const btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='Sending...';
+  const nights=calcNights(currentProperty,checkin,checkout);
+  const total=nights.reduce((s,n)=>s+n.price,0);
+  const data={property,name:firstName+' '+lastName,email,phone,'check-in':checkin,'check-out':checkout,guests,'special-requests':requests||'None','estimated-total':'$'+total.toLocaleString()};
+  try{
+    await Promise.all([
+      fetch('https://formspree.io/f/xnjopjgn',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)}),
+      fetch('https://hook.us2.make.com/yqlhgkuuzbgnz5c5xlme674hh9jnkfin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+    ]);
+    document.getElementById('form-fields').style.display='none';
+    document.getElementById('form-success').style.display='block';
+  }catch(e){
+    alert('Something went wrong. Please try again or contact us directly at 647-470-7333.');
+    btn.disabled=false;btn.textContent='Send Booking Request';
+  }
+}
+
+// ── Admin ──
+function openAdmin(){
+  document.getElementById('admin-overlay').classList.add('show');
+  document.getElementById('admin-pw').value='';
+  document.getElementById('admin-error').style.display='none';
+  if(!adminLoggedIn){document.getElementById('admin-login').style.display='block';document.getElementById('admin-content').style.display='none';}
+  setTimeout(()=>document.getElementById('admin-pw').focus(),100);
+}
+function closeAdmin(){document.getElementById('admin-overlay').classList.remove('show');}
+function closeAdminIfOutside(e){if(e.target===document.getElementById('admin-overlay'))closeAdmin();}
+
+function adminLogin(){
+  if(document.getElementById('admin-pw').value===ADMIN_PASSWORD){
+    adminLoggedIn=true;
+    document.getElementById('admin-login').style.display='none';
+    document.getElementById('admin-content').style.display='block';
+    renderAdminRules();
+  }else{document.getElementById('admin-error').style.display='block';}
+}
+
+function adminSelectProp(propId,el){
+  adminProp=propId;
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('admin-prop-label').textContent=PROP_LABELS[propId];
+  renderAdminRules();
+}
+
+function addPriceRule(){
+  const from=document.getElementById('admin-from').value;
+  const to=document.getElementById('admin-to').value;
+  const price=parseInt(document.getElementById('admin-price').value);
+  if(!from||!to||!price||price<1){alert('Please fill in all fields.');return;}
+  if(to<from){alert('End date must be on or after start date.');return;}
+  const rules=loadRules();if(!rules[adminProp])rules[adminProp]=[];
+  rules[adminProp].push({from,to,price});saveRules(rules);
+  document.getElementById('admin-from').value='';
+  document.getElementById('admin-to').value='';
+  document.getElementById('admin-price').value='';
+  renderAdminRules();renderCalendar();updateDateInputs();
+}
+
+function deleteRule(propId,idx){
+  const rules=loadRules();rules[propId].splice(idx,1);saveRules(rules);
+  renderAdminRules();renderCalendar();updateDateInputs();
+}
+
+function renderAdminRules(){
+  const rules=loadRules()[adminProp]||[];
+  const list=document.getElementById('admin-rules-list');
+  const noRules=document.getElementById('admin-no-rules');
+  if(!rules.length){list.innerHTML='';noRules.style.display='block';return;}
+  noRules.style.display='none';
+  const daysBetween=(a,b)=>Math.round((new Date(b+'T12:00:00')-new Date(a+'T12:00:00'))/(86400000))+1;
+  list.innerHTML=rules.map((r,i)=>`
+    <div class="price-rule-item">
+      <div class="price-rule-info">
+        <div style="font-weight:600;color:var(--dark);font-size:0.82rem;">${fmtDate(r.from)} → ${fmtDate(r.to)}</div>
+        <div class="price-rule-dates">${daysBetween(r.from,r.to)} days</div>
+      </div>
+      <div class="price-rule-price">$${r.price}/night</div>
+      <button class="admin-btn-del" onclick="deleteRule('${adminProp}',${i})">Delete</button>
+    </div>`).join('');
+}
+</script>
+</body></html>
