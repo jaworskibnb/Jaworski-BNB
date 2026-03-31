@@ -32,6 +32,30 @@ function updateAddonTotal() {
   } else {
     row.style.display = 'none';
   }
+
+  // Update right-side summary
+  const grandTotal = total + addonSum;
+  const totalEl = document.getElementById('sum-total');
+  if (totalEl) totalEl.textContent = fmtMoney(grandTotal);
+
+  // Show/hide addon line in summary
+  let addonLine = document.getElementById('sum-addon-line');
+  if (addonSum > 0) {
+    if (!addonLine) {
+      // Create addon line in summary
+      const totalRow = totalEl.closest('.price-line');
+      addonLine = document.createElement('div');
+      addonLine.id = 'sum-addon-line';
+      addonLine.className = 'price-line tax-line';
+      addonLine.innerHTML = '<span>Add-ons</span><span id="sum-addon-val"></span>';
+      totalRow.parentNode.insertBefore(addonLine, totalRow);
+    }
+    document.getElementById('sum-addon-val').textContent = fmtMoney(addonSum);
+    addonLine.style.display = 'flex';
+  } else {
+    if (addonLine) addonLine.style.display = 'none';
+  }
+
   // Update pay button total
   updatePayButtonTotal();
 }
@@ -625,6 +649,30 @@ function updateAddonTotal() {
   } else {
     row.style.display = 'none';
   }
+
+  // Update right-side summary
+  const grandTotal = total + addonSum;
+  const totalEl = document.getElementById('sum-total');
+  if (totalEl) totalEl.textContent = fmtMoney(grandTotal);
+
+  // Show/hide addon line in summary
+  let addonLine = document.getElementById('sum-addon-line');
+  if (addonSum > 0) {
+    if (!addonLine) {
+      // Create addon line in summary
+      const totalRow = totalEl.closest('.price-line');
+      addonLine = document.createElement('div');
+      addonLine.id = 'sum-addon-line';
+      addonLine.className = 'price-line tax-line';
+      addonLine.innerHTML = '<span>Add-ons</span><span id="sum-addon-val"></span>';
+      totalRow.parentNode.insertBefore(addonLine, totalRow);
+    }
+    document.getElementById('sum-addon-val').textContent = fmtMoney(addonSum);
+    addonLine.style.display = 'flex';
+  } else {
+    if (addonLine) addonLine.style.display = 'none';
+  }
+
   // Update pay button total
   updatePayButtonTotal();
 }
