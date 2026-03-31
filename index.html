@@ -128,6 +128,24 @@
           Downtown 2BR: <strong>$200</strong> weekdays / <strong>$300</strong> weekends
         </div>
       </div>
+      <div class="admin-section" style="margin-top:8px;padding-top:20px;border-top:2px solid #f0f0f0;">
+        <h3 style="margin-bottom:12px;">📄 Pamphlet &amp; Sharing</h3>
+        <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:14px;line-height:1.5;">Download your co-hosting pamphlet or copy the share link to show potential clients.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="windsor-executive-rentals-pamphlet.pdf" download="Windsor-Executive-Rentals-Pamphlet.pdf"
+             style="display:flex;align-items:center;justify-content:center;gap:10px;background:var(--gold,#c9a84c);color:#1a1a1a;padding:12px 18px;border-radius:50px;font-weight:700;font-size:.85rem;text-decoration:none;">
+            ⬇ Download Pamphlet (PDF)
+          </a>
+          <a href="windsor-executive-rentals-pamphlet.pdf" target="_blank"
+             style="display:flex;align-items:center;justify-content:center;gap:10px;background:#f5f5f5;color:#1a1a1a;padding:12px 18px;border-radius:50px;font-weight:600;font-size:.85rem;text-decoration:none;border:1px solid #e0e0e0;">
+            🔗 Open Pamphlet in New Tab
+          </a>
+          <button onclick="copyPamphletLink()" id="copy-pamphlet-btn"
+             style="display:flex;align-items:center;justify-content:center;gap:10px;background:#f5f5f5;color:#1a1a1a;padding:12px 18px;border-radius:50px;font-weight:600;font-size:.85rem;border:1px solid #e0e0e0;cursor:pointer;width:100%;">
+            📋 Copy Share Link
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -411,5 +429,14 @@ function renderAdminRules(){
       <button class="admin-btn-del" onclick="deleteRule('${adminProp}',${i})">Delete</button>
     </div>`).join('');
 }
+function copyPamphletLink() {
+  const url = window.location.origin + window.location.pathname.replace('index.html','') + 'windsor-executive-rentals-pamphlet.pdf';
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.getElementById('copy-pamphlet-btn');
+    btn.textContent = '✅ Link Copied!';
+    setTimeout(() => { btn.textContent = '📋 Copy Share Link'; }, 2500);
+  });
+}
+
 </script>
 </body></html>
