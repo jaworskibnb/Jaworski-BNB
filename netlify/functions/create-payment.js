@@ -23,11 +23,18 @@ exports.handler = async (event) => {
       },
     });
 
-    // Send email notification to host
+    // Send email notification
     try {
       await sendBookingEmail({ name, email, property, checkin, checkout, guests, addons, amount });
     } catch (emailErr) {
-      console.error('Email send failed:', emailErr);
+      console.error('Email failed:', emailErr);
+    }
+
+    // Send WhatsApp notification
+    try {
+      await sendWhatsApp({ name, email, property, checkin, checkout, guests, addons, amount });
+    } catch (waErr) {
+      console.error('WhatsApp failed:', waErr);
     }
 
     return {
@@ -43,6 +50,58 @@ exports.handler = async (event) => {
     };
   }
 };
+
+async function sendWhatsApp({ name, email, property, checkin, checkout, guests, addons, amount }) {
+  const instanceId = process.env.GREENAPI_INSTANCE_ID;
+  const apiToken = process.env.GREENAPI_API_TOKEN;
+  const phone = process.env.NOTIFY_PHONE; // e.g. 16474707333
+
+  const formatDate = (d) => {
+    if (!d) return '-';
+    const [y, m, day] = d.split('-');
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return months[parseInt(m)-1] + ' ' + parseInt(day) + ', ' + y;
+  };
+
+  const mat = amount * 0.06;
+  const hst = amount * 0.13;
+  const total = amount + mat + hst;
+  const fmt = (n) => '$' + n.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  const message = `🏠 *New Booking — Windsor Executive Rentals*
+
+✅ *Payment Confirmed!*
+
+👤 *Guest:* ${name}
+📧 *Email:* ${email}
+🏡 *Property:* ${property}
+📅 *Check-in:* ${formatDate(checkin)}
+📅 *Check-out:* ${formatDate(checkout)}
+👥 *Guests:* ${guests}
+${addons && addons !== 'None' ? `🎁 *Add-ons:* ${addons}\n` : ''}
+💰 *Subtotal:* ${fmt(amount)}
+🏛 *MAT (6%):* ${fmt(mat)}
+🏛 *HST (13%):* ${fmt(hst)}
+💵 *Total Paid:* ${fmt(total)}
+
+Follow up with check-in instructions!`;
+
+  const res = await fetch(`https://api.green-api.com/waInstance${instanceId}/sendMessage/${apiToken}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chatId: phone + '@c.us',
+      message: message,
+    }),
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error('GREEN-API error: ' + err);
+  }
+
+  return res.json();
+}
 
 async function sendBookingEmail({ name, email, property, checkin, checkout, guests, addons, amount }) {
   const mat = amount * 0.06;
@@ -76,7 +135,7 @@ async function sendBookingEmail({ name, email, property, checkin, checkout, gues
 
   if (!res.ok) {
     const err = await res.text();
-    throw new Error('Resend API error: ' + err);
+    throw new Error('Resend error: ' + err);
   }
 
   return res.json();
