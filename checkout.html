@@ -5,192 +5,162 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Complete Your Booking | Windsor Executive Rentals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="https://js.stripe.com/v3/">
-// ── Add-ons ──────────────────────────────────────────────
-const ADDON_PRICES = { charcuterie: 95, wine: 60, flowers: 65, fridge: 50 };
-const selectedAddons = new Set();
-
-function toggleAddon(card, id, price) {
-  card.classList.toggle('selected');
-  if (card.classList.contains('selected')) {
-    selectedAddons.add(id);
-  } else {
-    selectedAddons.delete(id);
-  }
-  updateAddonTotal();
-}
-
-function updateAddonTotal() {
-  let addonSum = 0;
-  selectedAddons.forEach(id => { addonSum += ADDON_PRICES[id]; });
-  const row = document.getElementById('addon-total-row');
-  const val = document.getElementById('addon-subtotal-val');
-  if (addonSum > 0) {
-    row.style.display = 'block';
-    val.textContent = fmtMoney(addonSum);
-  } else {
-    row.style.display = 'none';
-  }
-
-  // Update right-side summary
-  const grandTotal = total + addonSum;
-  const totalEl = document.getElementById('sum-total');
-  if (totalEl) totalEl.textContent = fmtMoney(grandTotal);
-
-  // Show/hide addon line in summary
-  let addonLine = document.getElementById('sum-addon-line');
-  if (addonSum > 0) {
-    if (!addonLine) {
-      // Create addon line in summary
-      const totalRow = totalEl.closest('.price-line');
-      addonLine = document.createElement('div');
-      addonLine.id = 'sum-addon-line';
-      addonLine.className = 'price-line tax-line';
-      addonLine.innerHTML = '<span>Add-ons</span><span id="sum-addon-val"></span>';
-      totalRow.parentNode.insertBefore(addonLine, totalRow);
-    }
-    document.getElementById('sum-addon-val').textContent = fmtMoney(addonSum);
-    addonLine.style.display = 'flex';
-  } else {
-    if (addonLine) addonLine.style.display = 'none';
-  }
-
-  // Update pay button total
-  updatePayButtonTotal();
-}
-
-function updatePayButtonTotal() {
-  let addonSum = 0;
-  selectedAddons.forEach(id => { addonSum += ADDON_PRICES[id]; });
-  const grandTotal = total + addonSum;
-  document.getElementById('pay-btn-text').textContent = 'Pay ' + fmtMoney(grandTotal);
-}
-
-function getAddonsList() {
-  if (selectedAddons.size === 0) return 'None';
-  const names = { charcuterie: 'Charcuterie Board ($95)', wine: 'Welcome Wine/Champagne ($60)', flowers: 'Fresh Flower Bouquet ($65)', fridge: 'Fridge Stocked on Arrival ($50)' };
-  return Array.from(selectedAddons).map(id => names[id]).join(', ');
-}
-
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://js.stripe.com/v3/"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --primary:#e63946;--primary-dark:#c1121f;
-  --gold:#c9a84c;--gold-light:#e8c97a;
-  --dark:#1a1a1a;--dark2:#2a2a2a;
-  --gray-900:#1f2937;--gray-700:#374151;--gray-600:#4b5563;
-  --gray-500:#6b7280;--gray-400:#9ca3af;--gray-300:#d1d5db;
-  --gray-200:#e5e7eb;--gray-100:#f3f4f6;--gray-50:#f9fafb;
+  --primary:#e63946;
+  --gold:#c9a84c;--gold-light:#e8c97a;--gold-dim:#b8963e;
+  --bg:#111318;
+  --card:#1a1d24;
+  --card2:#20242d;
+  --border:#2c3040;
+  --border-gold:rgba(201,168,76,.25);
+  --text:#e8e6e0;
+  --text-muted:#7a7d8a;
+  --text-dim:#4a4d5a;
   --white:#ffffff;--green:#10b981;
   --radius:12px;--radius-lg:16px;
-  --shadow:0 4px 20px rgba(0,0,0,.08);
-  --shadow-lg:0 12px 40px rgba(0,0,0,.12);
+  --shadow:0 4px 24px rgba(0,0,0,.35);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.5);
   --max-w:1000px;
 }
-body{font-family:'Inter',sans-serif;background:var(--gray-50);color:var(--gray-900);line-height:1.6;min-height:100vh;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;}
 a{color:inherit;text-decoration:none;}
 
 /* NAV */
-nav{background:var(--dark);padding:16px 32px;display:flex;justify-content:space-between;align-items:center;}
+nav{background:#0d0f13;border-bottom:1px solid var(--border);padding:16px 32px;display:flex;justify-content:space-between;align-items:center;}
 .nav-logo{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.15rem;}
-.nav-back{color:#aaa;font-size:.85rem;display:flex;align-items:center;gap:6px;transition:color .2s;}
+.nav-back{color:var(--text-muted);font-size:.85rem;display:flex;align-items:center;gap:6px;transition:color .2s;}
 .nav-back:hover{color:var(--gold);}
 .nav-back svg{width:16px;height:16px;}
 
 /* LAYOUT */
-.page-wrap{max-width:var(--max-w);margin:0 auto;padding:36px 20px 60px;display:grid;grid-template-columns:1fr 400px;gap:32px;align-items:start;}
+.page-wrap{max-width:var(--max-w);margin:0 auto;padding:36px 20px 60px;display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start;}
 @media(max-width:800px){.page-wrap{grid-template-columns:1fr;}.order-summary{order:-1;}}
 
 /* SECTION HEADERS */
-.section-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--dark);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--gray-200);}
+.section-title{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--text);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);}
 
-/* PAYMENT FORM */
-.form-card{background:var(--white);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow);}
+/* FORM CARD */
+.form-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow);}
 .form-group{margin-bottom:18px;}
-.form-group label{display:block;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gray-600);margin-bottom:6px;}
-.form-group input,.form-group select{width:100%;padding:12px 14px;border:1.5px solid var(--gray-300);border-radius:8px;font-family:'Inter',sans-serif;font-size:.92rem;color:var(--gray-900);background:var(--white);outline:none;transition:border-color .2s;}
-.form-group input:focus,.form-group select:focus{border-color:var(--gold);}
+.form-group label{display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:7px;}
+.form-group input,.form-group select{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-family:'Inter',sans-serif;font-size:.92rem;color:var(--text);background:var(--card2);outline:none;transition:border-color .2s;}
+.form-group input::placeholder{color:var(--text-dim);}
+.form-group select option{background:var(--card2);}
+.form-group input:focus,.form-group select:focus{border-color:var(--gold-dim);}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.form-divider{height:1px;background:var(--gray-200);margin:24px 0;}
-.stripe-field-wrap{padding:12px 14px;border:1.5px solid var(--gray-300);border-radius:8px;background:var(--white);transition:border-color .2s;}
+.form-divider{height:1px;background:var(--border);margin:28px 0;}
 
 /* ADD-ONS */
-.addon-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px;}
+.addon-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px;}
 @media(max-width:600px){.addon-grid{grid-template-columns:1fr;}}
-.addon-card{border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:14px;cursor:pointer;transition:border-color .2s,background .2s;position:relative;background:var(--white);}
-.addon-card:hover{border-color:var(--gold);background:#fffdf5;}
-.addon-card.selected{border-color:var(--gold);background:rgba(201,168,76,.06);}
+.addon-card{border:1px solid var(--border);border-radius:var(--radius);padding:14px;cursor:pointer;transition:border-color .2s,background .2s;position:relative;background:var(--card2);}
+.addon-card:hover{border-color:var(--border-gold);}
+.addon-card.selected{border-color:var(--gold-dim);background:rgba(201,168,76,.06);}
 .addon-card input[type=checkbox]{position:absolute;opacity:0;pointer-events:none;}
-.addon-check{position:absolute;top:10px;right:12px;width:22px;height:22px;border-radius:50%;border:2px solid var(--gray-300);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:transparent;transition:all .2s;}
-.addon-card.selected .addon-check{background:var(--gold);border-color:var(--gold);color:var(--dark);}
-.addon-icon{font-size:1.6rem;margin-bottom:8px;}
-.addon-name{font-size:.88rem;font-weight:700;color:var(--gray-900);margin-bottom:3px;padding-right:28px;}
-.addon-desc{font-size:.75rem;color:var(--gray-500);line-height:1.4;margin-bottom:8px;}
+.addon-check{position:absolute;top:10px;right:12px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border);background:var(--card);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:transparent;transition:all .2s;}
+.addon-card.selected .addon-check{background:var(--gold);border-color:var(--gold);color:#111;}
+.addon-icon{font-size:1.5rem;margin-bottom:8px;}
+.addon-name{font-size:.86rem;font-weight:600;color:var(--text);margin-bottom:3px;padding-right:28px;}
+.addon-desc{font-size:.74rem;color:var(--text-muted);line-height:1.5;margin-bottom:8px;}
 .addon-price{font-size:.9rem;font-weight:700;color:var(--gold);}
-.addon-note{font-size:.7rem;color:var(--gray-400);margin-top:2px;}
-.stripe-field-wrap.focused{border-color:var(--gold);}
-.card-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px;}
+.addon-note{font-size:.7rem;color:var(--text-dim);margin-top:2px;}
 
-/* STRIPE ELEMENT */
-#card-number-element,#card-expiry-element,#card-cvc-element{min-height:20px;}
+/* ── LUXURY PAYMENT SECTION ── */
+.luxury-payment{background:#0d0f13;border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;margin-top:0;}
 
-/* SUBMIT BUTTON */
-.pay-btn{width:100%;background:linear-gradient(135deg,var(--primary),#ff6b6b);color:white;border:none;padding:17px;border-radius:var(--radius);font-size:1.05rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;margin-top:24px;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;}
-.pay-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 24px rgba(230,57,70,.35);}
-.pay-btn:disabled{opacity:.65;cursor:not-allowed;transform:none;}
-.pay-btn svg{width:18px;height:18px;}
-.secure-note{text-align:center;font-size:.78rem;color:var(--gray-500);margin-top:12px;display:flex;align-items:center;justify-content:center;gap:5px;}
-.secure-note svg{width:13px;height:13px;color:var(--green);}
+.pay-section-header{display:flex;align-items:center;gap:14px;margin-bottom:26px;}
+.pay-section-line{flex:1;height:1px;}
+.pay-section-line.left{background:linear-gradient(to right,transparent,var(--gold-dim));}
+.pay-section-line.right{background:linear-gradient(to left,transparent,var(--gold-dim));}
+.pay-section-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--gold-light);letter-spacing:3px;text-transform:uppercase;white-space:nowrap;}
 
-/* ERROR */
-#card-error{color:var(--primary);font-size:.82rem;margin-top:10px;display:none;padding:10px 12px;background:#fef2f2;border-radius:6px;border:1px solid #fecaca;}
+.pay-method-tabs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;}
+.pay-tab{position:relative;padding:14px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card2);cursor:pointer;transition:all .25s;display:flex;flex-direction:column;align-items:center;gap:5px;user-select:none;}
+.pay-tab:hover{border-color:rgba(201,168,76,.3);}
+.pay-tab.active{border-color:var(--gold-dim);background:#18160d;}
+.pay-tab.active::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:36px;height:2px;background:var(--gold-dim);border-radius:2px;}
+.pay-tab-icon{width:30px;height:19px;display:flex;align-items:center;justify-content:center;}
+.pay-tab-label{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);transition:color .2s;}
+.pay-tab.active .pay-tab-label{color:var(--gold-light);}
+.pay-tab-sub{font-family:'Montserrat',sans-serif;font-size:9px;color:var(--text-dim);letter-spacing:.5px;}
+.pay-tab.active .pay-tab-sub{color:rgba(232,201,122,.55);}
+
+.pay-divider{height:1px;background:linear-gradient(to right,transparent,var(--border) 20%,var(--border) 80%,transparent);margin-bottom:22px;}
+
+.pay-field-label{display:block;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold-dim);margin-bottom:8px;}
+.pay-field-group{margin-bottom:18px;}
+.pay-field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+.pay-stripe-wrap{padding:12px 15px;border:1px solid var(--border);border-radius:8px;background:var(--card2);transition:border-color .25s;}
+.pay-stripe-wrap.focused{border-color:var(--gold-dim);}
+
+.interac-panel{display:none;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:28px;text-align:center;}
+.interac-panel.visible{display:block;}
+.interac-icon{margin-bottom:14px;opacity:.7;}
+.interac-email{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold-light);margin:0 0 6px;}
+.interac-note{font-size:.78rem;color:var(--text-muted);line-height:1.7;}
+.interac-badge{display:inline-block;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-top:16px;}
+
+.pay-btn{width:100%;background:linear-gradient(135deg,var(--gold-dim) 0%,#ddb84a 50%,var(--gold-dim) 100%);background-size:200% 100%;border:none;border-radius:10px;padding:17px;margin-top:24px;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#0d0f13;transition:background-position .45s ease,transform .15s,box-shadow .2s;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 20px rgba(184,150,62,.3);}
+.pay-btn:hover:not(:disabled){background-position:100% 0;box-shadow:0 6px 28px rgba(184,150,62,.5);}
+.pay-btn:active:not(:disabled){transform:scale(.99);}
+.pay-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;}
+.pay-btn svg{width:14px;height:14px;flex-shrink:0;}
+.pay-btn-amount{font-size:15px;font-weight:400;letter-spacing:1px;font-family:'Montserrat',sans-serif;}
+
+.pay-secure-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;}
+.pay-secure-text{font-size:.72rem;color:var(--text-dim);letter-spacing:.3px;}
+.pay-secure-dot{width:3px;height:3px;border-radius:50%;background:var(--border);}
+
+#card-error{color:#f87171;font-size:.82rem;margin-top:10px;display:none;padding:10px 14px;background:rgba(248,113,113,.08);border-radius:6px;border:1px solid rgba(248,113,113,.25);}
+
+.spinner{width:16px;height:16px;border:2px solid rgba(13,15,19,.3);border-top-color:#0d0f13;border-radius:50%;animation:spin .7s linear infinite;display:none;flex-shrink:0;}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 /* ORDER SUMMARY */
-.summary-card{background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow);position:sticky;top:24px;}
-.prop-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:50px;margin-bottom:16px;}
-.summary-prop-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--dark);margin-bottom:4px;}
-.summary-prop-sub{font-size:.82rem;color:var(--gray-500);margin-bottom:20px;}
-.dates-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
-.date-pill{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:8px;padding:10px 12px;}
-.date-pill-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-500);margin-bottom:2px;}
-.date-pill-value{font-size:.88rem;font-weight:600;color:var(--dark);}
-.guests-row{font-size:.85rem;color:var(--gray-600);margin-bottom:20px;display:flex;align-items:center;gap:6px;}
-.guests-row svg{width:15px;height:15px;color:var(--gray-400);}
-.price-lines{border-top:1px solid var(--gray-200);padding-top:16px;}
-.price-line{display:flex;justify-content:space-between;font-size:.88rem;color:var(--gray-600);margin-bottom:10px;}
+.summary-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow);position:sticky;top:24px;}
+.prop-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,.1);border:1px solid var(--border-gold);color:var(--gold);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:50px;margin-bottom:16px;}
+.summary-prop-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text);margin-bottom:4px;}
+.summary-prop-sub{font-size:.82rem;color:var(--text-muted);margin-bottom:20px;}
+.dates-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.date-pill{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;}
+.date-pill-label{font-size:.67rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim);margin-bottom:3px;}
+.date-pill-value{font-size:.88rem;font-weight:600;color:var(--text);}
+.guests-row{font-size:.85rem;color:var(--text-muted);margin-bottom:20px;display:flex;align-items:center;gap:6px;}
+.guests-row svg{width:15px;height:15px;opacity:.5;}
+.price-lines{border-top:1px solid var(--border);padding-top:16px;}
+.price-line{display:flex;justify-content:space-between;font-size:.88rem;color:var(--text-muted);margin-bottom:10px;}
 .price-line.subtotal-group{margin-bottom:6px;}
-.price-line.indented{padding-left:12px;font-size:.82rem;color:var(--gray-500);}
-.price-line.tax-line{color:var(--gray-600);}
-.price-divider{height:1px;background:var(--gray-200);margin:12px 0;}
-.price-line.total{font-weight:700;font-size:1rem;color:var(--dark);}
-.price-line.total span:last-child{color:var(--dark);}
-.savings-badge{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:10px 14px;margin-top:14px;display:flex;align-items:center;gap:8px;}
+.price-line.tax-line{color:var(--text-muted);}
+.price-divider{height:1px;background:var(--border);margin:12px 0;}
+.price-line.total{font-weight:700;font-size:1rem;color:var(--text);}
+.price-line.total span:last-child{color:var(--gold);}
+.savings-badge{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:8px;padding:10px 14px;margin-top:14px;display:flex;align-items:center;gap:8px;}
 .savings-badge svg{width:16px;height:16px;color:var(--green);flex-shrink:0;}
-.savings-text{font-size:.78rem;color:#065f46;font-weight:500;line-height:1.4;}
-.tax-note{font-size:.72rem;color:var(--gray-400);margin-top:10px;line-height:1.5;}
+.savings-text{font-size:.78rem;color:#6ee7b7;font-weight:500;line-height:1.4;}
+.tax-note{font-size:.72rem;color:var(--text-dim);margin-top:10px;line-height:1.5;}
 
 /* SUCCESS */
 #success-screen{display:none;text-align:center;padding:60px 20px;}
-.success-icon{width:72px;height:72px;background:#ecfdf5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;}
+.success-icon{width:72px;height:72px;background:rgba(16,185,129,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;border:1px solid rgba(16,185,129,.25);}
 .success-icon svg{width:36px;height:36px;color:var(--green);}
-.success-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--dark);margin-bottom:12px;}
-.success-sub{color:var(--gray-500);max-width:420px;margin:0 auto 28px;font-size:.95rem;line-height:1.7;}
-.success-details{background:var(--white);border-radius:var(--radius);padding:24px;max-width:420px;margin:0 auto 28px;text-align:left;border:1px solid var(--gray-200);}
-.success-detail-row{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:8px;color:var(--gray-600);}
-.success-detail-row:last-child{margin-bottom:0;font-weight:700;color:var(--dark);}
-.back-home-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:50px;background:var(--dark);color:var(--gold);font-weight:600;font-size:.92rem;border:1px solid var(--gold);transition:all .2s;}
-.back-home-btn:hover{background:var(--gold);color:var(--dark);}
+.success-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--text);margin-bottom:12px;}
+.success-sub{color:var(--text-muted);max-width:420px;margin:0 auto 28px;font-size:.95rem;line-height:1.7;}
+.success-details{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;max-width:420px;margin:0 auto 28px;text-align:left;}
+.success-detail-row{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:8px;color:var(--text-muted);}
+.success-detail-row:last-child{margin-bottom:0;font-weight:700;color:var(--text);}
+.back-home-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:50px;background:transparent;color:var(--gold);font-weight:600;font-size:.92rem;border:1px solid var(--gold-dim);transition:all .2s;}
+.back-home-btn:hover{background:var(--gold-dim);color:#0d0f13;}
 
-/* LOADING SPINNER */
-.spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;display:none;}
-@keyframes spin{to{transform:rotate(360deg)}}
+footer{background:#0d0f13;border-top:1px solid var(--border);color:var(--text-dim);text-align:center;padding:24px;font-size:.8rem;}
+footer a{color:var(--text-dim);margin:0 10px;transition:color .2s;}
+footer a:hover{color:var(--gold);}
 
-footer{background:var(--dark);color:#666;text-align:center;padding:24px;font-size:.8rem;margin-top:auto;}
-footer a{color:#555;margin:0 10px;}
-
-@media(max-width:600px){.form-row,.card-row,.dates-row{grid-template-columns:1fr;}.form-card{padding:20px;}.summary-card{padding:20px;}}
+@media(max-width:600px){.form-row,.pay-field-row,.dates-row{grid-template-columns:1fr;}.form-card{padding:20px;}.summary-card{padding:20px;}.luxury-payment{padding:20px;}}
 </style>
 </head>
 <body>
@@ -279,40 +249,111 @@ footer a{color:#555;margin:0 10px;}
             <div class="addon-note">Grocery essentials included</div>
           </div>
         </div>
-        <div id="addon-total-row" style="display:none;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:10px 14px;margin-bottom:4px;font-size:.85rem;display:none;">
-          <div style="display:flex;justify-content:space-between;font-weight:600;color:var(--gray-900);">
+        <div id="addon-total-row" style="display:none;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:10px 14px;margin-bottom:4px;font-size:.85rem;">
+          <div style="display:flex;justify-content:space-between;font-weight:600;color:#e8e6e0;">
             <span>Add-ons subtotal</span><span id="addon-subtotal-val">$0</span>
           </div>
         </div>
 
         <div class="form-divider"></div>
-        <div class="section-title" style="margin-bottom:16px">Payment Details</div>
 
-        <div class="form-group">
-          <label>Card Number</label>
-          <div class="stripe-field-wrap" id="card-number-wrap"><div id="card-number-element"></div></div>
-        </div>
-        <div class="card-row">
-          <div class="form-group" style="margin-bottom:0">
-            <label>Expiry Date</label>
-            <div class="stripe-field-wrap" id="card-expiry-wrap"><div id="card-expiry-element"></div></div>
-          </div>
-          <div class="form-group" style="margin-bottom:0">
-            <label>CVC</label>
-            <div class="stripe-field-wrap" id="card-cvc-wrap"><div id="card-cvc-element"></div></div>
-          </div>
-        </div>
-        <div id="card-error"></div>
+        <!-- ── LUXURY PAYMENT SECTION ── -->
+        <div class="luxury-payment">
 
-        <button class="pay-btn" id="pay-btn" onclick="handlePayment()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-          <span id="pay-btn-text">Pay Now</span>
-          <div class="spinner" id="spinner"></div>
-        </button>
-        <div class="secure-note">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          Secured by Stripe · 256-bit SSL encryption
+          <div class="pay-section-header">
+            <div class="pay-section-line left"></div>
+            <div class="pay-section-title">Payment Details</div>
+            <div class="pay-section-line right"></div>
+          </div>
+
+          <!-- Method tabs -->
+          <div class="pay-method-tabs">
+            <div class="pay-tab active" id="tab-card" onclick="switchPayTab('card')">
+              <div class="pay-tab-icon">
+                <svg width="30" height="19" viewBox="0 0 30 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x=".5" y=".5" width="29" height="18" rx="3" stroke="#b8963e" stroke-opacity=".8" fill="none"/>
+                  <rect y="5" width="30" height="4.5" fill="#b8963e" fill-opacity=".15"/>
+                  <rect x="3" y="12" width="7" height="2" rx="1" fill="#b8963e" fill-opacity=".4"/>
+                  <rect x="3" y="12" width="3.5" height="2" rx="1" fill="#b8963e"/>
+                </svg>
+              </div>
+              <div class="pay-tab-label">Pay by Card</div>
+              <div class="pay-tab-sub">Visa · Mastercard · Amex</div>
+            </div>
+            <div class="pay-tab" id="tab-interac" onclick="switchPayTab('interac')">
+              <div class="pay-tab-icon">
+                <svg width="30" height="19" viewBox="0 0 30 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x=".5" y=".5" width="29" height="18" rx="3" stroke="#2c3040" fill="none"/>
+                  <path d="M7 9.5 L12 6 L12 13 Z" fill="#4a4d5a"/>
+                  <path d="M17 9.5 L22 6 L22 13 Z" fill="#2c3040"/>
+                  <circle cx="14.5" cy="9.5" r="1.5" fill="#4a4d5a"/>
+                </svg>
+              </div>
+              <div class="pay-tab-label">Interac e-Transfer</div>
+              <div class="pay-tab-sub">Canada only · No fees</div>
+            </div>
+          </div>
+
+          <div class="pay-divider"></div>
+
+          <!-- Card fields (Stripe) -->
+          <div id="pay-card-panel">
+            <div class="pay-field-group">
+              <label class="pay-field-label">Card Number</label>
+              <div class="pay-stripe-wrap" id="card-number-wrap"><div id="card-number-element"></div></div>
+            </div>
+            <div class="pay-field-row">
+              <div class="pay-field-group" style="margin-bottom:0">
+                <label class="pay-field-label">Expiry Date</label>
+                <div class="pay-stripe-wrap" id="card-expiry-wrap"><div id="card-expiry-element"></div></div>
+              </div>
+              <div class="pay-field-group" style="margin-bottom:0">
+                <label class="pay-field-label">Security Code</label>
+                <div class="pay-stripe-wrap" id="card-cvc-wrap"><div id="card-cvc-element"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interac panel -->
+          <div id="pay-interac-panel" class="interac-panel">
+            <div class="interac-icon">
+              <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="19" cy="19" r="18.5" stroke="#b8963e" stroke-opacity=".4"/>
+                <path d="M19 10 L19 19 L26 19" stroke="#b8963e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="19" cy="19" r="2.5" fill="#b8963e" fill-opacity=".5"/>
+              </svg>
+            </div>
+            <div class="interac-email">jaworskibnb@gmail.com</div>
+            <div class="interac-note">Send your e-Transfer to the address above.<br/>Include your booking reference in the message field.</div>
+            <div class="interac-badge">No fees · Instant confirmation</div>
+          </div>
+
+          <div id="card-error"></div>
+
+          <button class="pay-btn" id="pay-btn" onclick="handlePayment()">
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" width="14" height="14">
+              <rect x=".75" y="4.75" width="12.5" height="8.5" rx="1.25" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M4.5 4.5V3.5C4.5 2.12 5.62 1 7 1C8.38 1 9.5 2.12 9.5 3.5V4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="7" cy="9" r="1.25" fill="currentColor"/>
+            </svg>
+            <span id="pay-btn-text">Pay Now</span>
+            <span class="pay-btn-amount" id="pay-btn-amount"></span>
+            <div class="spinner" id="spinner"></div>
+          </button>
+
+          <div class="pay-secure-row">
+            <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x=".75" y="5.75" width="9.5" height="6.5" rx="1.25" stroke="#9ca3af" stroke-width="1.2"/>
+              <path d="M3 5.5V4C3 2.9 3.9 2 5 2C6.1 2 7 2.9 7 4V5.5" stroke="#9ca3af" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            <span class="pay-secure-text">Secured by Stripe · 256-bit SSL</span>
+            <div class="pay-secure-dot"></div>
+            <span class="pay-secure-text">PCI DSS Compliant</span>
+          </div>
+
         </div>
+        <!-- END LUXURY PAYMENT -->
+
       </div>
     </div>
 
@@ -402,14 +443,13 @@ const subtotal  = parseFloat(params.get('subtotal') || '0');
 const prop = PROP_MAP[propId] || PROP_MAP.luxury;
 
 // ── Tax Calculation ────────────────────────────────────────
-const MAT_RATE  = 0.06;   // Windsor Municipal Accommodation Tax
-const HST_RATE  = 0.13;   // Ontario HST
-
+const MAT_RATE  = 0.06;
+const HST_RATE  = 0.13;
 const matAmt  = subtotal * MAT_RATE;
 const hstAmt  = subtotal * HST_RATE;
 const total   = subtotal + matAmt + hstAmt;
 
-// ── Populate summary ───────────────────────────────────────
+// ── Helpers ────────────────────────────────────────────────
 function fmtDate(ymd) {
   if (!ymd) return '—';
   const [y,m,d] = ymd.split('-');
@@ -418,6 +458,7 @@ function fmtDate(ymd) {
 }
 function fmtMoney(n) { return '$' + n.toLocaleString('en-CA', {minimumFractionDigits:2, maximumFractionDigits:2}); }
 
+// ── Populate summary ───────────────────────────────────────
 document.getElementById('sum-prop-name').textContent = prop.name;
 const imgEl = document.getElementById('sum-prop-img');
 if (prop.img) { imgEl.src = prop.img; imgEl.style.display = 'block'; }
@@ -430,7 +471,6 @@ document.getElementById('sum-mat').textContent       = fmtMoney(matAmt);
 document.getElementById('sum-hst').textContent       = fmtMoney(hstAmt);
 document.getElementById('sum-total').textContent     = fmtMoney(total);
 
-// Night rows from URL (format: "4x350,1x400")
 const nightData = params.get('nightrows') || '';
 const nightRowsEl = document.getElementById('sum-night-rows');
 if (nightData) {
@@ -445,30 +485,40 @@ if (nightData) {
   });
 }
 
-// Pre-fill guests select
 const gSel = document.getElementById('guestsSelect');
 Array.from(gSel.options).forEach(o => { if(o.value === guests || o.text === guests) o.selected = true; });
 
-// Update pay button with total
-document.getElementById('pay-btn-text').textContent = `Pay ${fmtMoney(total)}`;
+document.getElementById('pay-btn-text').textContent = 'Confirm & Pay';
+document.getElementById('pay-btn-amount').textContent = fmtMoney(total);
+
+// ── Payment tab switcher ───────────────────────────────────
+function switchPayTab(type) {
+  document.getElementById('tab-card').classList.toggle('active', type === 'card');
+  document.getElementById('tab-interac').classList.toggle('active', type === 'interac');
+  document.getElementById('pay-card-panel').style.display = type === 'card' ? 'block' : 'none';
+  const ip = document.getElementById('pay-interac-panel');
+  ip.classList.toggle('visible', type === 'interac');
+  ip.style.display = type === 'interac' ? 'block' : 'none';
+}
 
 // ── Stripe Setup ───────────────────────────────────────────
-// ⚠️  Replace with your actual Stripe publishable key
-let STRIPE_PK = '';
-let stripe;
-let elements;
-let cardNumber, cardExpiry, cardCvc;
+let stripe, elements, cardNumber, cardExpiry, cardCvc;
 
 async function initStripe() {
   try {
     const res = await fetch('/.netlify/functions/get-stripe-key');
     const data = await res.json();
-    STRIPE_PK = data.publishableKey;
-    stripe = Stripe(STRIPE_PK);
+    stripe = Stripe(data.publishableKey);
     elements = stripe.elements();
     const style = {
-      base: { fontFamily: "'Inter', sans-serif", fontSize: '15px', color: '#1f2937', '::placeholder': { color: '#9ca3af' } },
-      invalid: { color: '#e63946' },
+      base: {
+        fontFamily: "'Inter', sans-serif",
+        fontSize: '15px',
+        color: '#e8e6e0',
+        letterSpacing: '0.3px',
+        '::placeholder': { color: '#4a4d5a' }
+      },
+      invalid: { color: '#f87171' },
     };
     cardNumber = elements.create('cardNumber', { style });
     cardExpiry = elements.create('cardExpiry', { style });
@@ -476,8 +526,8 @@ async function initStripe() {
     cardNumber.mount('#card-number-element');
     cardExpiry.mount('#card-expiry-element');
     cardCvc.mount('#card-cvc-element');
-    [['card-number-element','card-number-wrap'],['card-expiry-element','card-expiry-wrap'],['card-cvc-element','card-cvc-wrap']].forEach(([elId, wrapId]) => {
-      const el = elId === 'card-number-element' ? cardNumber : elId === 'card-expiry-element' ? cardExpiry : cardCvc;
+    [['cardNumber','card-number-wrap'],['cardExpiry','card-expiry-wrap'],['cardCvc','card-cvc-wrap']].forEach(([elKey, wrapId]) => {
+      const el = elKey === 'cardNumber' ? cardNumber : elKey === 'cardExpiry' ? cardExpiry : cardCvc;
       const wrap = document.getElementById(wrapId);
       el.on('focus', () => wrap.classList.add('focused'));
       el.on('blur',  () => wrap.classList.remove('focused'));
@@ -488,7 +538,6 @@ async function initStripe() {
   }
 }
 initStripe();
-// Stripe initialized in initStripe()
 
 function showError(msg) {
   const el = document.getElementById('card-error');
@@ -497,6 +546,60 @@ function showError(msg) {
 }
 function hideError() {
   document.getElementById('card-error').style.display = 'none';
+}
+
+// ── Add-ons ────────────────────────────────────────────────
+const ADDON_PRICES = { charcuterie: 95, wine: 60, flowers: 65, fridge: 50 };
+const selectedAddons = new Set();
+
+function toggleAddon(card, id, price) {
+  card.classList.toggle('selected');
+  if (card.classList.contains('selected')) selectedAddons.add(id);
+  else selectedAddons.delete(id);
+  updateAddonTotal();
+}
+
+function updateAddonTotal() {
+  let addonSum = 0;
+  selectedAddons.forEach(id => { addonSum += ADDON_PRICES[id]; });
+  const row = document.getElementById('addon-total-row');
+  const val = document.getElementById('addon-subtotal-val');
+  row.style.display = addonSum > 0 ? 'block' : 'none';
+  val.textContent = fmtMoney(addonSum);
+
+  const grandTotal = total + addonSum;
+  const totalEl = document.getElementById('sum-total');
+  if (totalEl) totalEl.textContent = fmtMoney(grandTotal);
+
+  let addonLine = document.getElementById('sum-addon-line');
+  if (addonSum > 0) {
+    if (!addonLine) {
+      const totalRow = totalEl.closest('.price-line');
+      addonLine = document.createElement('div');
+      addonLine.id = 'sum-addon-line';
+      addonLine.className = 'price-line tax-line';
+      addonLine.innerHTML = '<span>Add-ons</span><span id="sum-addon-val"></span>';
+      totalRow.parentNode.insertBefore(addonLine, totalRow);
+    }
+    document.getElementById('sum-addon-val').textContent = fmtMoney(addonSum);
+    addonLine.style.display = 'flex';
+  } else {
+    if (addonLine) addonLine.style.display = 'none';
+  }
+  updatePayButtonTotal();
+}
+
+function updatePayButtonTotal() {
+  let addonSum = 0;
+  selectedAddons.forEach(id => { addonSum += ADDON_PRICES[id]; });
+  const grandTotal = total + addonSum;
+  document.getElementById('pay-btn-amount').textContent = fmtMoney(grandTotal);
+}
+
+function getAddonsList() {
+  if (selectedAddons.size === 0) return 'None';
+  const names = { charcuterie: 'Charcuterie Board ($95)', wine: 'Welcome Wine/Champagne ($60)', flowers: 'Fresh Flower Bouquet ($65)', fridge: 'Fridge Stocked on Arrival ($50)' };
+  return Array.from(selectedAddons).map(id => names[id]).join(', ');
 }
 
 // ── Payment Handler ────────────────────────────────────────
@@ -518,15 +621,15 @@ async function handlePayment() {
   const btn = document.getElementById('pay-btn');
   const spinner = document.getElementById('spinner');
   const btnText = document.getElementById('pay-btn-text');
+  const btnAmt  = document.getElementById('pay-btn-amount');
 
   btn.disabled = true;
   spinner.style.display = 'block';
   btnText.textContent = 'Processing...';
+  btnAmt.textContent = '';
   hideError();
 
   try {
-    // Create payment method
-    // Add addons to total
     let addonSum = 0;
     selectedAddons.forEach(id => { addonSum += ADDON_PRICES[id]; });
     const grandTotal = total + addonSum;
@@ -534,34 +637,25 @@ async function handlePayment() {
     const { paymentMethod, error } = await stripe.createPaymentMethod({
       type: 'card',
       card: cardNumber,
-      billing_details: {
-        name: firstName + ' ' + lastName,
-        email: email,
-        phone: phone,
-      },
+      billing_details: { name: firstName + ' ' + lastName, email, phone },
     });
 
     if (error) {
       showError(error.message);
       btn.disabled = false;
       spinner.style.display = 'none';
-      btnText.textContent = `Pay ${fmtMoney(total)}`;
+      btnText.textContent = 'Confirm & Pay';
+      btnAmt.textContent = fmtMoney(grandTotal);
       return;
     }
 
-    // Call Netlify Function to create PaymentIntent
     const response = await fetch('/.netlify/functions/create-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        amount: grandTotal,
-        currency: 'cad',
-        name: firstName + ' ' + lastName,
-        email: email,
-        property: prop.name,
-        checkin: checkin,
-        checkout: checkout,
-        guests: guests,
+        amount: grandTotal, currency: 'cad',
+        name: firstName + ' ' + lastName, email,
+        property: prop.name, checkin, checkout, guests,
         addons: getAddonsList(),
       }),
     });
@@ -572,38 +666,32 @@ async function handlePayment() {
       showError(data.error);
       btn.disabled = false;
       spinner.style.display = 'none';
-      btnText.textContent = 'Pay ' + fmtMoney(grandTotal);
+      btnText.textContent = 'Confirm & Pay';
+      btnAmt.textContent = fmtMoney(grandTotal);
       return;
     }
 
-    // Confirm the payment with the card details
     const { error: confirmError } = await stripe.confirmCardPayment(data.clientSecret, {
-      payment_method: {
-        card: cardNumber,
-        billing_details: {
-          name: firstName + ' ' + lastName,
-          email: email,
-          phone: phone,
-        },
-      },
+      payment_method: { card: cardNumber, billing_details: { name: firstName + ' ' + lastName, email, phone } },
     });
 
     if (confirmError) {
       showError(confirmError.message);
       btn.disabled = false;
       spinner.style.display = 'none';
-      btnText.textContent = 'Pay ' + fmtMoney(grandTotal);
+      btnText.textContent = 'Confirm & Pay';
+      btnAmt.textContent = fmtMoney(grandTotal);
       return;
     }
 
-    // Payment successful!
     showSuccess(firstName, lastName, email, addonSum);
 
   } catch (err) {
     showError('Something went wrong. Please try again or call us at 647-470-7333.');
     btn.disabled = false;
     spinner.style.display = 'none';
-    btnText.textContent = `Pay ${fmtMoney(total)}`;
+    btnText.textContent = 'Confirm & Pay';
+    document.getElementById('pay-btn-amount').textContent = fmtMoney(total);
   }
 }
 
@@ -611,8 +699,6 @@ function showSuccess(firstName, lastName, email, addonSum=0) {
   document.getElementById('checkout-screen').style.display = 'none';
   const screen = document.getElementById('success-screen');
   screen.style.display = 'block';
-
-  const nights = nightsRaw;
   document.getElementById('success-details').innerHTML = `
     <div class="success-detail-row"><span>Guest</span><span>${firstName} ${lastName}</span></div>
     <div class="success-detail-row"><span>Property</span><span>${prop.name}</span></div>
@@ -627,73 +713,6 @@ function showSuccess(firstName, lastName, email, addonSum=0) {
   `;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
-// ── Add-ons ──────────────────────────────────────────────
-const ADDON_PRICES = { charcuterie: 95, wine: 60, flowers: 65, fridge: 50 };
-const selectedAddons = new Set();
-
-function toggleAddon(card, id, price) {
-  card.classList.toggle('selected');
-  if (card.classList.contains('selected')) {
-    selectedAddons.add(id);
-  } else {
-    selectedAddons.delete(id);
-  }
-  updateAddonTotal();
-}
-
-function updateAddonTotal() {
-  let addonSum = 0;
-  selectedAddons.forEach(id => { addonSum += ADDON_PRICES[id]; });
-  const row = document.getElementById('addon-total-row');
-  const val = document.getElementById('addon-subtotal-val');
-  if (addonSum > 0) {
-    row.style.display = 'block';
-    val.textContent = fmtMoney(addonSum);
-  } else {
-    row.style.display = 'none';
-  }
-
-  // Update right-side summary
-  const grandTotal = total + addonSum;
-  const totalEl = document.getElementById('sum-total');
-  if (totalEl) totalEl.textContent = fmtMoney(grandTotal);
-
-  // Show/hide addon line in summary
-  let addonLine = document.getElementById('sum-addon-line');
-  if (addonSum > 0) {
-    if (!addonLine) {
-      // Create addon line in summary
-      const totalRow = totalEl.closest('.price-line');
-      addonLine = document.createElement('div');
-      addonLine.id = 'sum-addon-line';
-      addonLine.className = 'price-line tax-line';
-      addonLine.innerHTML = '<span>Add-ons</span><span id="sum-addon-val"></span>';
-      totalRow.parentNode.insertBefore(addonLine, totalRow);
-    }
-    document.getElementById('sum-addon-val').textContent = fmtMoney(addonSum);
-    addonLine.style.display = 'flex';
-  } else {
-    if (addonLine) addonLine.style.display = 'none';
-  }
-
-  // Update pay button total
-  updatePayButtonTotal();
-}
-
-function updatePayButtonTotal() {
-  let addonSum = 0;
-  selectedAddons.forEach(id => { addonSum += ADDON_PRICES[id]; });
-  const grandTotal = total + addonSum;
-  document.getElementById('pay-btn-text').textContent = 'Pay ' + fmtMoney(grandTotal);
-}
-
-function getAddonsList() {
-  if (selectedAddons.size === 0) return 'None';
-  const names = { charcuterie: 'Charcuterie Board ($95)', wine: 'Welcome Wine/Champagne ($60)', flowers: 'Fresh Flower Bouquet ($65)', fridge: 'Fridge Stocked on Arrival ($50)' };
-  return Array.from(selectedAddons).map(id => names[id]).join(', ');
-}
-
 </script>
 </body>
 </html>
