@@ -31,7 +31,7 @@
 .book-now-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,168,76,.4);}
 
 </style></head><body>
-<nav><a href="index.html" class="nav-logo">Windsor Executive Rentals</a><ul class="nav-links"><li><a href="#properties">Properties</a></li><li><a href="#booking">Book Now</a></li><li><a href="#why-direct">Why Book Direct</a></li><li><a href="about.html">About</a></li><li><a href="mailto:jaworskibnb@gmail.com">Contact Us</a></li></ul></nav>
+<nav><a href="index.html" class="nav-logo">Windsor Executive Rentals</a><ul class="nav-links"><li><a href="#properties">Properties</a></li><li><a href="#booking">Book Now</a></li><li><a href="#why-direct">Why Book Direct</a></li><li><a href="about.html">About</a></li><li><a href="#booking">Contact Us</a></li></ul></nav>
 <div class="hero"><div class="hero-badge">5 Star Hotel Inspired Properties</div><h1>Premium Furnished Stays in Windsor, ON</h1><p>Luxury properties with 5-star amenities, hotel-quality linens, and everything you need for a perfect stay. Book direct and save.</p><div class="stats"><div class="stat-item"><div class="stat-number">5.0</div><div class="stat-label">Guest Rating</div></div><div class="stat-item"><div class="stat-number">140+</div><div class="stat-label">5-Star Reviews</div></div><div class="stat-item"><div class="stat-number">3</div><div class="stat-label">Properties</div></div><div class="stat-item"><div class="stat-number">0%</div><div class="stat-label">Service Fees</div></div></div></div>
 <section id="properties"><div class="section-header"><h2>Our Properties</h2><p>Each property is personally curated with luxury furnishings and hotel-grade amenities</p></div><div class="properties-grid"><a href="property-1.html" class="property-card"><div class="card-image"><img src="images/13-living-fireplace.png" alt="Luxury Home"/><span class="card-badge">Featured</span></div><div class="card-body"><div class="card-rating"><span class="stars">★★★★★</span><span>5.0 (60)</span></div><div class="card-location">Windsor, ON — South Windsor</div><div class="card-title">5-Star Inspired Luxury Home — Over 3,400 SQ FT</div><div class="card-meta"><span>6-8 guests</span><span>4 bedrooms</span><span>3 bathrooms</span></div><div class="card-amenities"><span class="amenity-tag">Private Gym & Sauna</span><span class="amenity-tag">King Bed</span><span class="amenity-tag">6 TVs</span><span class="amenity-tag">Games Room</span></div><div class="card-footer"><span class="btn-view">View Property</span></div></div></a><a href="property-2.html" class="property-card"><div class="card-image"><img src="images/property-2/01-living-fireplace.png" alt="Riverside Retreat"/><span class="card-badge">New</span></div><div class="card-body"><div class="card-rating"><span class="stars">★★★★★</span><span>4.98 (51)</span></div><div class="card-location">Windsor, ON — Riverside</div><div class="card-title">Brand New Riverside Retreat — Stylish 2BR + Parking</div><div class="card-meta"><span>4 guests</span><span>2 bedrooms</span><span>1.5 bathrooms</span></div><div class="card-amenities"><span class="amenity-tag">Riverside Drive</span><span class="amenity-tag">Samsung Frame TV</span><span class="amenity-tag">Balcony</span><span class="amenity-tag">Free Parking</span></div><div class="card-footer"><span class="btn-view">View Property</span></div></div></a><a href="property-3.html" class="property-card"><div class="card-image"><img src="images/property-3/17-living-open.png" alt="Downtown 2BR"/><span class="card-badge">Superhost</span></div><div class="card-body"><div class="card-rating"><span class="stars">★★★★★</span><span>4.97 (31)</span></div><div class="card-location">Windsor, ON — Downtown</div><div class="card-title">Stylish Downtown — 2-Bedroom Home</div><div class="card-meta"><span>4 guests</span><span>2 bedrooms</span><span>1 bathroom</span></div><div class="card-amenities"><span class="amenity-tag">Downtown</span><span class="amenity-tag">Smart Lock</span><span class="amenity-tag">Garage</span><span class="amenity-tag">Backyard</span></div><div class="card-footer"><span class="btn-view">View Property</span></div></div></a></div></section>
 
@@ -82,364 +82,42 @@
   </div>
 </section>
 
-<section id="why-direct"><div class="section-header"><h2>Why Book Direct?</h2><p>Skip the middleman — get the best rates and a personal touch when you book with us</p></div><div class="why-grid"><div class="why-card"><div class="why-icon">💰</div><h3>No Service Fees</h3><p>Save 10%+ compared to booking platforms. Our prices go straight to your stay, not middlemen.</p></div><div class="why-card"><div class="why-icon">🏆</div><h3>Best Price Guaranteed</h3><p>You'll never find a better rate anywhere else. We match or beat any platform price.</p></div><div class="why-card"><div class="why-icon">💬</div><h3>Direct Communication</h3><p>Talk to us directly — no bots, no ticket systems. Faster responses and personal service.</p></div><div class="why-card"><div class="why-icon">🔄</div><h3>Flexible Cancellation</h3><p>Life happens. We offer flexible cancellation policies so you can book with confidence.</p></div></div></section>
-<footer><div>© 2026 Windsor Executive Rentals. All rights reserved.</div><div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="mailto:jaworskibnb@gmail.com">Contact</a></div></footer>
-
-<!-- Admin button (subtle, bottom-right corner) -->
-<button id="admin-trigger" onclick="openAdmin()">⚙ Admin</button>
-
-<!-- Admin overlay -->
-<div id="admin-overlay" onclick="closeAdminIfOutside(event)">
-  <div id="admin-panel">
-    <button class="admin-close" onclick="closeAdmin()">✕</button>
-    <h2>Admin Panel</h2>
-    <p>Set custom nightly prices for each property by date range.</p>
-    <div id="admin-login">
-      <input class="admin-input" type="password" id="admin-pw" placeholder="Enter password..." onkeydown="if(event.key==='Enter')adminLogin()"/>
-      <button class="admin-btn" onclick="adminLogin()">Login</button>
-      <div class="admin-error" id="admin-error">Incorrect password. Try again.</div>
+<section id="why-direct" style="background:#111;padding:80px 20px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:56px;">
+      <div style="font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:#c9a84c;margin-bottom:16px;">The smarter choice</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:white;margin-bottom:16px;">Why Book Direct?</h2>
+      <p style="color:#888;max-width:520px;margin:0 auto;font-size:.95rem;line-height:1.7;">Skip the middleman — get the best rates and a personal touch when you book with us</p>
     </div>
-    <div id="admin-content">
-      <div class="admin-section">
-        <h3>Property</h3>
-        <div class="admin-prop-tabs">
-          <div class="admin-tab active" onclick="adminSelectProp('luxury',this)">5-Star Luxury</div>
-          <div class="admin-tab" onclick="adminSelectProp('riverside',this)">Riverside</div>
-          <div class="admin-tab" onclick="adminSelectProp('downtown',this)">Downtown</div>
-        </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:20px;">
+      <div style="background:#1a1a1a;border:1px solid rgba(201,168,76,.15);border-radius:12px;padding:32px 28px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(201,168,76,.4)'" onmouseout="this.style.borderColor='rgba(201,168,76,.15)'">
+        <div style="font-size:1.6rem;margin-bottom:16px;">💰</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.05rem;color:#c9a84c;margin-bottom:10px;">No Service Fees</div>
+        <div style="font-size:.85rem;color:#888;line-height:1.7;">Save 10%+ compared to booking platforms. Our prices go straight to your stay, not middlemen.</div>
       </div>
-      <div class="admin-section">
-        <h3>Add Price Rule</h3>
-        <div class="admin-form-row">
-          <div class="afl"><label>From</label><input type="date" id="admin-from"/></div>
-          <div class="afl"><label>To</label><input type="date" id="admin-to"/></div>
-          <div class="afl"><label>$/night</label><input type="number" id="admin-price" placeholder="450" min="1"/></div>
-          <button class="admin-btn-sm" onclick="addPriceRule()">+ Add</button>
-        </div>
-        <div class="admin-note">💡 Tip: You can overlap ranges — the most recently added rule takes priority for any date.</div>
+      <div style="background:#1a1a1a;border:1px solid rgba(201,168,76,.15);border-radius:12px;padding:32px 28px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(201,168,76,.4)'" onmouseout="this.style.borderColor='rgba(201,168,76,.15)'">
+        <div style="font-size:1.6rem;margin-bottom:16px;">🏆</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.05rem;color:#c9a84c;margin-bottom:10px;">Best Price Guaranteed</div>
+        <div style="font-size:.85rem;color:#888;line-height:1.7;">You'll never find a better rate anywhere else. We match or beat any platform price.</div>
       </div>
-      <div class="admin-section">
-        <h3>Active Rules — <span id="admin-prop-label">5-Star Luxury</span></h3>
-        <div class="price-rules-list" id="admin-rules-list"></div>
-        <div id="admin-no-rules" style="font-size:0.82rem;color:var(--text-muted);">No custom rules yet. Default prices are being used.</div>
+      <div style="background:#1a1a1a;border:1px solid rgba(201,168,76,.15);border-radius:12px;padding:32px 28px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(201,168,76,.4)'" onmouseout="this.style.borderColor='rgba(201,168,76,.15)'">
+        <div style="font-size:1.6rem;margin-bottom:16px;">💬</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.05rem;color:#c9a84c;margin-bottom:10px;">Direct Communication</div>
+        <div style="font-size:.85rem;color:#888;line-height:1.7;">Talk to us directly — no bots, no ticket systems. Faster responses and personal service.</div>
       </div>
-      <div class="admin-section">
-        <h3>Default Prices (when no rule set)</h3>
-        <div style="font-size:0.82rem;color:var(--text-muted);line-height:2;">
-          5-Star Luxury: <strong>$500</strong> weekdays / <strong>$650</strong> weekends<br/>
-          Riverside Retreat: <strong>$350</strong> weekdays / <strong>$400</strong> weekends<br/>
-          Downtown 2BR: <strong>$200</strong> weekdays / <strong>$300</strong> weekends
-        </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:760px;margin:0 auto;">
+      <div style="background:#1a1a1a;border:1px solid rgba(201,168,76,.15);border-radius:12px;padding:32px 28px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(201,168,76,.4)'" onmouseout="this.style.borderColor='rgba(201,168,76,.15)'">
+        <div style="font-size:1.6rem;margin-bottom:16px;">🔄</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.05rem;color:#c9a84c;margin-bottom:10px;">Flexible Cancellation</div>
+        <div style="font-size:.85rem;color:#888;line-height:1.7;">Life happens. We offer flexible cancellation policies so you can book with confidence.</div>
       </div>
-      <div class="admin-section" style="margin-top:8px;padding-top:20px;border-top:2px solid #f0f0f0;">
-        <h3 style="margin-bottom:12px;">📄 Pamphlet &amp; Sharing</h3>
-        <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:14px;line-height:1.5;">Download your co-hosting pamphlet or copy the share link to show potential clients.</p>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="windsor-executive-rentals-pamphlet.pdf" download="Windsor-Executive-Rentals-Pamphlet.pdf"
-             style="display:flex;align-items:center;justify-content:center;gap:10px;background:var(--gold,#c9a84c);color:#1a1a1a;padding:12px 18px;border-radius:50px;font-weight:700;font-size:.85rem;text-decoration:none;">
-            ⬇ Download Pamphlet (PDF)
-          </a>
-          <a href="windsor-executive-rentals-pamphlet.pdf" target="_blank"
-             style="display:flex;align-items:center;justify-content:center;gap:10px;background:#f5f5f5;color:#1a1a1a;padding:12px 18px;border-radius:50px;font-weight:600;font-size:.85rem;text-decoration:none;border:1px solid #e0e0e0;">
-            🔗 Open Pamphlet in New Tab
-          </a>
-          <button onclick="copyPamphletLink()" id="copy-pamphlet-btn"
-             style="display:flex;align-items:center;justify-content:center;gap:10px;background:#f5f5f5;color:#1a1a1a;padding:12px 18px;border-radius:50px;font-weight:600;font-size:.85rem;border:1px solid #e0e0e0;cursor:pointer;width:100%;">
-            📋 Copy Share Link
-          </button>
-        </div>
+      <div style="background:#1a1a1a;border:1px solid rgba(201,168,76,.15);border-radius:12px;padding:32px 28px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(201,168,76,.4)'" onmouseout="this.style.borderColor='rgba(201,168,76,.15)'">
+        <div style="font-size:1.6rem;margin-bottom:16px;">🔒</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.05rem;color:#c9a84c;margin-bottom:10px;">Secure Payments</div>
+        <div style="font-size:.85rem;color:#888;line-height:1.7;">Stripe-secured checkout with all taxes shown upfront. No hidden charges, ever.</div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<script>
-const MAT_RATE=0.06,HST_RATE=0.13;
-function fmtMoney(n){return '$'+n.toLocaleString('en-CA',{minimumFractionDigits:2,maximumFractionDigits:2});}
-
-function goToCheckout(e){
-  e.preventDefault();
-  if(!selStart||!selEnd){alert('Please select dates first.');return;}
-  const nights=calcNights(currentProperty,selStart,selEnd);
-  const subtotal=nights.reduce((s,n)=>s+n.price,0);
-  let i=0,rowChunks=[];
-  while(i<nights.length){let j=i;while(j<nights.length&&nights[j].price===nights[i].price)j++;rowChunks.push((j-i)+'x'+nights[i].price);i=j;}
-  const g=document.getElementById('guests');
-  const params='prop='+encodeURIComponent(currentProperty)
-    +'&checkin='+encodeURIComponent(selStart)
-    +'&checkout='+encodeURIComponent(selEnd)
-    +'&guests='+encodeURIComponent(g?g.value:'2 guests')
-    +'&nights='+nights.length
-    +'&subtotal='+subtotal.toFixed(2)
-    +'&nightrows='+encodeURIComponent(rowChunks.join(','));
-  window.location.href='checkout.html?'+params;
-}
-const ADMIN_PASSWORD='Ep6911167!';
-const PROXY='/.netlify/functions/fetch-ical?url=';
-const ICAL_URLS={
-  luxury:'https://www.airbnb.ca/calendar/ical/708933094130447096.ics?t=b0e6bdd7a5494edc8df96ee47e83cc8b',
-  riverside:'https://www.airbnb.ca/calendar/ical/989882813772586756.ics?t=29fe38aefe04402b8a60b5b63cc09ace',
-  downtown:'https://www.airbnb.ca/calendar/ical/45517705.ics?t=9c1e81cad08149a6a15fa207772e8adf'
-};
-const DEFAULT_PRICES={luxury:[500,650],riverside:[350,400],downtown:[200,300]};
-const PROP_LABELS={luxury:'5-Star Luxury',riverside:'Riverside',downtown:'Downtown'};
-
-let currentProperty='luxury',blockedDates={},calYear,calMonth,selStart=null,selEnd=null,adminLoggedIn=false,adminProp='luxury';
-
-function loadRules(){try{return JSON.parse(localStorage.getItem('wer_price_rules')||'{}');}catch{return {};}}
-function saveRules(r){localStorage.setItem('wer_price_rules',JSON.stringify(r));}
-
-const td=new Date();calYear=td.getFullYear();calMonth=td.getMonth();
-Object.keys(ICAL_URLS).forEach(id=>fetchBlocked(id));
-renderCalendar();
-
-async function fetchBlocked(propId){
-  try{
-    const res=await fetch(PROXY+encodeURIComponent(ICAL_URLS[propId]));
-    if(!res.ok)throw new Error();
-    blockedDates[propId]=parseIcal(await res.text());
-    if(propId===currentProperty){document.getElementById('cal-status').textContent='Live availability';renderCalendar();}
-  }catch{
-    blockedDates[propId]=new Set();
-    if(propId===currentProperty)document.getElementById('cal-status').textContent='Availability unavailable';
-  }
-}
-
-function parseIcal(text){
-  const dates=new Set();
-  const lines=text.replace(/\r\n /g,'').replace(/\r\n/g,'\n').split('\n');
-  let inEvent=false,dtstart=null,dtend=null;
-  for(const line of lines){
-    if(line==='BEGIN:VEVENT'){inEvent=true;dtstart=null;dtend=null;}
-    if(!inEvent)continue;
-    if(line.startsWith('DTSTART')){const v=line.split(':')[1]?.trim().replace(/T.*/,'');if(v&&v.length===8)dtstart=v;}
-    if(line.startsWith('DTEND')){const v=line.split(':')[1]?.trim().replace(/T.*/,'');if(v&&v.length===8)dtend=v;}
-    if(line==='END:VEVENT'){
-      if(dtstart&&dtend){let c=p8(dtstart);const e=p8(dtend);while(c<e){dates.add(toYMD(c));c.setDate(c.getDate()+1);}}
-      inEvent=false;
-    }
-  }
-  return dates;
-}
-function p8(s){return new Date(s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8));}
-function toYMD(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
-function todayYMD(){return toYMD(new Date());}
-function fmtDate(ymd){if(!ymd)return'';const[y,m,d]=ymd.split('-');const mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return mo[parseInt(m)-1]+' '+parseInt(d)+', '+y;}
-
-function getPriceForDate(propId,ymd){
-  const rules=(loadRules()[propId]||[]).slice().reverse();
-  for(const r of rules){if(ymd>=r.from&&ymd<=r.to)return r.price;}
-  const dow=new Date(ymd+'T12:00:00').getDay();
-  const[wd,we]=DEFAULT_PRICES[propId];
-  return(dow===5||dow===6)?we:wd;
-}
-
-function calcNights(propId,startYMD,endYMD){
-  const nights=[];let cur=new Date(startYMD+'T12:00:00');const end=new Date(endYMD+'T12:00:00');
-  while(cur<end){const ymd=toYMD(cur);nights.push({date:ymd,price:getPriceForDate(propId,ymd)});cur.setDate(cur.getDate()+1);}
-  return nights;
-}
-
-function renderCalendar(){
-  const MO=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  document.getElementById('cal-title').textContent=MO[calMonth]+' '+calYear;
-  const grid=document.getElementById('cal-days');grid.innerHTML='';
-  const firstDay=new Date(calYear,calMonth,1).getDay();
-  const dim=new Date(calYear,calMonth+1,0).getDate();
-  const blocked=blockedDates[currentProperty]||new Set();
-  const tYMD=todayYMD();
-  for(let i=0;i<firstDay;i++){const e=document.createElement('div');e.className='cal-day empty';grid.appendChild(e);}
-  for(let d=1;d<=dim;d++){
-    const ymd=calYear+'-'+String(calMonth+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
-    const el=document.createElement('div');el.className='cal-day';
-    const numEl=document.createElement('div');numEl.className='cal-day-num';numEl.textContent=d;el.appendChild(numEl);
-    if(ymd===tYMD)el.classList.add('today');
-    if(ymd<tYMD){el.classList.add('past');}
-    else if(blocked.has(ymd)){el.classList.add('blocked');}
-    else{
-      const price=getPriceForDate(currentProperty,ymd);
-      const priceEl=document.createElement('div');priceEl.className='cal-day-price';priceEl.textContent='$'+price;el.appendChild(priceEl);
-      el.onclick=()=>selectDay(ymd);
-      if(selStart&&selEnd){
-        if(ymd===selStart)el.classList.add('selected-start');
-        else if(ymd===selEnd)el.classList.add('selected-end');
-        else if(ymd>selStart&&ymd<selEnd)el.classList.add('in-range');
-      }else if(selStart&&ymd===selStart)el.classList.add('selected-start');
-    }
-    grid.appendChild(el);
-  }
-}
-
-function changeMonth(dir){
-  calMonth+=dir;
-  if(calMonth>11){calMonth=0;calYear++;}
-  if(calMonth<0){calMonth=11;calYear--;}
-  renderCalendar();
-}
-
-function selectDay(ymd){
-  if(!selStart||(selStart&&selEnd)){selStart=ymd;selEnd=null;}
-  else{
-    if(ymd<=selStart){selStart=ymd;selEnd=null;}
-    else{
-      const blocked=blockedDates[currentProperty]||new Set();
-      let cur=new Date(selStart+'T12:00:00');cur.setDate(cur.getDate()+1);
-      const end=new Date(ymd+'T12:00:00');let hasBlocked=false;
-      while(cur<end){if(blocked.has(toYMD(cur))){hasBlocked=true;break;}cur.setDate(cur.getDate()+1);}
-      if(hasBlocked){alert('Your range includes unavailable dates. Please choose different dates.');selStart=ymd;selEnd=null;}
-      else{selEnd=ymd;}
-    }
-  }
-  updateDateInputs();renderCalendar();
-}
-
-function updateDateInputs(){
-  document.getElementById('checkin-display').textContent=selStart?fmtDate(selStart):'Select date';
-  document.getElementById('checkout-display').textContent=selEnd?fmtDate(selEnd):'Select date';
-  document.getElementById('checkin-box').classList.toggle('filled',!!selStart);
-  document.getElementById('checkout-box').classList.toggle('filled',!!selEnd);
-  document.getElementById('checkin').value=selStart||'';
-  document.getElementById('checkout').value=selEnd||'';
-  const ps=document.getElementById('price-summary');
-  if(selStart&&selEnd){
-    const nights=calcNights(currentProperty,selStart,selEnd);
-    const total=nights.reduce((s,n)=>s+n.price,0);
-    let rows=[],i=0;
-    while(i<nights.length){let j=i;while(j<nights.length&&nights[j].price===nights[i].price)j++;const cnt=j-i;rows.push(`<div class="price-summary-row"><span>${cnt} night${cnt>1?'s':''} × $${nights[i].price}</span><span>$${cnt*nights[i].price}</span></div>`);i=j;}
-    document.getElementById('price-summary-rows').innerHTML=rows.join('');
-    document.getElementById('price-summary-nights').textContent=`${nights.length} night${nights.length>1?'s':''} total`;
-    document.getElementById('price-summary-total').textContent='$'+total.toLocaleString();
-    ps.classList.add('show');
-
-  // Taxes & book button
-  if(selStart&&selEnd){
-    const nights=calcNights(currentProperty,selStart,selEnd);
-    const sub=nights.reduce((s,n)=>s+n.price,0);
-    const mat=sub*MAT_RATE, hst=sub*HST_RATE, tot=sub+mat+hst;
-    document.getElementById('sum-mat-val').textContent=fmtMoney(mat);
-    document.getElementById('sum-hst-val').textContent=fmtMoney(hst);
-    document.getElementById('price-summary-total').textContent=fmtMoney(tot);
-    document.getElementById('price-summary-nights').textContent=nights.length+' night'+(nights.length>1?'s':'')+' total (incl. taxes)';
-    const btn=document.getElementById('book-now-btn');
-    if(btn){btn.style.display='block';btn.style.setProperty('display','block','important');}
-    ps.style.display='block';
-  }else{
-    const btn=document.getElementById('book-now-btn');
-    if(btn) btn.style.display='none';
-    ps.classList.remove('show');
-  }
-
-  }else{
-    document.getElementById('sum-mat-val').textContent='—';
-    document.getElementById('sum-hst-val').textContent='—';
-    const btn=document.getElementById('book-now-btn');if(btn)btn.style.display='none';
-    ps.classList.remove('show');
-  }
-}
-
-function selectProperty(el,val,propId){
-  document.querySelectorAll('.property-option').forEach(d=>d.classList.remove('selected'));
-  el.classList.add('selected');document.getElementById('property').value=val;
-  currentProperty=propId;selStart=null;selEnd=null;updateDateInputs();
-  document.getElementById('cal-status').textContent=blockedDates[propId]?'Live availability':'Loading...';
-  if(!blockedDates[propId])fetchBlocked(propId);
-  renderCalendar();
-}
-
-async function submitBooking(){
-  const v=id=>document.getElementById(id).value.trim();
-  const property=v('property'),firstName=v('firstName'),lastName=v('lastName'),email=v('email'),phone=v('phone'),checkin=v('checkin'),checkout=v('checkout'),guests=v('guests'),requests=v('requests');
-  if(!firstName||!lastName||!email||!phone||!checkin||!checkout||!guests){alert('Please fill out all required fields.');return;}
-  if(new Date(checkout)<=new Date(checkin)){alert('Check-out date must be after check-in date.');return;}
-  const btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='Sending...';
-  const nights=calcNights(currentProperty,checkin,checkout);
-  const total=nights.reduce((s,n)=>s+n.price,0);
-  const data={property,name:firstName+' '+lastName,email,phone,'check-in':checkin,'check-out':checkout,guests,'special-requests':requests||'None','estimated-total':'$'+total.toLocaleString()};
-  try{
-    await Promise.all([
-      fetch('https://formspree.io/f/xnjopjgn',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)}),
-      fetch('https://hook.us2.make.com/yqlhgkuuzbgnz5c5xlme674hh9jnkfin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
-    ]);
-    document.getElementById('form-fields').style.display='none';
-    document.getElementById('form-success').style.display='block';
-  }catch(e){
-    alert('Something went wrong. Please try again or contact us directly at 647-470-7333.');
-    btn.disabled=false;btn.textContent='Send Booking Request';
-  }
-}
-
-// ── Admin ──
-function openAdmin(){
-  document.getElementById('admin-overlay').classList.add('show');
-  document.getElementById('admin-pw').value='';
-  document.getElementById('admin-error').style.display='none';
-  if(!adminLoggedIn){document.getElementById('admin-login').style.display='block';document.getElementById('admin-content').style.display='none';}
-  setTimeout(()=>document.getElementById('admin-pw').focus(),100);
-}
-function closeAdmin(){document.getElementById('admin-overlay').classList.remove('show');}
-function closeAdminIfOutside(e){if(e.target===document.getElementById('admin-overlay'))closeAdmin();}
-
-function adminLogin(){
-  if(document.getElementById('admin-pw').value===ADMIN_PASSWORD){
-    adminLoggedIn=true;
-    document.getElementById('admin-login').style.display='none';
-    document.getElementById('admin-content').style.display='block';
-    renderAdminRules();
-  }else{document.getElementById('admin-error').style.display='block';}
-}
-
-function adminSelectProp(propId,el){
-  adminProp=propId;
-  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('admin-prop-label').textContent=PROP_LABELS[propId];
-  renderAdminRules();
-}
-
-function addPriceRule(){
-  const from=document.getElementById('admin-from').value;
-  const to=document.getElementById('admin-to').value;
-  const price=parseInt(document.getElementById('admin-price').value);
-  if(!from||!to||!price||price<1){alert('Please fill in all fields.');return;}
-  if(to<from){alert('End date must be on or after start date.');return;}
-  const rules=loadRules();if(!rules[adminProp])rules[adminProp]=[];
-  rules[adminProp].push({from,to,price});saveRules(rules);
-  document.getElementById('admin-from').value='';
-  document.getElementById('admin-to').value='';
-  document.getElementById('admin-price').value='';
-  renderAdminRules();renderCalendar();updateDateInputs();
-}
-
-function deleteRule(propId,idx){
-  const rules=loadRules();rules[propId].splice(idx,1);saveRules(rules);
-  renderAdminRules();renderCalendar();updateDateInputs();
-}
-
-function renderAdminRules(){
-  const rules=loadRules()[adminProp]||[];
-  const list=document.getElementById('admin-rules-list');
-  const noRules=document.getElementById('admin-no-rules');
-  if(!rules.length){list.innerHTML='';noRules.style.display='block';return;}
-  noRules.style.display='none';
-  const daysBetween=(a,b)=>Math.round((new Date(b+'T12:00:00')-new Date(a+'T12:00:00'))/(86400000))+1;
-  list.innerHTML=rules.map((r,i)=>`
-    <div class="price-rule-item">
-      <div class="price-rule-info">
-        <div style="font-weight:600;color:var(--dark);font-size:0.82rem;">${fmtDate(r.from)} → ${fmtDate(r.to)}</div>
-        <div class="price-rule-dates">${daysBetween(r.from,r.to)} days</div>
-      </div>
-      <div class="price-rule-price">$${r.price}/night</div>
-      <button class="admin-btn-del" onclick="deleteRule('${adminProp}',${i})">Delete</button>
-    </div>`).join('');
-}
-function copyPamphletLink() {
-  const url = window.location.origin + window.location.pathname.replace('index.html','') + 'windsor-executive-rentals-pamphlet.pdf';
-  navigator.clipboard.writeText(url).then(() => {
-    const btn = document.getElementById('copy-pamphlet-btn');
-    btn.textContent = '✅ Link Copied!';
-    setTimeout(() => { btn.textContent = '📋 Copy Share Link'; }, 2500);
-  });
-}
-
-</script>
-</body></html>
