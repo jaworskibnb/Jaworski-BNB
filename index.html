@@ -17,7 +17,46 @@
 .price-rules-list{margin-top:8px;}.price-rule-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--light);border-radius:8px;margin-bottom:6px;font-size:0.82rem;gap:8px;}.price-rule-info{flex:1;}.price-rule-dates{color:var(--text-muted);font-size:0.72rem;}.price-rule-price{font-weight:700;color:var(--gold);}
 .admin-note{font-size:0.75rem;color:var(--text-muted);margin-top:10px;background:#faf8f4;padding:10px 12px;border-radius:6px;border-left:3px solid var(--gold);}
 .admin-error{color:#dc2626;font-size:0.82rem;margin-top:8px;display:none;}
-@media(max-width:600px){nav{padding:14px 20px;}.nav-links{gap:14px;}.stats{gap:28px;}.form-row{grid-template-columns:1fr;}.booking-form{padding:24px;}.cal-day{min-height:38px;}.admin-form-row{grid-template-columns:1fr 1fr;gap:8px;}.admin-form-row .admin-btn-sm{grid-column:span 2;}}
+@media(max-width:768px){
+  /* NAV — hamburger on mobile */
+  nav{padding:14px 20px;position:relative;}
+  .nav-links{display:none;}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--dark);padding:20px;gap:16px;z-index:999;border-top:1px solid rgba(201,168,76,.2);}
+  .nav-links a,.nav-links li a{font-size:.95rem;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+  .nav-links .btn-nav{text-align:center;margin-top:8px;}
+  .nav-hamburger{display:flex !important;}
+
+  /* HERO */
+  .hero > div{grid-template-columns:1fr !important;gap:40px !important;padding:48px 24px !important;}
+
+  /* STATS */
+  .stats{gap:28px;flex-wrap:wrap;justify-content:center;}
+
+  /* PROPERTIES */
+  .properties-grid{grid-template-columns:1fr !important;}
+
+  /* WHY DIRECT */
+  #why-direct > div > div:nth-child(2){grid-template-columns:1fr !important;}
+  #why-direct > div > div:nth-child(3){grid-template-columns:1fr !important;max-width:100% !important;}
+
+  /* CONTACT SECTION */
+  #booking > div > div{grid-template-columns:1fr !important;gap:1px;}
+
+  /* ABOUT PAGE */
+  .about{grid-template-columns:1fr;gap:48px;padding:60px 24px;}
+  .about-img-accent,.about-badge{display:none;}
+
+  /* GENERAL */
+  .stats{gap:28px;padding:28px 24px;}
+  .values{padding:60px 24px;}
+  .coverage{padding:60px 24px;}
+  .form-row{grid-template-columns:1fr;}
+  .booking-form{padding:24px;}
+  .cal-day{min-height:38px;}
+  .admin-form-row{grid-template-columns:1fr 1fr;gap:8px;}
+  .admin-form-row .admin-btn-sm{grid-column:span 2;}
+  section{padding-left:20px !important;padding-right:20px !important;}
+}
 
 /* Enhanced price summary */
 .price-est-row{display:flex;justify-content:space-between;color:var(--gray-500,#6b7280);margin-bottom:6px;font-size:.85rem;}
@@ -30,8 +69,47 @@
 .book-now-btn{display:block;width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#1a1a1a;border:none;padding:15px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;text-align:center;margin-top:14px;transition:transform .2s,box-shadow .2s;font-family:'Playfair Display',serif;letter-spacing:.04em;text-decoration:none;}
 .book-now-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,168,76,.4);}
 
+/* ── MOBILE RESPONSIVE ── */
+@media(max-width:768px){
+  /* NAV */
+  nav{padding:14px 20px;position:relative;}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--dark);padding:16px 20px;gap:0;z-index:200;border-top:1px solid rgba(201,168,76,.2);}
+  .nav-links.open{display:flex;}
+  .nav-links li{border-bottom:1px solid rgba(255,255,255,.05);}
+  .nav-links li:last-child{border-bottom:none;}
+  .nav-links a{display:block;padding:12px 0;font-size:.9rem;}
+  .nav-links .btn-nav{margin:12px 0 4px;text-align:center;display:block;padding:12px;}
+  .nav-hamburger{display:flex !important;}
+
+  /* HERO */
+  .hero{padding:40px 20px !important;min-height:80vh;}
+  .hero-title{font-size:2.4rem !important;}
+  .hero-stats{gap:20px !important;flex-wrap:wrap;}
+
+  /* PROPERTIES SECTION */
+  .section-header h2{font-size:1.6rem;}
+  .property-card{margin:0 0 20px;}
+
+  /* WHY DIRECT */
+  #why-direct{padding:60px 20px !important;}
+  #why-direct > div > div:nth-child(2){grid-template-columns:1fr !important;}
+  #why-direct > div > div:nth-child(3){grid-template-columns:1fr !important;max-width:100% !important;}
+
+  /* CONTACT SECTION */
+  #booking{padding:60px 20px !important;}
+  #booking > div > div:nth-child(3){grid-template-columns:1fr !important;gap:1px;}
+
+  /* FOOTER */
+  footer{flex-direction:column;text-align:center;gap:12px;padding:20px;}
+}
 </style></head><body>
-<nav><a href="index.html" class="nav-logo">Windsor Executive Rentals</a><ul class="nav-links"><li><a href="#properties">Properties</a></li><li><a href="#booking">Book Now</a></li><li><a href="#why-direct">Why Book Direct</a></li><li><a href="about.html">About</a></li><li><a href="#booking">Contact Us</a></li></ul></nav>
+<nav><a href="index.html" class="nav-logo">Windsor Executive Rentals</a><ul class="nav-links"><li><a href="#properties">Properties</a></li><li><a href="#booking">Book Now</a></li><li><a href="#why-direct">Why Book Direct</a></li><li><a href="about.html">About</a></li><li><a href="#booking">Contact Us</a></li></ul>
+  <button class="nav-hamburger" onclick="toggleMobileNav()" style="display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
+    <span style="display:block;width:22px;height:2px;background:#c9a84c;border-radius:2px;"></span>
+    <span style="display:block;width:22px;height:2px;background:#c9a84c;border-radius:2px;"></span>
+    <span style="display:block;width:22px;height:2px;background:#c9a84c;border-radius:2px;"></span>
+  </button>
+</nav>
 <div class="hero"><div class="hero-badge">5 Star Hotel Inspired Properties</div><h1>Premium Furnished Stays in Windsor, ON</h1><p>Luxury properties with 5-star amenities, hotel-quality linens, and everything you need for a perfect stay. Book direct and save.</p><div class="stats"><div class="stat-item"><div class="stat-number">5.0</div><div class="stat-label">Guest Rating</div></div><div class="stat-item"><div class="stat-number">140+</div><div class="stat-label">5-Star Reviews</div></div><div class="stat-item"><div class="stat-number">3</div><div class="stat-label">Properties</div></div><div class="stat-item"><div class="stat-number">0%</div><div class="stat-label">Service Fees</div></div></div></div>
 <section id="properties"><div class="section-header"><h2>Our Properties</h2><p>Each property is personally curated with luxury furnishings and hotel-grade amenities</p></div><div class="properties-grid"><a href="property-1.html" class="property-card"><div class="card-image"><img src="images/13-living-fireplace.png" alt="Luxury Home"/><span class="card-badge">Featured</span></div><div class="card-body"><div class="card-rating"><span class="stars">★★★★★</span><span>5.0 (60)</span></div><div class="card-location">Windsor, ON — South Windsor</div><div class="card-title">5-Star Inspired Luxury Home — Over 3,400 SQ FT</div><div class="card-meta"><span>6-8 guests</span><span>4 bedrooms</span><span>3 bathrooms</span></div><div class="card-amenities"><span class="amenity-tag">Private Gym & Sauna</span><span class="amenity-tag">King Bed</span><span class="amenity-tag">6 TVs</span><span class="amenity-tag">Games Room</span></div><div class="card-footer"><span class="btn-view">View Property</span></div></div></a><a href="property-2.html" class="property-card"><div class="card-image"><img src="images/property-2/01-living-fireplace.png" alt="Riverside Retreat"/><span class="card-badge">New</span></div><div class="card-body"><div class="card-rating"><span class="stars">★★★★★</span><span>4.98 (51)</span></div><div class="card-location">Windsor, ON — Riverside</div><div class="card-title">Brand New Riverside Retreat — Stylish 2BR + Parking</div><div class="card-meta"><span>4 guests</span><span>2 bedrooms</span><span>1.5 bathrooms</span></div><div class="card-amenities"><span class="amenity-tag">Riverside Drive</span><span class="amenity-tag">Samsung Frame TV</span><span class="amenity-tag">Balcony</span><span class="amenity-tag">Free Parking</span></div><div class="card-footer"><span class="btn-view">View Property</span></div></div></a><a href="property-3.html" class="property-card"><div class="card-image"><img src="images/property-3/17-living-open.png" alt="Downtown 2BR"/><span class="card-badge">Superhost</span></div><div class="card-body"><div class="card-rating"><span class="stars">★★★★★</span><span>4.97 (31)</span></div><div class="card-location">Windsor, ON — Downtown</div><div class="card-title">Stylish Downtown — 2-Bedroom Home</div><div class="card-meta"><span>4 guests</span><span>2 bedrooms</span><span>1 bathroom</span></div><div class="card-amenities"><span class="amenity-tag">Downtown</span><span class="amenity-tag">Smart Lock</span><span class="amenity-tag">Garage</span><span class="amenity-tag">Backyard</span></div><div class="card-footer"><span class="btn-view">View Property</span></div></div></a></div></section>
 

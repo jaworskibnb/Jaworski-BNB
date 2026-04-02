@@ -118,6 +118,52 @@ footer a{color:#555;text-decoration:none;margin:0 10px;}
   .nav-links{gap:16px;}
   .hero-content{padding:40px 24px;} .hero > div{grid-template-columns:1fr !important;gap:40px !important;padding:48px 24px !important;}
 }
+@media(max-width:768px){
+  nav{padding:16px 20px;position:relative;}
+  .nav-links{display:none !important;}
+  .nav-links.open{display:flex !important;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#1a1a1a;padding:20px;gap:16px;z-index:999;border-top:1px solid rgba(201,168,76,.2);}
+  .nav-hamburger-about{display:flex !important;}
+  .hero{height:auto;padding:60px 24px 40px !important;}
+  .hero > div{grid-template-columns:1fr !important;gap:32px !important;padding:0 !important;}
+  .about{grid-template-columns:1fr;gap:40px;padding:60px 24px;}
+  .about-img-accent,.about-badge{display:none;}
+  .values-grid,.coverage-grid{grid-template-columns:1fr !important;}
+  .highlights{grid-template-columns:1fr;}
+  .stats-strip{gap:28px;padding:28px 24px;flex-wrap:wrap;}
+  section{padding-left:20px !important;padding-right:20px !important;}
+  [style*="grid-template-columns:repeat(4"]{grid-template-columns:1fr 1fr !important;}
+  [style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr !important;}
+  [style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr !important;}
+}
+
+/* ── MOBILE RESPONSIVE ── */
+@media(max-width:768px){
+  nav{padding:14px 20px;}
+  .nav-links{gap:12px;flex-wrap:wrap;}
+  .nav-links a{font-size:.78rem;}
+
+  /* HERO split layout → stack */
+  .hero > div{grid-template-columns:1fr !important;gap:32px !important;padding:48px 24px !important;}
+  .hero > div > div:first-child{order:2;}
+  .hero > div > div:last-child{order:1;}
+  .hero-title{font-size:2.4rem !important;}
+  .hero > div > div:first-child > div:last-child{gap:20px !important;flex-wrap:wrap;}
+
+  /* About section */
+  section{padding:60px 24px !important;}
+  
+  /* Cards grid */
+  .highlights{grid-template-columns:1fr 1fr !important;}
+  
+  /* Stats grid → 2x2 */
+  section > div > div[style*="repeat(4"]{grid-template-columns:1fr 1fr !important;}
+
+  /* Values grid */
+  .values-grid{grid-template-columns:1fr !important;}
+  
+  /* Why book direct */
+  section > div > div[style*="repeat(3"]{grid-template-columns:1fr !important;}
+}
 </style>
 </head>
 <body>
@@ -130,6 +176,11 @@ footer a{color:#555;text-decoration:none;margin:0 10px;}
     <li><a href="index.html#booking">Contact</a></li>
     <li><a href="index.html" class="btn-nav">Book Direct</a></li>
   </ul>
+  <button class="nav-hamburger-about" onclick="document.querySelector('.nav-links').classList.toggle('open')" style="display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
+    <span style="display:block;width:22px;height:2px;background:#c9a84c;border-radius:2px;"></span>
+    <span style="display:block;width:22px;height:2px;background:#c9a84c;border-radius:2px;"></span>
+    <span style="display:block;width:22px;height:2px;background:#c9a84c;border-radius:2px;"></span>
+  </button>
 </nav>
 
 <!-- HERO -->
