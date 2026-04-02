@@ -372,7 +372,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
     <div class="section" id="contact">
       <h2 class="section-title">Your Host</h2>
       <div class="host-card">
-        <div style="width:72px;height:72px;border-radius:50%;overflow:hidden;flex-shrink:0;"><img src="images/hosts.jpg" alt="Adrian and Barbara" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/></div>
+        <div style="width:72px;height:72px;border-radius:50%;overflow:hidden;flex-shrink:0;"><img src="images/hosts.jpg" alt="Adrian and Barbara" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;"/></div>
         <div class="host-info">
           <h3>Adrian &amp; Barbara</h3>
           <p>Superhost · Hosting since 2019</p>
@@ -393,24 +393,19 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
   <!-- BOOKING SIDEBAR -->
   <div class="booking-sidebar" id="booking">
     <div class="booking-card">
-      <div style="text-align:center;margin-bottom:8px">
-        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--primary)" stroke-width="1.5" style="margin-bottom:8px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <div style="font-size:1.3rem;font-weight:800;color:var(--gray-900)">Call Us for Pricing</div>
-        <p style="font-size:.88rem;color:var(--gray-500);margin-top:4px">Get the best rates when you book direct</p>
+      <div style="background:white;border-radius:16px;padding:32px 24px;box-shadow:0 4px 24px rgba(0,0,0,.07);text-align:center;margin-bottom:16px;">
+      <div style="width:64px;height:64px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.85L.057 23.997l6.302-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.876 9.876 0 01-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.533 6.533 2.106 12 2.106c5.467 0 9.894 4.427 9.894 9.894 0 5.467-4.427 9.894-9.894 9.894z"/></svg>
       </div>
-      <div class="booking-save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>No service fees — save vs Airbnb!</div>
-      <div class="booking-fields">
-        <div class="booking-field-full">
-          <label class="booking-field-label" for="guests">Guests</label>
-          <select class="guest-selector booking-field no-border" id="guests">
-            <option>1 guest</option><option>2 guests</option><option selected>3 guests</option>
-            <option>4 guests</option><option>5 guests</option><option>6 guests</option>
-            <option>7 guests</option><option>8 guests</option>
-          </select>
-        </div>
-      </div>
-      <button class="booking-submit" onclick="handleBooking()">Contact Us for Details</button>
-      <p class="booking-note">We'll respond within 1 hour</p>
+      <div style="font-size:1.2rem;font-weight:700;color:#1a1a1a;margin-bottom:8px;">Chat With Us</div>
+      <p style="font-size:.85rem;color:#6b7280;margin-bottom:20px;line-height:1.5;">Have a question? Message us on WhatsApp — we respond in under 15 minutes!</p>
+      <a href="https://wa.me/16474707333?text=Hi!%20I'm%20interested%20in%20booking%20your%20property." 
+         target="_blank"
+         style="display:block;background:#25D366;color:white;padding:14px;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;transition:background .2s;margin-bottom:12px;"
+         onmouseover="this.style.background='#1ea952'" onmouseout="this.style.background='#25D366'">
+        💬 Message on WhatsApp
+      </a>
+      <p style="font-size:.75rem;color:#9ca3af;">⚡ Typically responds in under 15 minutes</p>
     </div>
   </div>
 </div>
