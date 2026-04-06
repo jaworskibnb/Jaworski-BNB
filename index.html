@@ -28,14 +28,20 @@ nav{background:var(--dark);padding:18px 40px;display:flex;justify-content:space-
 .nav-links a{color:#ccc;text-decoration:none;font-size:0.9rem;transition:color 0.2s;}
 .nav-links a:hover{color:var(--gold);}
 .nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;align-items:center;justify-content:center;}
-.hero{background:var(--dark);color:var(--white);text-align:center;padding:80px 20px 60px;}
-.hero-badge{display:inline-block;background:rgba(201,168,76,0.15);border:1px solid var(--gold);color:var(--gold);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:24px;}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1.2;max-width:700px;margin:0 auto 20px;}
-.hero p{color:#aaa;max-width:540px;margin:0 auto 40px;line-height:1.7;}
+
+/* VIDEO HERO */
+.hero{position:relative;min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;color:white;}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.3) 0%,rgba(0,0,0,.55) 60%,rgba(0,0,0,.75) 100%);z-index:1;}
+.hero-content{position:relative;z-index:2;padding:60px 20px;}
+.hero-badge{display:inline-block;background:rgba(201,168,76,0.2);border:1px solid var(--gold);color:var(--gold);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:24px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);line-height:1.15;max-width:760px;margin:0 auto 20px;text-shadow:0 2px 20px rgba(0,0,0,.3);}
+.hero p{color:rgba(255,255,255,.85);max-width:540px;margin:0 auto 40px;line-height:1.7;font-size:1rem;}
 .stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;}
 .stat-item{text-align:center;}
 .stat-number{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold);}
-.stat-label{font-size:0.8rem;color:#999;margin-top:4px;}
+.stat-label{font-size:0.8rem;color:rgba(255,255,255,.7);margin-top:4px;}
+
 section{padding:70px 20px;}
 .section-header{text-align:center;margin-bottom:48px;}
 .section-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:var(--dark);margin-bottom:10px;}
@@ -70,6 +76,7 @@ footer a:hover{color:var(--gold);}
   .nav-hamburger{display:flex !important;}
   .stats{gap:28px;}
   .properties-grid{grid-template-columns:1fr !important;}
+  .hero{min-height:70vh;}
   #why-direct > div > div:nth-child(2){grid-template-columns:1fr !important;}
   #why-direct > div > div:nth-child(3){grid-template-columns:1fr !important;max-width:100% !important;}
   #booking > div > div{grid-template-columns:1fr !important;gap:1px;}
@@ -94,15 +101,22 @@ footer a:hover{color:var(--gold);}
   </button>
 </nav>
 
+<!-- VIDEO HERO -->
 <div class="hero">
-  <div class="hero-badge">5 Star Hotel Inspired Properties</div>
-  <h1>Premium Furnished Stays in Windsor, ON</h1>
-  <p>Luxury properties with 5-star amenities, hotel-quality linens, and everything you need for a perfect stay. Book direct and save.</p>
-  <div class="stats">
-    <div class="stat-item"><div class="stat-number">5.0</div><div class="stat-label">Guest Rating</div></div>
-    <div class="stat-item"><div class="stat-number">140+</div><div class="stat-label">5-Star Reviews</div></div>
-    <div class="stat-item"><div class="stat-number">3</div><div class="stat-label">Properties</div></div>
-    <div class="stat-item"><div class="stat-number">0%</div><div class="stat-label">Service Fees</div></div>
+  <video class="hero-video" autoplay muted loop playsinline poster="images/13-living-fireplace.png">
+    <source src="images/windsor-city.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">5 Star Hotel Inspired Properties</div>
+    <h1>Premium Furnished Stays in Windsor, ON</h1>
+    <p>Luxury properties with 5-star amenities, hotel-quality linens, and everything you need for a perfect stay. Book direct and save.</p>
+    <div class="stats">
+      <div class="stat-item"><div class="stat-number">5.0</div><div class="stat-label">Guest Rating</div></div>
+      <div class="stat-item"><div class="stat-number">140+</div><div class="stat-label">5-Star Reviews</div></div>
+      <div class="stat-item"><div class="stat-number">3</div><div class="stat-label">Properties</div></div>
+      <div class="stat-item"><div class="stat-number">0%</div><div class="stat-label">Service Fees</div></div>
+    </div>
   </div>
 </div>
 
@@ -221,7 +235,12 @@ footer a:hover{color:var(--gold);}
 
 <footer>
   <div>&copy; 2026 Windsor Executive Rentals. All rights reserved.</div>
-  <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="mailto:jaworskibnb@gmail.com">Contact</a></div>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="mailto:jaworskibnb@gmail.com">Contact</a>
+    <a href="https://www.instagram.com/fivestarhostco" target="_blank" style="color:#c9a84c;">&#x1F4F7; @fivestarhostco</a>
+  </div>
 </footer>
 
 <script>
