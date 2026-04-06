@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google Analytics -->
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X1C6GW5QWE"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X1C6GW5QWE');</script>
 <title>Stylish Downtown 2-Bedroom Home | Windsor, ON | Windsor Executive Rentals</title>
@@ -205,11 +205,11 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 <div class="hero-gallery">
   <div class="gallery-grid" id="galleryGrid">
     <div class="gallery-img" onclick="openLightbox(0)"><img src="images/property-3/17-living-open.png" alt="Open living room"/></div>
-    <div class="gallery-img" onclick="openLightbox(1)"><img src="images/property-3/01-living-room.png" alt="Living room"/></div>
-    <div class="gallery-img" onclick="openLightbox(2)"><img src="images/property-3/05-kitchen.png" alt="Kitchen"/></div>
-    <div class="gallery-img" onclick="openLightbox(3)">
-      <img src="images/property-3/09-bedroom-main.png" alt="Main bedroom"/>
-      <button class="gallery-btn" onclick="event.stopPropagation();openLightbox(0)">Show all photos</button>
+    <div class="gallery-img" onclick="openLightbox(1)"><img src="images/property-3/26-open-concept.png" alt="Open concept"/></div>
+    <div class="gallery-img" onclick="openLightbox(11)"><img src="images/property-3/11-kitchen-island.png" alt="Kitchen"/></div>
+    <div class="gallery-img" onclick="openLightbox(11)">
+      <img src="images/property-3/09-bedroom-birch.png" alt="Main bedroom"/>
+      <button class="gallery-btn" onclick="event.stopPropagation();openLightbox(0)">Show all 20 photos</button>
     </div>
   </div>
 </div>
@@ -405,7 +405,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 
 <footer class="footer">
   <div class="footer-inner">
-    <span class="footer-copy">&copy; 2026 Windsor Executive Rentals. All rights reserved. &nbsp;|&nbsp; <a href="https://www.instagram.com/fivestarhostco" target="_blank" style="color:#c9a84c;text-decoration:none;">&#x1F4F7; @fivestarhostco</a></span>
+    <span class="footer-copy">&copy; 2026 Windsor Executive Rentals. All rights reserved.</span>
     <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="mailto:jaworskibnb@gmail.com">Contact</a></div>
   </div>
 </footer>
@@ -464,7 +464,7 @@ function selectDay(ymd){if(!selStart||(selStart&&selEnd)){selStart=ymd;selEnd=nu
 function updateDateDisplay(){document.getElementById('ciDisp').textContent=selStart?fmtDate(selStart):'Select date';document.getElementById('coDisp').textContent=selEnd?fmtDate(selEnd):'Select date';document.getElementById('ciBox').classList.toggle('filled',!!selStart);document.getElementById('coBox').classList.toggle('filled',!!selEnd);const pe=document.getElementById('priceEst');if(selStart&&selEnd){const nights=calcNights(selStart,selEnd);const sub=nights.reduce((s,n)=>s+n.price,0);const mat=sub*MAT_RATE,hst=sub*HST_RATE,tot=sub+mat+hst;let rows=[],i=0;while(i<nights.length){let j=i;while(j<nights.length&&nights[j].price===nights[i].price)j++;const cnt=j-i;rows.push(`<div class="price-est-row"><span>${cnt} night${cnt>1?'s':''} × $${nights[i].price}</span><span>$${cnt*nights[i].price}</span></div>`);i=j;}document.getElementById('priceRows').innerHTML=rows.join('');const mv=document.getElementById('propMatVal'),hv=document.getElementById('propHstVal');if(mv)mv.textContent=fmtMoney(mat);if(hv)hv.textContent=fmtMoney(hst);document.getElementById('priceNights').textContent=nights.length+' night'+(nights.length>1?'s':'')+' total (incl. taxes)';document.getElementById('priceTotal').textContent=fmtMoney(tot);const bb=document.getElementById('propBookBtn');if(bb)bb.style.display='block';pe.classList.add('show');}else{const bb=document.getElementById('propBookBtn');if(bb)bb.style.display='none';pe.style.display='none';}}
 const td=new Date();calYear=td.getFullYear();calMonth=td.getMonth();
 fetchBlocked();renderCalendar();
-const GALLERY_IMAGES=['images/property-3/17-living-open.png','images/property-3/01-living-room.png','images/property-3/02-living-sofa.png','images/property-3/03-living-detail.png','images/property-3/04-dining.png','images/property-3/05-kitchen.png','images/property-3/06-kitchen-close.png','images/property-3/07-bathroom.png','images/property-3/08-bathroom-detail.png','images/property-3/09-bedroom-main.png','images/property-3/10-bedroom-desk.png','images/property-3/11-bedroom-2.png','images/property-3/12-backyard.png','images/property-3/13-exterior.png'];
+const GALLERY_IMAGES=['images/property-3/17-living-open.png','images/property-3/18-living-wide.png','images/property-3/22-living-tv.png','images/property-3/23-living-armchair.png','images/property-3/24-living-wide-2.png','images/property-3/26-open-concept.png','images/property-3/27-living-kitchen-full.png','images/property-3/11-kitchen-island.png','images/property-3/12-kitchen-granite.png','images/property-3/13-kitchen-wide.png','images/property-3/21-kitchen-living-bar.png','images/property-3/09-bedroom-birch.png','images/property-3/14-bedroom-gold.png','images/property-3/07-bathroom.png','images/property-3/08-bathroom-full.png','images/property-3/04-bathroom-vanity.png','images/property-3/01-bath-laundry-hall.png','images/property-3/06-workspace-living.png','images/property-3/25-entry-workspace.png','images/property-3/19-hallway-kitchen.png'];
 let lightboxIdx=0;
 function openLightbox(idx){lightboxIdx=idx;updateLightbox();document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
