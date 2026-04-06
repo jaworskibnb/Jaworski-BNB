@@ -1,43 +1,40 @@
-const https = require('https');
-const http = require('http');
-
-exports.handler = async (event) => {
+exports.handler = async function(event) {
   const url = event.queryStringParameters && event.queryStringParameters.url;
-
+  
   if (!url) {
-    return { statusCode: 400, body: 'Missing url parameter' };
-  }
-
-  // Only allow Airbnb iCal URLs
-  if (!url.includes('airbnb.ca') && !url.includes('airbnb.com')) {
-    return { statusCode: 403, body: 'Forbidden' };
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: 'Missing url parameter' })
+    };
   }
 
   try {
-    const data = await fetchUrl(url);
+    const fetch = require('node-fetch');
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; calendar-fetch/1.0)'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+
+    const text = await response.text();
+
     return {
       statusCode: 200,
       headers: {
         'Content-Type': 'text/calendar',
         'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'no-cache'
       },
-      body: data,
+      body: text
     };
-  } catch (error) {
+  } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message }),
+      body: JSON.stringify({ error: err.message })
     };
   }
 };
-
-function fetchUrl(url) {
-  return new Promise((resolve, reject) => {
-    const client = url.startsWith('https') ? https : http;
-    client.get(url, (res) => {
-      let data = '';
-      res.on('data', (chunk) => { data += chunk; });
-      res.on('end', () => resolve(data));
-    }).on('error', reject);
-  });
-}
