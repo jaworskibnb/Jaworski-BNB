@@ -273,15 +273,20 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
     </div>
 
     <div class="section" id="availability">
-      <h2 class="section-title">Availability &amp; Pricing</h2>
-      <div class="cal-section-wrap">
-        <div class="cal-section-label">Select Your Dates <span class="cal-section-status" id="calStatus">Loading availability...</span></div>
-        <div class="cal-wrap">
-          <div class="cal-hdr"><button onclick="changeMonth(-1)">&#8249;</button><span class="cal-hdr-title" id="calTitle"></span><button onclick="changeMonth(1)">&#8250;</button></div>
-          <div class="cal-g"><div class="cal-dow">Su</div><div class="cal-dow">Mo</div><div class="cal-dow">Tu</div><div class="cal-dow">We</div><div class="cal-dow">Th</div><div class="cal-dow">Fr</div><div class="cal-dow">Sa</div></div>
-          <div class="cal-g" id="calDays"></div>
-          <div class="cal-legend-row"><div class="cal-legend-item"><div class="cal-legend-dot available"></div>Available</div><div class="cal-legend-item"><div class="cal-legend-dot blocked"></div>Booked</div><div class="cal-legend-item"><div class="cal-legend-dot selected"></div>Your Selection</div></div>
-        </div>
+      <h2 class="section-title">Availability &amp; Booking</h2>
+      <p style="color:var(--gray-600);font-size:.95rem;margin-bottom:24px;line-height:1.7;">Check real-time availability and book securely through Airbnb, or contact us directly on WhatsApp for the best rates with no service fees.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;">
+        <a href="https://www.airbnb.ca/rooms/708933094130447096" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#ff5a5f,#ff385c);color:white;padding:14px 28px;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;transition:transform .2s,box-shadow .2s;font-family:'Playfair Display',serif;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(255,90,95,.4)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          View on Airbnb
+        </a>
+        <a href="https://wa.me/16474707333?text=Hi!%20I'm%20interested%20in%20booking%20your%20property." target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#b8963e,#ddb84a);color:#1a1a1a;padding:14px 28px;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;transition:transform .2s,box-shadow .2s;font-family:'Playfair Display',serif;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(184,150,62,.4)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="#1a1a1a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.85L.057 23.997l6.302-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.876 9.876 0 01-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.533 6.533 2.106 12 2.106c5.467 0 9.894 4.427 9.894 9.894 0 5.467-4.427 9.894-9.894 9.894z"/></svg>
+          Book Direct (Save 10%)
+        </a>
+      </div>
+      <p style="font-size:.78rem;color:var(--gray-400);margin-top:14px;">&#9733; Book direct via WhatsApp to save ~10% — no Airbnb service fees!</p>
+    </div>
         <div class="date-disp-row">
           <div class="date-box" id="ciBox"><div class="date-box-label">CHECK-IN</div><div class="date-box-value" id="ciDisp">Select date</div></div>
           <div class="date-box" id="coBox"><div class="date-box-label">CHECK-OUT</div><div class="date-box-value" id="coDisp">Select date</div></div>
