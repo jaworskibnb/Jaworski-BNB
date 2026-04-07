@@ -29,10 +29,14 @@ nav{background:var(--dark);padding:18px 40px;display:flex;justify-content:space-
 .nav-links a:hover{color:var(--gold);}
 .nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;align-items:center;justify-content:center;}
 
-/* VIDEO HERO */
+/* SLIDESHOW HERO */
 .hero{position:relative;min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;color:white;}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+.hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 1.2s ease-in-out;}
+.hero-slide.active{opacity:1;}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55) 0%,rgba(0,0,0,.70) 60%,rgba(0,0,0,.85) 100%);z-index:1;}
+.hero-dots{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3;}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:background .3s;}
+.hero-dot.active{background:#c9a84c;}
 .hero-content{position:relative;z-index:2;padding:60px 20px;}
 .hero-badge{display:inline-block;background:rgba(201,168,76,0.2);border:1px solid var(--gold);color:var(--gold);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:24px;}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);line-height:1.15;max-width:760px;margin:0 auto 20px;text-shadow:0 2px 20px rgba(0,0,0,.3);}
@@ -101,12 +105,21 @@ footer a:hover{color:var(--gold);}
   </button>
 </nav>
 
-<!-- VIDEO HERO -->
+<!-- SLIDESHOW HERO -->
 <div class="hero">
-  <video class="hero-video" autoplay muted loop playsinline poster="images/13-living-fireplace.png">
-    <source src="https://res.cloudinary.com/dlfoozgdq/video/upload/v1775512878/windsor-city_gma67j.mp4" type="video/mp4">
-  </video>
+  <img class="hero-slide active" src="images/13-living-fireplace.png" alt="Luxury Home"/>
+  <img class="hero-slide" src="images/08-kitchen-island.png" alt="Gourmet Kitchen"/>
+  <img class="hero-slide" src="images/Gym.png" alt="Private Gym"/>
+  <img class="hero-slide" src="images/property-2/01-living-fireplace.png" alt="Riverside Retreat"/>
+  <img class="hero-slide" src="images/property-3/17-living-open.png" alt="Downtown Suite"/>
   <div class="hero-overlay"></div>
+  <div class="hero-dots">
+    <div class="hero-dot active" onclick="goToSlide(0)"></div>
+    <div class="hero-dot" onclick="goToSlide(1)"></div>
+    <div class="hero-dot" onclick="goToSlide(2)"></div>
+    <div class="hero-dot" onclick="goToSlide(3)"></div>
+    <div class="hero-dot" onclick="goToSlide(4)"></div>
+  </div>
   <div class="hero-content">
     <div class="hero-badge">5 Star Hotel Inspired Properties</div>
     <h1>Premium Furnished Stays in Windsor, ON</h1>
@@ -244,4 +257,11 @@ footer a:hover{color:var(--gold);}
 </footer>
 
 <script>
-function toggleMobileNav(){document.querySelector('.nav-links').classLis
+function toggleMobileNav(){document.querySelector('.nav-links').classList.toggle('open');}
+document.addEventListener('click',function(e){var n=document.querySelector('.nav-links');var b=document.querySelector('.nav-hamburger');if(n.classList.contains('open')&&!n.contains(e.target)&&!b.contains(e.target)){n.classList.remove('open');}});
+var slideIdx=0;
+var slides=document.querySelectorAll('.hero-slide');
+var dots=document.querySelectorAll('.hero-dot');
+function goToSlide(n){slides[slideIdx].classList.remove('active');dots[slideIdx].classList.remove('active');slideIdx=n;slides[slideIdx].classList.add('active');dots[slideIdx].classList.add('active');}
+setInterval(function(){goToSlide((slideIdx+1)%slides.length);},5000);
+</script>
