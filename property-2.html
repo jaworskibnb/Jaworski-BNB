@@ -290,13 +290,10 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
       </div>
       <p style="font-size:.78rem;color:var(--gray-400);margin-top:14px;">&#9733; Book direct via WhatsApp to save ~10% — no Airbnb service fees!</p>
     </div>
-        <div class="date-disp-row">
-          <div class="date-box" id="ciBox"><div class="date-box-label">CHECK-IN</div><div class="date-box-value" id="ciDisp">Select date</div></div>
+        
           <div class="date-box" id="coBox"><div class="date-box-label">CHECK-OUT</div><div class="date-box-value" id="coDisp">Select date</div></div>
         </div>
-        <div class="price-est" id="priceEst" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:14px 16px;margin-top:14px;display:none;font-size:.85rem;">
-          <div style="font-weight:600;color:#1f2937;margin-bottom:10px;font-size:.88rem;">Price Estimate</div>
-          <div id="priceRows"></div>
+        <div id="priceRows"></div>
           <div style="height:1px;background:rgba(201,168,76,.3);margin:10px 0;"></div>
           <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#6b7280;margin-bottom:5px;"><span>Windsor MAT (6%)</span><span id="propMatVal">—</span></div>
           <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#6b7280;margin-bottom:5px;"><span>Ontario HST (13%)</span><span id="propHstVal">—</span></div>
@@ -417,7 +414,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 <footer class="footer">
   <div class="footer-inner">
     <span class="footer-copy">&copy; 2026 Windsor Executive Rentals. All rights reserved.</span>
-    <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="mailto:jaworskibnb@gmail.com">Contact</a></div>
+    <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="/cdn-cgi/l/email-protection#0862697f677a7b63616a666a486f65696164266b6765">Contact</a></div>
   </div>
 </footer>
 
@@ -452,7 +449,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const MAT_RATE=0.06,HST_RATE=0.13;
 function fmtMoney(n){return '$'+n.toLocaleString('en-CA',{minimumFractionDigits:2,maximumFractionDigits:2});}
 const PROP_ID = 'riverside';
@@ -536,8 +533,4 @@ function checkAdminPwd(){if(document.getElementById("adminPwd").value===ADMIN_PA
 function addPriceRule(){const from=document.getElementById("adminFrom").value,to=document.getElementById("adminTo").value,price=parseInt(document.getElementById("adminPrice").value);if(!from||!to||!price){alert("Please fill all fields");return;}const rules=loadRules();if(!rules[PROP_ID])rules[PROP_ID]=[];rules[PROP_ID].push({from,to,price});localStorage.setItem("wer_price_rules",JSON.stringify(rules));renderAdminRules();renderCalendar();document.getElementById("adminFrom").value="";document.getElementById("adminTo").value="";document.getElementById("adminPrice").value="";}
 function renderAdminRules(){const rules=(loadRules()[PROP_ID]||[]);const el=document.getElementById("adminRulesList");if(!rules.length){el.innerHTML='<p style="color:#555;font-size:.78rem;">No custom rules set.</p>';return;}el.innerHTML=rules.map((r,i)=>'<div class="admin-rule-item"><span>'+r.from+' to '+r.to+': $'+r.price+'/night</span><button class="admin-rule-del" onclick="deleteRule('+i+')">&#x2715;</button></div>').join('');}
 function deleteRule(i){const rules=loadRules();rules[PROP_ID].splice(i,1);localStorage.setItem("wer_price_rules",JSON.stringify(rules));renderAdminRules();renderCalendar();}
-function clearAllRules(){if(confirm("Clear all custom pricing rules?")){const rules=loadRules();rules[PROP_ID]=[];localStorage.setItem("wer_price_rules",JSON.stringify(rules));renderAdminRules();renderCalendar();}}
-document.getElementById("adminOverlay").addEventListener("click",function(e){if(e.target===this)closeAdmin();});
-</script>
-</body>
-</html>
+function clearAllRules(){if(confirm("Clear all custom pricing rules?")){const rules=loadRules();rules[PROP_ID]=[];localStorage.setItem("wer_price_rules",JSON.stringify(rules));renderAdminRules();renderC
