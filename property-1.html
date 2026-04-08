@@ -155,7 +155,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 @media(max-width:900px){.main-layout{grid-template-columns:1fr;gap:32px}.booking-sidebar{position:static;display:none}.mobile-booking-bar{display:block}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:240px 160px;}.gallery-grid .gallery-img:first-child{grid-column:1/-1}.gallery-grid .gallery-img:nth-child(n+4){display:none}.prop-highlights{grid-template-columns:1fr}.reviews-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.nav-links{display:none}.nav-hamburger{display:block}.gallery-grid{grid-template-columns:1fr;grid-template-rows:260px;}.gallery-grid .gallery-img:nth-child(n+2){display:none}.amenities-grid{grid-template-columns:1fr}.rules-grid{grid-template-columns:1fr}body{padding-bottom:68px}.cal-d{min-height:38px;}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.admin-fab{position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:#1a1a1a;border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-size:1.4rem;cursor:pointer;z-index:500;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);}
+.admin-fab{position:fixed;bottom:80px;right:24px;width:48px;height:48px;border-radius:50%;background:#1a1a1a;border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-size:1.4rem;cursor:pointer;z-index:500;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);}
 .admin-overlay{display:none;position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.6);}
 .admin-overlay.active{display:flex;align-items:center;justify-content:center;}
 .admin-panel{background:#1a1a1a;border:1px solid rgba(201,168,76,.3);border-radius:16px;padding:32px;width:90%;max-width:480px;max-height:80vh;overflow-y:auto;}
@@ -279,10 +279,10 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
         </a>
         <a href="https://wa.me/16474707333?text=Hi!%20I'm%20interested%20in%20booking%20your%20property." target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#b8963e,#ddb84a);color:#1a1a1a;padding:14px 28px;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;transition:transform .2s,box-shadow .2s;font-family:'Playfair Display',serif;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(184,150,62,.4)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="#1a1a1a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.85L.057 23.997l6.302-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.876 9.876 0 01-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374A9.861 9.861 0 012.106 12C2.106 6.533 6.533 2.106 12 2.106c5.467 0 9.894 4.427 9.894 9.894 0 5.467-4.427 9.894-9.894 9.894z"/></svg>
-          Book Direct (Save 10%)
+          Book Direct (Save Now)
         </a>
       </div>
-      <p style="font-size:.78rem;color:var(--gray-400);margin-top:14px;">&#9733; Book direct via WhatsApp to save ~10% — no Airbnb service fees!</p>
+      <p style="font-size:.78rem;color:var(--gray-400);margin-top:14px;">&#9733; Book direct via WhatsApp to Save Now — no Airbnb service fees!</p>
     </div>
 
     <div class="section" id="reviews">
@@ -386,7 +386,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 <div class="mobile-booking-bar">
   <div class="mobile-booking-inner">
     <div class="mobile-booking-price"><span class="amount" style="font-size:1rem">Call for pricing</span></div>
-    <button class="mobile-booking-btn" onclick="scrollToBooking()">Inquire Now</button>
+    <a href="https://wa.me/16474707333?text=Hi!%20I'm%20interested%20in%20booking%20your%20property." target="_blank" class="mobile-booking-btn" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">Message Us</a>
   </div>
 </div>
 
