@@ -50,7 +50,7 @@ footer a:hover{color:var(--gold);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 @media(max-width:900px){.values-grid{grid-template-columns:1fr;}.values{padding:60px 24px;}nav{padding:16px 20px;}}
 @media(max-width:768px){
-  .host-badge-overlay{position:static !important;margin-top:12px;display:inline-block;border-radius:8px;}
+  .host-badge-overlay{position:relative !important;bottom:auto !important;left:auto !important;margin-top:12px;display:block;width:100%;border-radius:8px;box-sizing:border-box;}
 nav{padding:16px 20px;position:relative;}.nav-links{display:none !important;}.nav-links.open{display:flex !important;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#1a1a1a;padding:20px;gap:16px;z-index:999;border-top:1px solid rgba(201,168,76,.2);}.nav-hamburger-about{display:flex !important;}section{padding:60px 24px !important;}}
 </style>
 </head>
@@ -84,7 +84,7 @@ nav{padding:16px 20px;position:relative;}.nav-links{display:none !important;}.na
         <div><div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);">100%</div><div style="font-size:.7rem;color:#888;letter-spacing:.1em;text-transform:uppercase;">Response rate</div></div>
       </div>
     </div>
-    <div style="position:relative;">
+    <div style="position:relative;width:100%;">
       <img src="images/about-hosts.jpg" alt="Adrian and Barbara" style="width:100%;border-radius:12px;display:block;aspect-ratio:4/5;object-fit:cover;object-position:center top;"/>
       <div class="host-badge-overlay" style="position:absolute;bottom:24px;left:24px;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,.4);border-radius:8px;padding:14px 20px;">
         <div style="font-size:.7rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;">Airbnb Certified</div>
