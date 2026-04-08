@@ -439,107 +439,107 @@ function closeBookingModal(){document.getElementById("bookingModal").style.displ
 document.getElementById("bookingModal").addEventListener("click",function(e){if(e.target===this)closeBookingModal();});
 </script>
 
-<!-- BOOKING MODAL -->
+
+
+<!-- BOOKING FORM MODAL -->
 <div id="bookingFormModal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.6);overflow-y:auto;padding:20px;">
   <div style="background:#fff;border-radius:16px;padding:36px;max-width:520px;width:100%;margin:40px auto;position:relative;">
     <button onclick="document.getElementById('bookingFormModal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#666;">&times;</button>
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#1a1a1a;margin-bottom:6px;">Book Direct & Save</h2>
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#1a1a1a;margin-bottom:6px;">Book Direct &amp; Save</h2>
     <p style="font-size:.85rem;color:#6b7280;margin-bottom:24px;">Fill out the form and we'll get back to you within 15 minutes!</p>
-    
-    <div style="margin-bottom:16px;">
-      <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Full Name</label>
-      <input type="text" id="bf-name" placeholder="John Smith" style="width:100%;padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:.92rem;outline:none;" onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#d1d5db'"/>
+
+    <div id="bf-success" style="display:none;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:20px;text-align:center;margin-bottom:20px;">
+      <div style="font-size:1.5rem;margin-bottom:8px;">&#10003;</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#065f46;margin-bottom:4px;">Request Sent!</div>
+      <div style="font-size:.85rem;color:#047857;">We'll be in touch within 15 minutes.</div>
     </div>
 
-    <div style="margin-bottom:16px;">
-      <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Phone Number</label>
-      <input type="tel" id="bf-phone" placeholder="+1 (647) 000-0000" style="width:100%;padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:.92rem;outline:none;" onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#d1d5db'"/>
-    </div>
-
-    <div style="margin-bottom:16px;">
-      <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Email Address</label>
-      <input type="email" id="bf-email" placeholder="john@email.com" style="width:100%;padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:.92rem;outline:none;" onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#d1d5db'"/>
-    </div>
-
-    <div style="margin-bottom:16px;">
-      <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Select Property</label>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;" id="bf-props">
-        <button type="button" onclick="selectProp(this,'Luxury Home')" class="prop-tab" style="padding:8px 14px;border-radius:50px;border:1.5px solid #d1d5db;background:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;transition:all .2s;">Luxury Home</button>
-        <button type="button" onclick="selectProp(this,'Riverside Retreat')" class="prop-tab" style="padding:8px 14px;border-radius:50px;border:1.5px solid #d1d5db;background:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;transition:all .2s;">Riverside Retreat</button>
-        <button type="button" onclick="selectProp(this,'Downtown 2BR')" class="prop-tab" style="padding:8px 14px;border-radius:50px;border:1.5px solid #d1d5db;background:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;transition:all .2s;">Downtown 2BR</button>
+    <form id="bf-form" action="https://formspree.io/f/xnjopjgn" method="POST" onsubmit="handleBFSubmit(event)">
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Full Name *</label>
+        <input type="text" name="name" required placeholder="John Smith" style="width:100%;padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:.92rem;outline:none;" onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#d1d5db'"/>
       </div>
-      <input type="hidden" id="bf-property" value=""/>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
-      <div>
-        <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Check-In Date</label>
-        <input type="date" id="bf-checkin" style="width:100%;padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:.92rem;outline:none;" onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#d1d5db'"/>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Phone Number *</label>
+        <input type="tel" name="phone" required placeholder="+1 (647) 000-0000" style="width:100%;padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:.92rem;outline:none;" onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#d1d5db'"/>
       </div>
-      <div>
-        <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Check-Out Date</label>
-        <input type="date" id="bf-checkout" style="width:100%;padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:.92rem;outline:none;" onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#d1d5db'"/>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Email Address *</label>
+        <input type="email" name="email" required placeholder="john@email.com" style="width:100%;padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:.92rem;outline:none;" onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#d1d5db'"/>
       </div>
-    </div>
-
-    <div style="margin-bottom:24px;">
-      <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Number of Guests</label>
-      <select id="bf-guests" style="width:100%;padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:.92rem;outline:none;background:#fff;">
-        <option value="">Select guests</option>
-        <option>1 guest</option><option>2 guests</option><option>3 guests</option>
-        <option>4 guests</option><option>5 guests</option><option>6 guests</option>
-      </select>
-    </div>
-
-    <button onclick="submitBookingForm()" style="width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#1a1a1a;border:none;padding:15px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Playfair Display',serif;letter-spacing:.04em;">Send Booking Request</button>
-    <p style="text-align:center;font-size:.75rem;color:#9ca3af;margin-top:10px;">We'll respond via WhatsApp within 15 minutes</p>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Select Property *</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button type="button" onclick="selectProp(this,'Luxury Home')" class="prop-tab" style="padding:8px 14px;border-radius:50px;border:1.5px solid #d1d5db;background:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;">Luxury Home</button>
+          <button type="button" onclick="selectProp(this,'Riverside Retreat')" class="prop-tab" style="padding:8px 14px;border-radius:50px;border:1.5px solid #d1d5db;background:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;">Riverside Retreat</button>
+          <button type="button" onclick="selectProp(this,'Downtown 2BR')" class="prop-tab" style="padding:8px 14px;border-radius:50px;border:1.5px solid #d1d5db;background:#fff;font-size:.82rem;cursor:pointer;font-family:inherit;">Downtown 2BR</button>
+        </div>
+        <input type="hidden" name="property" id="bf-property" value="" required/>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+        <div>
+          <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Check-In *</label>
+          <input type="date" name="checkin" required style="width:100%;padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:.92rem;outline:none;" onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#d1d5db'"/>
+        </div>
+        <div>
+          <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Check-Out *</label>
+          <input type="date" name="checkout" required style="width:100%;padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:.92rem;outline:none;" onfocus="this.style.borderColor='#c9a84c'" onblur="this.style.borderColor='#d1d5db'"/>
+        </div>
+      </div>
+      <div style="margin-bottom:24px;">
+        <label style="display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#374151;margin-bottom:6px;">Number of Guests *</label>
+        <select name="guests" required style="width:100%;padding:11px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:.92rem;outline:none;background:#fff;">
+          <option value="">Select guests</option>
+          <option>1 guest</option><option>2 guests</option><option>3 guests</option>
+          <option>4 guests</option><option>5 guests</option><option>6 guests</option>
+        </select>
+      </div>
+      <button type="submit" style="width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#1a1a1a;border:none;padding:15px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Playfair Display',serif;letter-spacing:.04em;">Send Booking Request</button>
+      <p style="text-align:center;font-size:.75rem;color:#9ca3af;margin-top:10px;">We'll respond to your email within 15 minutes</p>
+    </form>
   </div>
 </div>
 
 <script>
-var selectedProp = '';
 function selectProp(btn, name) {
   document.querySelectorAll('.prop-tab').forEach(function(b) {
-    b.style.background = '#fff';
-    b.style.borderColor = '#d1d5db';
-    b.style.color = '#374151';
+    b.style.background='#fff';b.style.borderColor='#d1d5db';b.style.color='#374151';
   });
-  btn.style.background = '#c9a84c';
-  btn.style.borderColor = '#c9a84c';
-  btn.style.color = '#1a1a1a';
-  selectedProp = name;
-  document.getElementById('bf-property').value = name;
+  btn.style.background='#c9a84c';btn.style.borderColor='#c9a84c';btn.style.color='#1a1a1a';
+  document.getElementById('bf-property').value=name;
 }
 function openBookingForm() {
-  document.getElementById('bookingFormModal').style.display = 'block';
-  // Pre-select property based on page
-  selectProp(document.querySelector('.prop-tab[onclick*="Downtown"]') || document.querySelector('.prop-tab'), 'Downtown 2-Bedroom');
+  document.getElementById('bookingFormModal').style.display='block';
+  document.getElementById('bf-success').style.display='none';
+  document.getElementById('bf-form').style.display='block';
 }
-function submitBookingForm() {
-  var name = document.getElementById('bf-name').value.trim();
-  var phone = document.getElementById('bf-phone').value.trim();
-  var email = document.getElementById('bf-email').value.trim();
-  var property = document.getElementById('bf-property').value;
-  var checkin = document.getElementById('bf-checkin').value;
-  var checkout = document.getElementById('bf-checkout').value;
-  var guests = document.getElementById('bf-guests').value;
-  if (!name || !phone || !email || !property || !checkin || !checkout || !guests) {
-    alert('Please fill in all fields.');
+async function handleBFSubmit(e) {
+  e.preventDefault();
+  if (!document.getElementById('bf-property').value) {
+    alert('Please select a property.');
     return;
   }
-  var msg = 'Hi! I would like to book:\n'
-    + 'Name: ' + name + '\n'
-    + 'Phone: ' + phone + '\n'
-    + 'Email: ' + email + '\n'
-    + 'Property: ' + property + '\n'
-    + 'Check-in: ' + checkin + '\n'
-    + 'Check-out: ' + checkout + '\n'
-    + 'Guests: ' + guests;
-  window.open('https://wa.me/16474707333?text=' + encodeURIComponent(msg), '_blank');
-  document.getElementById('bookingFormModal').style.display = 'none';
+  var form = e.target;
+  var data = new FormData(form);
+  try {
+    var res = await fetch('https://formspree.io/f/xnjopjgn', {
+      method:'POST',
+      body:data,
+      headers:{'Accept':'application/json'}
+    });
+    if (res.ok) {
+      form.style.display='none';
+      document.getElementById('bf-success').style.display='block';
+      setTimeout(function(){document.getElementById('bookingFormModal').style.display='none';},3000);
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
+  } catch(err) {
+    alert('Something went wrong. Please try again.');
+  }
 }
-document.getElementById('bookingFormModal').addEventListener('click', function(e) {
-  if (e.target === this) this.style.display = 'none';
+document.getElementById('bookingFormModal').addEventListener('click',function(e){
+  if(e.target===this)this.style.display='none';
 });
 </script>
 </body>
