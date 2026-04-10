@@ -64,6 +64,13 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 .amenities-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .amenity-item{display:flex;align-items:center;gap:14px;font-size:.92rem;color:var(--gray-700);}
 .amenity-item svg{width:22px;height:22px;flex-shrink:0;color:var(--gray-500)}
+
+/* ── Video Section ── */
+.video-section{padding:28px 0;border-bottom:1px solid var(--gray-200);}
+.video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);}
+.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:var(--radius-lg);}
+
+/* ── New Pricing Calendar ── */
 .cal-section-wrap{margin-bottom:0;}
 .cal-section-label{font-size:.82rem;font-weight:600;color:var(--gray-900);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;}
 .cal-section-status{font-size:.72rem;color:var(--gray-500);font-weight:400;}
@@ -83,7 +90,9 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 .cal-d.in-range{background:rgba(201,168,76,.15);color:var(--gray-900);}
 .cal-d.today:not(.blocked):not(.sel-start):not(.sel-end){color:#c9a84c;font-weight:700;}
 .cal-d-num{font-size:.8rem;line-height:1;}
-
+.cal-d-price{font-size:.6rem;color:#c9a84c;font-weight:600;line-height:1;}
+.cal-d.blocked .cal-d-price,.cal-d.past .cal-d-price{display:none;}
+.cal-d.sel-start .cal-d-price,.cal-d.sel-end .cal-d-price{color:#1a1a1a;}
 .cal-legend-row{display:flex;gap:16px;padding:10px 16px;background:var(--gray-50);border-top:1px solid var(--gray-100);flex-wrap:wrap;}
 .cal-legend-item{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--gray-500);}
 .cal-legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
@@ -100,6 +109,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 .price-est-title{font-weight:600;color:var(--gray-900);margin-bottom:6px;}
 .price-est-row{display:flex;justify-content:space-between;color:var(--gray-500);margin-bottom:4px;}
 .price-est-total{display:flex;justify-content:space-between;font-weight:700;color:var(--gray-900);border-top:1px solid rgba(201,168,76,.3);padding-top:6px;margin-top:6px;}
+
 .rating-bar{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
 .rating-big{font-size:2.2rem;font-weight:800;color:var(--gray-900);}
 .rating-stars{display:flex;gap:2px;color:var(--gold)}
@@ -118,6 +128,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 .rule-item{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--gray-700);padding:10px 0;}
 .rule-item svg{width:20px;height:20px;flex-shrink:0;color:var(--gray-400)}
 .host-card{display:flex;align-items:center;gap:20px;padding:24px;border-radius:var(--radius-lg);background:var(--gray-50);border:1px solid var(--gray-200);}
+.host-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#ff6b6b);display:grid;place-items:center;font-size:1.6rem;font-weight:700;color:white;}
 .host-info{flex:1}
 .host-info h3{font-size:1.1rem;font-weight:700;margin-bottom:2px}
 .host-info p{font-size:.88rem;color:var(--gray-500);margin-bottom:8px}
@@ -125,6 +136,18 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 .host-badge svg{width:14px;height:14px}
 .booking-sidebar{position:sticky;top:84px;}
 .booking-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-lg);}
+.booking-save{display:inline-flex;align-items:center;gap:4px;background:#ecfdf5;color:var(--green);font-size:.78rem;font-weight:600;padding:3px 10px;border-radius:80px;margin-bottom:20px;}
+.booking-save svg{width:14px;height:14px}
+.booking-fields{border:1px solid var(--gray-300);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;}
+.booking-field-full{grid-column:1/-1;}
+.booking-field-label{display:block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gray-900);padding:12px 14px 0;text-align:center;width:100%;box-sizing:border-box;}
+.booking-field{padding:12px 14px;border:none;background:none;font-family:inherit;font-size:.88rem;color:var(--gray-900);border-bottom:1px solid var(--gray-300);width:100%;text-align:center;box-sizing:border-box;}
+.booking-field.no-border{border-bottom:none}
+.guest-selector{padding:12px 14px;font-family:inherit;font-size:.88rem;border:none;background:none;color:var(--gray-900);width:100%;cursor:pointer;}
+.guest-selector:focus{outline:none;background:var(--gray-50)}
+.booking-submit{width:100%;padding:16px;border:none;border-radius:var(--radius);background:linear-gradient(135deg,var(--primary),#ff6b6b);color:white;font-size:1.05rem;font-weight:700;transition:transform var(--transition),box-shadow var(--transition);margin-bottom:14px;}
+.booking-submit:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(230,57,70,.35);}
+.booking-note{text-align:center;font-size:.82rem;color:var(--gray-500);}
 .save-banner{background:linear-gradient(135deg,#1a1a2e,#2d2d44);color:white;padding:48px 24px;text-align:center;}
 .save-banner h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;margin-bottom:12px;}
 .save-banner p{color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 24px;font-size:.95rem;line-height:1.7}
@@ -160,6 +183,8 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 @media(max-width:900px){.main-layout{grid-template-columns:1fr;gap:32px}.booking-sidebar{position:static;display:none}.mobile-booking-bar{display:block}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:240px 160px;}.gallery-grid .gallery-img:first-child{grid-column:1/-1}.gallery-grid .gallery-img:nth-child(n+4){display:none}.prop-highlights{grid-template-columns:1fr}.reviews-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.nav-links{display:none}.nav-hamburger{display:block}.gallery-grid{grid-template-columns:1fr;grid-template-rows:260px;}.gallery-grid .gallery-img:nth-child(n+2){display:none}.amenities-grid{grid-template-columns:1fr}.rules-grid{grid-template-columns:1fr}.save-banner h2{font-size:1.4rem}body{padding-bottom:68px}.cal-d{min-height:38px;}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* Enhanced price summary */
 .price-est-row{display:flex;justify-content:space-between;color:var(--gray-500,#6b7280);margin-bottom:6px;font-size:.85rem;}
 .price-est-divider{height:1px;background:rgba(201,168,76,.2);margin:10px 0;}
 .price-est-tax{display:flex;justify-content:space-between;font-size:.82rem;color:var(--gray-500,#6b7280);margin-bottom:5px;}
@@ -169,7 +194,32 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 .price-est-savings span{font-size:.75rem;color:#065f46;font-weight:500;line-height:1.4;}
 .book-now-btn{display:block;width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#1a1a1a;border:none;padding:15px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;text-align:center;margin-top:14px;transition:transform .2s,box-shadow .2s;font-family:'Playfair Display',serif;letter-spacing:.04em;text-decoration:none;}
 .book-now-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,168,76,.4);}
-@media(max-width:768px){.nav-links{display:none;}.property-layout{grid-template-columns:1fr !important;}.hero-gallery{height:260px !important;}}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;position:relative;}
+  .nav-links{display:none;}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#1a1a1a;padding:20px;gap:16px;z-index:999;border-top:1px solid rgba(201,168,76,.2);}
+  .nav-hamburger-prop{display:flex !important;}
+  .prop-layout{grid-template-columns:1fr !important;}
+  .prop-sidebar{position:static !important;width:100% !important;}
+  .gallery-main{height:260px !important;}
+  .gallery-thumbs{display:none;}
+  .prop-nav-tabs{gap:8px;flex-wrap:wrap;}
+  .prop-nav-tab{font-size:.75rem;padding:6px 12px;}
+  section{padding-left:16px !important;padding-right:16px !important;}
+  [style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr 1fr !important;}
+  [style*="grid-template-columns:repeat(4"]{grid-template-columns:1fr 1fr !important;}
+}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;}
+  .nav-links{gap:8px;flex-wrap:wrap;}
+  .nav-links a{font-size:.75rem;}
+  .nav-cta{padding:7px 14px !important;font-size:.75rem !important;}
+  .property-layout{grid-template-columns:1fr !important;}
+  .property-sidebar{position:static !important;top:auto !important;}
+  .hero-gallery{height:260px !important;}
+}
 </style>
 </head>
 <body>
@@ -186,7 +236,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
       <a href="#amenities">Amenities</a>
       <a href="#reviews">Reviews</a>
       <a href="about.html">Meet the Hosts</a>
-      <a class="nav-cta" href="index.html#booking" style="text-decoration:none">Book Now</a>
+      <button class="nav-cta" onclick="scrollToBooking()">Book Now</button>
     </div>
     <button class="nav-hamburger" onclick="openMobileNav()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -245,6 +295,19 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
       <div class="highlight-card"><div class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div><div class="highlight-text"><strong>Spotless Clean</strong><span>Sanitized to perfection</span></div></div>
     </div>
 
+    <!-- ── YOUTUBE VIDEO TOUR ── -->
+    <div class="video-section">
+      <h2 class="section-title">Video Tour</h2>
+      <div class="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/sSEHDZKe7W4"
+          title="Windsor Executive Rentals — 5-Star Luxury Home Tour"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
     <div class="section" id="about">
       <h2 class="section-title">About this place</h2>
       <div class="section-desc">
@@ -260,21 +323,22 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
       <div class="amenities-grid">
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Entire home — 3,400+ sq ft</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>6 Flatscreen TVs (Sony/Samsung)</div>
-        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Netflix, Disney+, Prime &amp; Cable</div>
+        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Netflix, Disney+, Prime &amp; Cable</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>High-speed Wi-Fi</div>
-        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>Keurig Coffee &amp; Tea Bar</div>
+        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>Keurig Coffee &amp; Tea Bar</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>Fully stocked kitchen</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>Private gym with sauna</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><rect x="9" y="12" width="6" height="8"/></svg>Double car garage</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="9"/><rect x="3" y="14" width="18" height="7" rx="1"/></svg>2 living rooms</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2 12 5.5 8 2l-4.38 1.46a1 1 0 0 0-.62.94v16.2a1 1 0 0 0 1.38.92L8 20l4-3.5 4 3.5 3.62 1.52a1 1 0 0 0 1.38-.92V4.4a1 1 0 0 0-.62-.94z"/></svg>King bed — Beautyrest Harmony Lux</div>
-        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Main level washer &amp; dryer</div>
-        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>Board games, ping pong &amp; arcade</div>
+        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Main level washer &amp; dryer</div>
+        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>Board games, ping pong &amp; arcade</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Premium toiletries &amp; refreshments</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>Hotel Collection towels &amp; linens</div>
       </div>
     </div>
 
+    <!-- LIVE PRICING CALENDAR -->
     <div class="section" id="availability">
       <h2 class="section-title">Availability &amp; Pricing</h2>
       <div class="cal-section-wrap">
@@ -310,7 +374,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
             <span style="font-size:.75rem;color:#065f46;font-weight:500;line-height:1.4;">You save ~10% vs Airbnb — no platform service fees!</span>
           </div>
         </div>
-        <a id="propBookBtn" href="#" onclick="goToCheckout(event)" style="display:none;width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#1a1a1a;padding:15px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;text-align:center;margin-top:12px;text-decoration:none;font-family:'Playfair Display',serif;letter-spacing:.04em;">Complete Booking &#8594;</a>
+        <a id="propBookBtn" href="#" onclick="goToCheckout(event)" style="display:none;width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#1a1a1a;padding:15px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;text-align:center;margin-top:12px;text-decoration:none;font-family:'Playfair Display',serif;letter-spacing:.04em;">Complete Booking →</a>
       </div>
     </div>
 
@@ -361,7 +425,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
       </div>
       <div style="margin-top:20px">
         <p class="section-desc">Response rate: 100% · Response time: within an hour</p>
-        <a href="index.html#booking" style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:12px 24px;border-radius:var(--radius);border:1px solid var(--gray-300);font-weight:600;font-size:.9rem;color:var(--gray-900);transition:all var(--transition)">
+        <a href="mailto:jaworskibnb@gmail.com" style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:12px 24px;border-radius:var(--radius);border:1px solid var(--gray-300);font-weight:600;font-size:.9rem;color:var(--gray-900);transition:all var(--transition)">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Contact Host
         </a>
@@ -370,6 +434,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 
   </div>
 
+  <!-- BOOKING SIDEBAR -->
   <div class="booking-sidebar" id="booking">
     <div class="booking-card">
       <div style="background:#1a1a1a;border:1px solid rgba(201,168,76,.2);border-radius:16px;padding:32px 24px;text-align:center;margin-bottom:16px;">
@@ -400,13 +465,13 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
     <div class="save-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Direct communication</div>
     <div class="save-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Flexible cancellation</div>
   </div>
-  <a class="nav-cta" href="index.html#booking" style="font-size:1rem;padding:14px 36px;text-decoration:none">Get in Touch</a>
+  <button class="nav-cta" onclick="scrollToBooking()" style="font-size:1rem;padding:14px 36px">Get in Touch</button>
 </div>
 
 <footer class="footer">
   <div class="footer-inner">
     <span class="footer-copy">&copy; 2026 Windsor Executive Rentals. All rights reserved.</span>
-    <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="/cdn-cgi/l/email-protection#afc5ced8c0dddcc4c6cdc1cdefc8c2cec6c381ccc0c2">Contact</a></div>
+    <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="mailto:jaworskibnb@gmail.com">Contact</a></div>
   </div>
 </footer>
 
@@ -437,15 +502,16 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
     <div style="margin-bottom:12px"><label style="display:block;font-size:.78rem;font-weight:600;margin-bottom:4px;color:var(--gray-700)">Email</label><input type="email" required placeholder="john@example.com" style="width:100%;padding:10px 14px;border:1px solid var(--gray-300);border-radius:8px;font-family:inherit;font-size:.9rem"></div>
     <div style="margin-bottom:12px"><label style="display:block;font-size:.78rem;font-weight:600;margin-bottom:4px;color:var(--gray-700)">Phone</label><input type="tel" required placeholder="+1 (555) 123-4567" style="width:100%;padding:10px 14px;border:1px solid var(--gray-300);border-radius:8px;font-family:inherit;font-size:.9rem"></div>
     <div style="margin-bottom:20px"><label style="display:block;font-size:.78rem;font-weight:600;margin-bottom:4px;color:var(--gray-700)">Message (optional)</label><textarea rows="3" placeholder="Any special requests or questions..." style="width:100%;padding:10px 14px;border:1px solid var(--gray-300);border-radius:8px;font-family:inherit;font-size:.9rem;resize:vertical"></textarea></div>
-    <button class="booking-submit" style="width:100%;padding:16px;border:none;border-radius:var(--radius);background:linear-gradient(135deg,var(--primary),#ff6b6b);color:white;font-size:1.05rem;font-weight:700;margin-bottom:0" onclick="alert('Thank you! We will contact you shortly.');closeBookingModal()">Send Inquiry</button>
+    <button class="booking-submit" style="margin-bottom:0" onclick="alert('Thank you! We will contact you shortly.');closeBookingModal()">Send Inquiry</button>
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const MAT_RATE=0.06,HST_RATE=0.13;
 function fmtMoney(n){return '$'+n.toLocaleString('en-CA',{minimumFractionDigits:2,maximumFractionDigits:2});}
+// ── Property for this page ──
 const PROP_ID = 'luxury';
-
+const PROXY = '/.netlify/functions/fetch-ical?url=';
 const ICAL_URL = 'https://www.airbnb.ca/calendar/ical/708933094130447096.ics?t=b0e6bdd7a5494edc8df96ee47e83cc8b';
 const DEFAULT_PRICES = { luxury:[500,650], riverside:[350,400], downtown:[200,300] };
 
@@ -471,15 +537,16 @@ function calcNights(startYMD,endYMD){
   return nights;
 }
 
+// Fetch iCal
 async function fetchBlocked(){
   try{
-    const res=await fetch('https://api.allorigins.win/raw?url='+encodeURIComponent(ICAL_URL));
+    const res=await fetch(PROXY+encodeURIComponent(ICAL_URL));
     if(!res.ok)throw new Error();
     blockedDates=parseIcal(await res.text());
     document.getElementById('calStatus').textContent='Live availability';
     renderCalendar();
   }catch{
-    document.getElementById('calStatus').textContent='';
+    document.getElementById('calStatus').textContent='Availability unavailable';
   }
 }
 
@@ -516,6 +583,8 @@ function renderCalendar(){
     if(ymd<tYMD){el.classList.add('past');}
     else if(blockedDates.has(ymd)){el.classList.add('blocked');}
     else{
+      const price=getPriceForDate(ymd);
+      const priceEl=document.createElement('div');priceEl.className='cal-d-price';priceEl.textContent='$'+price;el.appendChild(priceEl);
       el.onclick=()=>selectDay(ymd);
       if(selStart&&selEnd){
         if(ymd===selStart)el.classList.add('sel-start');
@@ -555,40 +624,55 @@ function updateDateDisplay(){
   document.getElementById('ciBox').classList.toggle('filled',!!selStart);
   document.getElementById('coBox').classList.toggle('filled',!!selEnd);
   const pe=document.getElementById('priceEst');
-  const bb=document.getElementById('propBookBtn');
+  if(selStart&&selEnd){
+    const nights=calcNights(selStart,selEnd);
+    const total=nights.reduce((s,n)=>s+n.price,0);
+    let rows=[],i=0;
+    while(i<nights.length){let j=i;while(j<nights.length&&nights[j].price===nights[i].price)j++;const cnt=j-i;rows.push(`<div class="price-est-row"><span>${cnt} night${cnt>1?'s':''} × $${nights[i].price}</span><span>$${cnt*nights[i].price}</span></div>`);i=j;}
+    document.getElementById('priceRows').innerHTML=rows.join('');
+    document.getElementById('priceNights').textContent=`${nights.length} night${nights.length>1?'s':''} total`;
+    document.getElementById('priceTotal').textContent='$'+total.toLocaleString();
+    pe.classList.add('show');
+
   if(selStart&&selEnd){
     const nights=calcNights(selStart,selEnd);
     const sub=nights.reduce((s,n)=>s+n.price,0);
     const mat=sub*MAT_RATE,hst=sub*HST_RATE,tot=sub+mat+hst;
-    let rows=[],i=0;
-    while(i<nights.length){let j=i;while(j<nights.length&&nights[j].price===nights[i].price)j++;const cnt=j-i;rows.push('<div class="price-est-row"><span>'+cnt+' night'+(cnt>1?'s':'')+' &times; $'+nights[i].price+'</span><span>$'+(cnt*nights[i].price)+'</span></div>');i=j;}
-    document.getElementById('priceRows').innerHTML=rows.join('');
     const mv=document.getElementById('propMatVal'),hv=document.getElementById('propHstVal');
     if(mv)mv.textContent=fmtMoney(mat);
     if(hv)hv.textContent=fmtMoney(hst);
     document.getElementById('priceNights').textContent=nights.length+' night'+(nights.length>1?'s':'')+' total (incl. taxes)';
     document.getElementById('priceTotal').textContent=fmtMoney(tot);
-    pe.style.display='block';
+    const bb=document.getElementById('propBookBtn');
     if(bb)bb.style.display='block';
+    pe.classList.add('show');
   }else{
-    pe.style.display='none';
+    const bb=document.getElementById('propBookBtn');
     if(bb)bb.style.display='none';
+    pe.classList.remove('show');
+  }
+
+  }else{
+    const bb=document.getElementById('propBookBtn');if(bb)bb.style.display='none';
+    pe.style.display='none';
   }
 }
 
+// Init
 const td=new Date();calYear=td.getFullYear();calMonth=td.getMonth();
 fetchBlocked();
 renderCalendar();
 
+// Gallery
 const GALLERY_IMAGES=['images/13-living-fireplace.png','images/14-living-patio.png','images/03-living-room-patio.png','images/04-living-fireplace-wide.png','images/01-open-living.png','images/12-kitchen-wide.png','images/11-kitchen-bar.png','images/08-kitchen-island.png','images/10-kitchen-galley.png','images/02-basement-lounge.png','images/09-basement-lounge2.png','images/05-basement-tv.png','images/06-basement-workspace.png','images/07-basement-games.png'];
 let lightboxIdx=0;
 function openLightbox(idx){lightboxIdx=idx;updateLightbox();document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
 function navLightbox(dir){lightboxIdx=(lightboxIdx+dir+GALLERY_IMAGES.length)%GALLERY_IMAGES.length;updateLightbox();}
-function updateLightbox(){document.getElementById('lightboxImg').src=GALLERY_IMAGES[lightboxIdx];document.getElementById('lightboxCounter').textContent=(lightboxIdx+1)+' / '+GALLERY_IMAGES.length;}
+function updateLightbox(){document.getElementById('lightboxImg').src=GALLERY_IMAGES[lightboxIdx];document.getElementById('lightboxCounter').textContent=`${lightboxIdx+1} / ${GALLERY_IMAGES.length}`;}
 document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('active'))return;if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')navLightbox(-1);if(e.key==='ArrowRight')navLightbox(1);});
 
-function toggleDesc(){const more=document.getElementById('descMore');const btn=document.getElementById('readMoreBtn');if(more.style.display==='none'){more.style.display='block';btn.innerHTML='Show less &uarr;';}else{more.style.display='none';btn.innerHTML='Show more &darr;;';}}
+function toggleDesc(){const more=document.getElementById('descMore');const btn=document.getElementById('readMoreBtn');if(more.style.display==='none'){more.style.display='block';btn.innerHTML='Show less &uarr;';}else{more.style.display='none';btn.innerHTML='Show more &darr;';}}
 function scrollToBooking(){const sidebar=document.getElementById('booking');if(window.innerWidth<=900){sidebar.style.display='block';sidebar.scrollIntoView({behavior:'smooth',block:'center'});document.querySelector('.mobile-booking-bar').style.display='none';}else{sidebar.scrollIntoView({behavior:'smooth',block:'start'});}}
 function handleBooking(){document.getElementById('bookingModal').style.display='flex';}
 function closeBookingModal(){document.getElementById('bookingModal').style.display='none';}
@@ -609,4 +693,10 @@ function goToCheckout(e){
     +'&checkout='+encodeURIComponent(selEnd)
     +'&guests='+encodeURIComponent(g?g.value:'2 guests')
     +'&nights='+nights.length
-    +'&subtotal='+subt
+    +'&subtotal='+subtotal.toFixed(2)
+    +'&nightrows='+encodeURIComponent(rowChunks.join(','));
+  window.location.href='checkout.html?'+params;
+}
+</script>
+</body>
+</html>
