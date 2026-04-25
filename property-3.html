@@ -165,12 +165,12 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 
 <div class="hero-gallery">
   <div class="gallery-grid" id="galleryGrid">
-    <div class="gallery-img" onclick="openLightbox(0)"><img src="images/property-3/01-living.png" alt="Downtown living room"/></div>
-    <div class="gallery-img" onclick="openLightbox(1)"><img src="images/property-3/02-kitchen.png" alt="Kitchen"/></div>
-    <div class="gallery-img" onclick="openLightbox(2)"><img src="images/property-3/03-bedroom.png" alt="Bedroom"/></div>
+    <div class="gallery-img" onclick="openLightbox(0)"><img src="images/property-3/26-open-concept.png" alt="Open concept living"/></div>
+    <div class="gallery-img" onclick="openLightbox(1)"><img src="images/property-3/21-kitchen-living-bar.png" alt="Kitchen and living"/></div>
+    <div class="gallery-img" onclick="openLightbox(2)"><img src="images/property-3/14-bedroom-gold.png" alt="Bedroom"/></div>
     <div class="gallery-img" onclick="openLightbox(3)">
-      <img src="images/property-3/04-bathroom.png" alt="Bathroom"/>
-      <button class="gallery-btn" onclick="event.stopPropagation();openLightbox(0)">Show all photos</button>
+      <img src="images/property-3/22-living-tv.png" alt="Living room"/>
+      <button class="gallery-btn" onclick="event.stopPropagation();openLightbox(0)">Show all 27 photos</button>
     </div>
   </div>
 </div>
@@ -324,7 +324,35 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 </div>
 
 <script>
-const GALLERY_IMAGES=['images/property-3/01-living.png','images/property-3/02-kitchen.png','images/property-3/03-bedroom.png','images/property-3/04-bathroom.png','images/property-3/05-dining.png','images/property-3/06-exterior.png'];
+const GALLERY_IMAGES=[
+  'images/property-3/26-open-concept.png',
+  'images/property-3/27-living-kitchen-full.png',
+  'images/property-3/17-living-open.png',
+  'images/property-3/18-living-wide.png',
+  'images/property-3/24-living-wide-2.png',
+  'images/property-3/22-living-tv.png',
+  'images/property-3/23-living-armchair.png',
+  'images/property-3/06-workspace-living.png',
+  'images/property-3/21-kitchen-living-bar.png',
+  'images/property-3/13-kitchen-wide.png',
+  'images/property-3/11-kitchen-island.png',
+  'images/property-3/12-kitchen-granite.png',
+  'images/property-3/14-bedroom-gold.png',
+  'images/property-3/16-bedroom-gold-wide.png',
+  'images/property-3/15-bedroom-gold-wardrobe.png',
+  'images/property-3/09-bedroom-birch.png',
+  'images/property-3/10-bedroom-birch-2.png',
+  'images/property-3/20-bedroom-birch-wide.png',
+  'images/property-3/07-workspace-desk.png',
+  'images/property-3/25-entry-workspace.png',
+  'images/property-3/04-bathroom-vanity.png',
+  'images/property-3/08-bathroom-full.png',
+  'images/property-3/01-bath-laundry-hall.png',
+  'images/property-3/02-laundry-room.png',
+  'images/property-3/05-laundry-room-2.png',
+  'images/property-3/03-closet-storage.png',
+  'images/property-3/19-hallway-kitchen.png'
+];
 let lightboxIdx=0;
 function openLightbox(idx){lightboxIdx=idx;updateLightbox();document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
