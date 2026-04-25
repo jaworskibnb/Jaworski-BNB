@@ -65,45 +65,9 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 .amenity-item{display:flex;align-items:center;gap:14px;font-size:.92rem;color:var(--gray-700);}
 .amenity-item svg{width:22px;height:22px;flex-shrink:0;color:var(--gray-500)}
 
-/* ── Pricing Calendar ── */
-.cal-section-wrap{margin-bottom:0;}
-.cal-section-label{font-size:.82rem;font-weight:600;color:var(--gray-900);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;}
-.cal-section-status{font-size:.72rem;color:var(--gray-500);font-weight:400;}
-.cal-wrap{border:1.5px solid var(--gray-200);border-radius:10px;overflow:hidden;background:var(--white);}
-.cal-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#1a1a1a;}
-.cal-hdr button{background:none;border:none;color:#c9a84c;font-size:1.1rem;cursor:pointer;padding:2px 8px;border-radius:4px;transition:background .15s;}
-.cal-hdr button:hover{background:rgba(201,168,76,.2);}
-.cal-hdr-title{font-family:'Playfair Display',serif;color:white;font-size:.95rem;}
-.cal-g{display:grid;grid-template-columns:repeat(7,1fr);}
-.cal-dow{text-align:center;font-size:.68rem;font-weight:600;color:var(--gray-500);padding:8px 4px;background:var(--gray-50);text-transform:uppercase;letter-spacing:.05em;}
-.cal-d{text-align:center;padding:4px 2px 6px;font-size:.78rem;cursor:pointer;transition:background .15s,color .15s;border:1px solid transparent;position:relative;min-height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;}
-.cal-d:hover:not(.blocked):not(.past):not(.empty){background:rgba(201,168,76,.15);border-radius:4px;}
-.cal-d.empty{cursor:default;}
-.cal-d.past{color:var(--gray-300);cursor:not-allowed;}
-.cal-d.blocked{background:#fee2e2;color:#dc2626;cursor:not-allowed;font-weight:600;}
-.cal-d.sel-start,.cal-d.sel-end{background:#c9a84c;color:#1a1a1a;font-weight:700;border-radius:4px;}
-.cal-d.in-range{background:rgba(201,168,76,.15);color:var(--gray-900);}
-.cal-d.today:not(.blocked):not(.sel-start):not(.sel-end){color:#c9a84c;font-weight:700;}
-.cal-d-num{font-size:.8rem;line-height:1;}
-.cal-d-price{font-size:.6rem;color:#c9a84c;font-weight:600;line-height:1;}
-.cal-d.blocked .cal-d-price,.cal-d.past .cal-d-price{display:none;}
-.cal-d.sel-start .cal-d-price,.cal-d.sel-end .cal-d-price{color:#1a1a1a;}
-.cal-legend-row{display:flex;gap:16px;padding:10px 16px;background:var(--gray-50);border-top:1px solid var(--gray-100);flex-wrap:wrap;}
-.cal-legend-item{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--gray-500);}
-.cal-legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
-.cal-legend-dot.blocked{background:#fee2e2;border:1px solid #dc2626;}
-.cal-legend-dot.selected{background:#c9a84c;}
-.cal-legend-dot.available{background:var(--white);border:1px solid var(--gray-300);}
-.date-disp-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
-.date-box{padding:10px 14px;border:1.5px solid var(--gray-300);border-radius:8px;font-size:.85rem;color:var(--gray-500);background:var(--gray-50);}
-.date-box.filled{border-color:#c9a84c;color:var(--gray-900);background:var(--white);}
-.date-box-label{font-size:.72rem;font-weight:600;color:var(--gray-500);margin-bottom:2px;}
-.date-box-value{font-weight:600;}
-.price-est{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:12px 16px;margin-top:14px;display:none;font-size:.85rem;}
-.price-est.show{display:block;}
-.price-est-title{font-weight:600;color:var(--gray-900);margin-bottom:6px;}
-.price-est-row{display:flex;justify-content:space-between;color:var(--gray-500);margin-bottom:4px;}
-.price-est-total{display:flex;justify-content:space-between;font-weight:700;color:var(--gray-900);border-top:1px solid rgba(201,168,76,.3);padding-top:6px;margin-top:6px;}
+/* Video section */
+.video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius-lg);background:#000;}
+.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
 
 .rating-bar{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
 .rating-big{font-size:2.2rem;font-weight:800;color:var(--gray-900);}
@@ -123,7 +87,6 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 .rule-item{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--gray-700);padding:10px 0;}
 .rule-item svg{width:20px;height:20px;flex-shrink:0;color:var(--gray-400)}
 .host-card{display:flex;align-items:center;gap:20px;padding:24px;border-radius:var(--radius-lg);background:var(--gray-50);border:1px solid var(--gray-200);}
-.host-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#c9a84c,#e8c97a);display:grid;place-items:center;font-size:1.6rem;font-weight:700;color:white;}
 .host-info{flex:1}
 .host-info h3{font-size:1.1rem;font-weight:700;margin-bottom:2px}
 .host-info p{font-size:.88rem;color:var(--gray-500);margin-bottom:8px}
@@ -163,18 +126,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 .mobile-nav-panel a{display:block;padding:14px 0;font-size:1rem;font-weight:500;color:var(--gray-700);border-bottom:1px solid var(--gray-100);}
 .mobile-nav-close{background:none;border:none;font-size:1.5rem;color:var(--gray-500);margin-bottom:16px;}
 @media(max-width:900px){.main-layout{grid-template-columns:1fr;gap:32px}.booking-sidebar{position:static;display:none}.mobile-booking-bar{display:block}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:240px 160px;}.gallery-grid .gallery-img:first-child{grid-column:1/-1}.gallery-grid .gallery-img:nth-child(n+4){display:none}.prop-highlights{grid-template-columns:1fr}.reviews-grid{grid-template-columns:1fr}}
-@media(max-width:640px){.nav-links{display:none}.nav-hamburger{display:block}.nav-brand img{height:34px;}.gallery-grid{grid-template-columns:1fr;grid-template-rows:260px;}.gallery-grid .gallery-img:nth-child(n+2){display:none}.amenities-grid{grid-template-columns:1fr}.rules-grid{grid-template-columns:1fr}.save-banner h2{font-size:1.4rem}body{padding-bottom:68px}.cal-d{min-height:38px;}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-
-.price-est-row{display:flex;justify-content:space-between;color:var(--gray-500,#6b7280);margin-bottom:6px;font-size:.85rem;}
-.price-est-divider{height:1px;background:rgba(201,168,76,.2);margin:10px 0;}
-.price-est-tax{display:flex;justify-content:space-between;font-size:.82rem;color:var(--gray-500,#6b7280);margin-bottom:5px;}
-.price-est-total{display:flex;justify-content:space-between;font-weight:700;color:var(--gray-900,#1f2937);border-top:1.5px solid rgba(201,168,76,.4);padding-top:10px;margin-top:6px;font-size:1rem;}
-.price-est-savings{display:flex;align-items:flex-start;gap:7px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:7px;padding:9px 12px;margin-top:12px;}
-.price-est-savings svg{width:14px;height:14px;color:#10b981;flex-shrink:0;margin-top:1px;}
-.price-est-savings span{font-size:.75rem;color:#065f46;font-weight:500;line-height:1.4;}
-.book-now-btn{display:block;width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#1a1a1a;border:none;padding:15px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;text-align:center;margin-top:14px;transition:transform .2s,box-shadow .2s;font-family:'Playfair Display',serif;letter-spacing:.04em;text-decoration:none;}
-.book-now-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,168,76,.4);}
+@media(max-width:640px){.nav-links{display:none}.nav-hamburger{display:block}.nav-brand img{height:34px;}.gallery-grid{grid-template-columns:1fr;grid-template-rows:260px;}.gallery-grid .gallery-img:nth-child(n+2){display:none}.amenities-grid{grid-template-columns:1fr}.rules-grid{grid-template-columns:1fr}.save-banner h2{font-size:1.4rem}body{padding-bottom:68px}}
 
 @media(max-width:768px){
   .nav-inner{height:60px;}
@@ -254,6 +206,14 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
       <div class="highlight-card"><div class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div><div class="highlight-text"><strong>Spotless Clean</strong><span>Sanitized to perfection</span></div></div>
     </div>
 
+    <!-- VIDEO TOUR -->
+    <div class="section" id="video">
+      <h2 class="section-title">Video Tour</h2>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/2X_ddYLPpBY" title="Windsor Executive Rentals — Riverside Retreat Tour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+
     <div class="section" id="about">
       <h2 class="section-title">About this place</h2>
       <div class="section-desc">
@@ -276,47 +236,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2 12 5.5 8 2l-4.38 1.46a1 1 0 0 0-.62.94v16.2a1 1 0 0 0 1.38.92L8 20l4-3.5 4 3.5 3.62 1.52a1 1 0 0 0 1.38-.92V4.4a1 1 0 0 0-.62-.94z"/></svg>Premium linens &amp; towels</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>In-unit washer &amp; dryer</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Premium toiletries</div>
-        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/></svg>Self check-in</div>
-      </div>
-    </div>
-
-    <!-- LIVE PRICING CALENDAR -->
-    <div class="section" id="availability">
-      <h2 class="section-title">Availability &amp; Pricing</h2>
-      <div class="cal-section-wrap">
-        <div class="cal-section-label">Select Your Dates <span class="cal-section-status" id="calStatus">Loading availability...</span></div>
-        <div class="cal-wrap">
-          <div class="cal-hdr">
-            <button onclick="changeMonth(-1)">&#8249;</button>
-            <span class="cal-hdr-title" id="calTitle"></span>
-            <button onclick="changeMonth(1)">&#8250;</button>
-          </div>
-          <div class="cal-g"><div class="cal-dow">Su</div><div class="cal-dow">Mo</div><div class="cal-dow">Tu</div><div class="cal-dow">We</div><div class="cal-dow">Th</div><div class="cal-dow">Fr</div><div class="cal-dow">Sa</div></div>
-          <div class="cal-g" id="calDays"></div>
-          <div class="cal-legend-row">
-            <div class="cal-legend-item"><div class="cal-legend-dot available"></div>Available</div>
-            <div class="cal-legend-item"><div class="cal-legend-dot blocked"></div>Booked</div>
-            <div class="cal-legend-item"><div class="cal-legend-dot selected"></div>Your Selection</div>
-          </div>
-        </div>
-        <div class="date-disp-row">
-          <div class="date-box" id="ciBox"><div class="date-box-label">CHECK-IN</div><div class="date-box-value" id="ciDisp">Select date</div></div>
-          <div class="date-box" id="coBox"><div class="date-box-label">CHECK-OUT</div><div class="date-box-value" id="coDisp">Select date</div></div>
-        </div>
-        <div class="price-est" id="priceEst" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:14px 16px;margin-top:14px;display:none;font-size:.85rem;">
-          <div style="font-weight:600;color:#1f2937;margin-bottom:10px;font-size:.88rem;">Price Estimate</div>
-          <div id="priceRows"></div>
-          <div style="height:1px;background:rgba(201,168,76,.3);margin:10px 0;"></div>
-          <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#6b7280;margin-bottom:5px;"><span>Windsor MAT (6%)</span><span id="propMatVal">—</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#6b7280;margin-bottom:5px;"><span>Ontario HST (13%)</span><span id="propHstVal">—</span></div>
-          <div style="height:1px;background:rgba(201,168,76,.3);margin:10px 0;"></div>
-          <div style="display:flex;justify-content:space-between;font-weight:700;color:#1f2937;font-size:.95rem;"><span id="priceNights"></span><span id="priceTotal"></span></div>
-          <div style="display:flex;align-items:flex-start;gap:7px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:7px;padding:9px 12px;margin-top:12px;">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#10b981" stroke-width="2" style="flex-shrink:0;margin-top:1px"><polyline points="20 6 9 17 4 12"/></svg>
-            <span style="font-size:.75rem;color:#065f46;font-weight:500;line-height:1.4;">You save ~10% vs Airbnb — no platform service fees!</span>
-          </div>
-        </div>
-        <a id="propBookBtn" href="#" onclick="goToCheckout(event)" style="display:none;width:100%;background:linear-gradient(135deg,#c9a84c,#e8c97a);color:#1a1a1a;padding:15px;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;text-align:center;margin-top:12px;text-decoration:none;font-family:'Playfair Display',serif;letter-spacing:.04em;">Complete Booking →</a>
+        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Self check-in</div>
       </div>
     </div>
 
@@ -416,145 +336,6 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 </div>
 
 <script>
-const MAT_RATE=0.06,HST_RATE=0.13;
-function fmtMoney(n){return '$'+n.toLocaleString('en-CA',{minimumFractionDigits:2,maximumFractionDigits:2});}
-const PROP_ID = 'riverside';
-const PROXY = '/.netlify/functions/fetch-ical?url=';
-const ICAL_URL = 'https://www.airbnb.ca/calendar/ical/989882813772586756.ics?t=29fe38aefe04402b8a60b5b63cc09ace';
-const DEFAULT_PRICES = { luxury:[500,650], riverside:[350,400], downtown:[200,300] };
-
-let blockedDates = new Set();
-let calYear, calMonth, selStart=null, selEnd=null;
-
-function loadRules(){try{return JSON.parse(localStorage.getItem('wer_price_rules')||'{}');}catch{return{};}}
-function toYMD(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
-function todayYMD(){return toYMD(new Date());}
-function fmtDate(ymd){if(!ymd)return'';const[y,m,d]=ymd.split('-');const mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return mo[parseInt(m)-1]+' '+parseInt(d)+', '+y;}
-
-function getPriceForDate(ymd){
-  const rules=(loadRules()[PROP_ID]||[]).slice().reverse();
-  for(const r of rules){if(ymd>=r.from&&ymd<=r.to)return r.price;}
-  const dow=new Date(ymd+'T12:00:00').getDay();
-  const[wd,we]=DEFAULT_PRICES[PROP_ID];
-  return(dow===5||dow===6)?we:wd;
-}
-
-function calcNights(startYMD,endYMD){
-  const nights=[];let cur=new Date(startYMD+'T12:00:00');const end=new Date(endYMD+'T12:00:00');
-  while(cur<end){const ymd=toYMD(cur);nights.push({date:ymd,price:getPriceForDate(ymd)});cur.setDate(cur.getDate()+1);}
-  return nights;
-}
-
-async function fetchBlocked(){
-  try{
-    const res=await fetch(PROXY+encodeURIComponent(ICAL_URL));
-    if(!res.ok)throw new Error();
-    blockedDates=parseIcal(await res.text());
-    document.getElementById('calStatus').textContent='Live availability';
-    renderCalendar();
-  }catch{
-    document.getElementById('calStatus').textContent='Availability unavailable';
-  }
-}
-
-function parseIcal(text){
-  const dates=new Set();
-  const lines=text.replace(/\r\n /g,'').replace(/\r\n/g,'\n').split('\n');
-  let inEvent=false,dtstart=null,dtend=null;
-  for(const line of lines){
-    if(line==='BEGIN:VEVENT'){inEvent=true;dtstart=null;dtend=null;}
-    if(!inEvent)continue;
-    if(line.startsWith('DTSTART')){const v=line.split(':')[1]?.trim().replace(/T.*/,'');if(v&&v.length===8)dtstart=v;}
-    if(line.startsWith('DTEND')){const v=line.split(':')[1]?.trim().replace(/T.*/,'');if(v&&v.length===8)dtend=v;}
-    if(line==='END:VEVENT'){
-      if(dtstart&&dtend){let c=new Date(dtstart.slice(0,4)+'-'+dtstart.slice(4,6)+'-'+dtstart.slice(6,8));const e=new Date(dtend.slice(0,4)+'-'+dtend.slice(4,6)+'-'+dtend.slice(6,8));while(c<e){dates.add(toYMD(c));c.setDate(c.getDate()+1);}}
-      inEvent=false;
-    }
-  }
-  return dates;
-}
-
-function renderCalendar(){
-  const MO=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  document.getElementById('calTitle').textContent=MO[calMonth]+' '+calYear;
-  const grid=document.getElementById('calDays');grid.innerHTML='';
-  const firstDay=new Date(calYear,calMonth,1).getDay();
-  const dim=new Date(calYear,calMonth+1,0).getDate();
-  const tYMD=todayYMD();
-  for(let i=0;i<firstDay;i++){const e=document.createElement('div');e.className='cal-d empty';grid.appendChild(e);}
-  for(let d=1;d<=dim;d++){
-    const ymd=calYear+'-'+String(calMonth+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
-    const el=document.createElement('div');el.className='cal-d';
-    const numEl=document.createElement('div');numEl.className='cal-d-num';numEl.textContent=d;el.appendChild(numEl);
-    if(ymd===tYMD)el.classList.add('today');
-    if(ymd<tYMD){el.classList.add('past');}
-    else if(blockedDates.has(ymd)){el.classList.add('blocked');}
-    else{
-      const price=getPriceForDate(ymd);
-      const priceEl=document.createElement('div');priceEl.className='cal-d-price';priceEl.textContent='$'+price;el.appendChild(priceEl);
-      el.onclick=()=>selectDay(ymd);
-      if(selStart&&selEnd){
-        if(ymd===selStart)el.classList.add('sel-start');
-        else if(ymd===selEnd)el.classList.add('sel-end');
-        else if(ymd>selStart&&ymd<selEnd)el.classList.add('in-range');
-      }else if(selStart&&ymd===selStart)el.classList.add('sel-start');
-    }
-    grid.appendChild(el);
-  }
-}
-
-function changeMonth(dir){
-  calMonth+=dir;
-  if(calMonth>11){calMonth=0;calYear++;}
-  if(calMonth<0){calMonth=11;calYear--;}
-  renderCalendar();
-}
-
-function selectDay(ymd){
-  if(!selStart||(selStart&&selEnd)){selStart=ymd;selEnd=null;}
-  else{
-    if(ymd<=selStart){selStart=ymd;selEnd=null;}
-    else{
-      let cur=new Date(selStart+'T12:00:00');cur.setDate(cur.getDate()+1);
-      const end=new Date(ymd+'T12:00:00');let hasBlocked=false;
-      while(cur<end){if(blockedDates.has(toYMD(cur))){hasBlocked=true;break;}cur.setDate(cur.getDate()+1);}
-      if(hasBlocked){alert('Your range includes unavailable dates. Please choose different dates.');selStart=ymd;selEnd=null;}
-      else{selEnd=ymd;}
-    }
-  }
-  updateDateDisplay();renderCalendar();
-}
-
-function updateDateDisplay(){
-  document.getElementById('ciDisp').textContent=selStart?fmtDate(selStart):'Select date';
-  document.getElementById('coDisp').textContent=selEnd?fmtDate(selEnd):'Select date';
-  document.getElementById('ciBox').classList.toggle('filled',!!selStart);
-  document.getElementById('coBox').classList.toggle('filled',!!selEnd);
-  const pe=document.getElementById('priceEst');
-  if(selStart&&selEnd){
-    const nights=calcNights(selStart,selEnd);
-    const sub=nights.reduce((s,n)=>s+n.price,0);
-    const mat=sub*MAT_RATE,hst=sub*HST_RATE,tot=sub+mat+hst;
-    let rows=[],i=0;
-    while(i<nights.length){let j=i;while(j<nights.length&&nights[j].price===nights[i].price)j++;const cnt=j-i;rows.push(`<div class="price-est-row"><span>${cnt} night${cnt>1?'s':''} × $${nights[i].price}</span><span>$${cnt*nights[i].price}</span></div>`);i=j;}
-    document.getElementById('priceRows').innerHTML=rows.join('');
-    const mv=document.getElementById('propMatVal'),hv=document.getElementById('propHstVal');
-    if(mv)mv.textContent=fmtMoney(mat);
-    if(hv)hv.textContent=fmtMoney(hst);
-    document.getElementById('priceNights').textContent=nights.length+' night'+(nights.length>1?'s':'')+' total (incl. taxes)';
-    document.getElementById('priceTotal').textContent=fmtMoney(tot);
-    const bb=document.getElementById('propBookBtn');if(bb)bb.style.display='block';
-    pe.classList.add('show');pe.style.display='block';
-  }else{
-    const bb=document.getElementById('propBookBtn');if(bb)bb.style.display='none';
-    pe.classList.remove('show');pe.style.display='none';
-  }
-}
-
-const td=new Date();calYear=td.getFullYear();calMonth=td.getMonth();
-fetchBlocked();
-renderCalendar();
-
 const GALLERY_IMAGES=['images/property-2/01-living-fireplace.png','images/property-2/02-living-wide.png','images/property-2/03-living-couch.png','images/property-2/04-kitchen-wide.png','images/property-2/05-kitchen-island.png','images/property-2/06-kitchen-close.png','images/property-2/07-dining.png','images/property-2/08-bedroom-main.png','images/property-2/09-bedroom-grey.png','images/property-2/10-bedroom-guest.png','images/property-2/11-bedroom-blue-wallpaper.png','images/property-2/12-bathroom.png'];
 let lightboxIdx=0;
 function openLightbox(idx){lightboxIdx=idx;updateLightbox();document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
@@ -567,23 +348,6 @@ function toggleDesc(){const more=document.getElementById('descMore');const btn=d
 function scrollToBooking(){const sidebar=document.getElementById('booking');if(window.innerWidth<=900){sidebar.style.display='block';sidebar.scrollIntoView({behavior:'smooth',block:'center'});document.querySelector('.mobile-booking-bar').style.display='none';}else{sidebar.scrollIntoView({behavior:'smooth',block:'start'});}}
 function openMobileNav(){document.getElementById('mobileNav').classList.add('active');}
 function closeMobileNav(){document.getElementById('mobileNav').classList.remove('active');}
-
-function goToCheckout(e){
-  e.preventDefault();
-  if(!selStart||!selEnd){alert('Please select dates first.');return;}
-  const nights=calcNights(selStart,selEnd);
-  const subtotal=nights.reduce((s,n)=>s+n.price,0);
-  let i=0,rowChunks=[];
-  while(i<nights.length){let j=i;while(j<nights.length&&nights[j].price===nights[i].price)j++;rowChunks.push((j-i)+'x'+nights[i].price);i=j;}
-  const params='prop='+encodeURIComponent(PROP_ID)
-    +'&checkin='+encodeURIComponent(selStart)
-    +'&checkout='+encodeURIComponent(selEnd)
-    +'&guests=2 guests'
-    +'&nights='+nights.length
-    +'&subtotal='+subtotal.toFixed(2)
-    +'&nightrows='+encodeURIComponent(rowChunks.join(','));
-  window.location.href='checkout.html?'+params;
-}
 </script>
 </body>
 </html>
