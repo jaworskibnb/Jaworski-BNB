@@ -120,22 +120,7 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 @keyframes slideIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
 .mobile-nav-panel a{display:block;padding:14px 0;font-size:1rem;font-weight:500;color:var(--gray-700);border-bottom:1px solid var(--gray-100);}
 .mobile-nav-close{background:none;border:none;font-size:1.5rem;color:var(--gray-500);margin-bottom:16px;}
-/* Calendar */
-.calendar-section{padding:28px 0;border-bottom:1px solid var(--gray-200)}
-.calendar-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px;}
-.cal-month{background:var(--gray-50);border-radius:var(--radius);padding:16px;border:1px solid var(--gray-200);}
-.cal-month-title{text-align:center;font-weight:600;font-size:.9rem;margin-bottom:12px;color:var(--gray-700);}
-.cal-days-header{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:.7rem;font-weight:600;color:var(--gray-400);margin-bottom:6px;}
-.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
-.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:.78rem;border-radius:6px;color:var(--gray-700);}
-.cal-day.booked{background:#fce4e6;color:#c1121f;font-weight:500;}
-.cal-day.empty{color:transparent;}
-.cal-legend{display:flex;gap:20px;margin-top:12px;font-size:.8rem;color:var(--gray-500);}
-.cal-legend span{display:flex;align-items:center;gap:6px;}
-.cal-legend .dot{width:12px;height:12px;border-radius:3px;}
-.cal-legend .dot-booked{background:#fce4e6;border:1px solid #e63946;}
-.cal-legend .dot-avail{background:var(--gray-50);border:1px solid var(--gray-300);}
-@media(max-width:900px){.main-layout{grid-template-columns:1fr;gap:32px}.booking-sidebar{position:static;display:none}.mobile-booking-bar{display:block}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:240px 160px;}.gallery-grid .gallery-img:first-child{grid-column:1/-1}.gallery-grid .gallery-img:nth-child(n+4){display:none}.prop-highlights{grid-template-columns:1fr}.reviews-grid{grid-template-columns:1fr}.calendar-grid{grid-template-columns:1fr;}}
+@media(max-width:900px){.main-layout{grid-template-columns:1fr;gap:32px}.booking-sidebar{position:static;display:none}.mobile-booking-bar{display:block}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:240px 160px;}.gallery-grid .gallery-img:first-child{grid-column:1/-1}.gallery-grid .gallery-img:nth-child(n+4){display:none}.prop-highlights{grid-template-columns:1fr}.reviews-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.nav-links{display:none}.nav-hamburger{display:block}.nav-brand img{height:34px;}.gallery-grid{grid-template-columns:1fr;grid-template-rows:260px;}.gallery-grid .gallery-img:nth-child(n+2){display:none}.amenities-grid{grid-template-columns:1fr}.rules-grid{grid-template-columns:1fr}.save-banner h2{font-size:1.4rem}body{padding-bottom:68px}}
 @media(max-width:768px){.nav-inner{height:60px;}.nav-brand img{height:34px;}.nav-links{display:none;}.nav-hamburger{display:block;}section{padding-left:16px !important;padding-right:16px !important;}}
 </style>
@@ -205,16 +190,16 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 
     <div class="prop-highlights">
       <div class="highlight-card"><div class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div><div class="highlight-text"><strong>Private Hot Tub</strong><span>Unwind by the water's edge</span></div></div>
-      <div class="highlight-card"><div class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></div><div class="highlight-text"><strong>Two Balconies</strong><span>Sunrise &amp; sunset lake views</span></div></div>
-      <div class="highlight-card"><div class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg></div><div class="highlight-text"><strong>Fire Pit &amp; Shoreline</strong><span>Evening gatherings by the lake</span></div></div>
+      <div class="highlight-card"><div class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg></div><div class="highlight-text"><strong>Fire Pit &amp; Shoreline</strong><span>Evening gatherings lakeside</span></div></div>
+      <div class="highlight-card"><div class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg></div><div class="highlight-text"><strong>Sweeping Lake Views</strong><span>Two balconies, sunrise &amp; sunset</span></div></div>
     </div>
 
     <div class="section" id="about">
       <h2 class="section-title">About this place</h2>
       <div class="section-desc">
         <p>Wake up to beautiful water views and enjoy your morning coffee on one of two balconies at this inviting two-story shoreline home in Lakeshore, Ontario.</p>
-        <p>Spend your days outdoors, sharing meals, and unwinding in the hot tub before gathering around the fire pit as the evening winds down.</p>
-        <p id="descMore" style="display:none">The home features a beautifully appointed master suite with wood slat accents and a stunning marble ensuite, a loft bedroom with its own character, a private office/den, and a waterfront bedroom with sweeping lake views. The covered pergola deck is perfect for outdoor dining in any weather. Guests have access to the entire property including the private shoreline.</p>
+        <p>Spend your days outdoors, sharing meals under the covered pergola, and unwinding in the hot tub before gathering around the fire pit as the evening winds down.</p>
+        <p id="descMore" style="display:none">The home features a beautifully appointed master suite with wood slat accents and a stunning marble ensuite, a loft bedroom with its own character, a private office/den, and a waterfront bedroom with sweeping lake views. Guests have access to the entire property including the private shoreline.</p>
       </div>
       <button class="read-more-btn" id="readMoreBtn" onclick="toggleDesc()">Show more ↓</button>
     </div>
@@ -224,27 +209,16 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
       <div class="amenities-grid">
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Private hot tub</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>Fire pit &amp; outdoor lounge</div>
-        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>Two private balconies</div>
-        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20V8l7-5 7 5v12"></path></svg>Covered pergola deck</div>
-        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Private shoreline access</div>
+        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Two private balconies</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><circle cx="12" cy="20" r="1"></circle></svg>High-speed Wi-Fi</div>
+        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20V8l7-5 7 5v12"></path></svg>Covered pergola deck</div>
+        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M12 8v8"></path><path d="M8 12h8"></path></svg>Fully equipped kitchen</div>
+        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>Private shoreline access</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>Smart TVs with streaming</div>
-        <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M12 8v8M8 12h8"></path></svg>Fully equipped kitchen</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2 12 5.5 8 2l-4.38 1.46a1 1 0 0 0-.62.94v16.2a1 1 0 0 0 1.38.92L8 20l4-3.5 4 3.5 3.62 1.52a1 1 0 0 0 1.38-.92V4.4a1 1 0 0 0-.62-.94z"></path></svg>Wood slat master suite</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>Marble ensuites</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>Office / den workspace</div>
         <div class="amenity-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>Loft bedroom</div>
-      </div>
-    </div>
-
-    <!-- AVAILABILITY CALENDAR -->
-    <div class="section calendar-section" id="availability">
-      <h2 class="section-title">Availability</h2>
-      <p style="font-size:.88rem;color:var(--gray-500);margin-bottom:16px;">Calendar updates live from Airbnb. Red = booked.</p>
-      <div id="calendarContainer" class="calendar-grid"><p style="color:var(--gray-400);font-size:.88rem">Loading availability…</p></div>
-      <div class="cal-legend">
-        <span><span class="dot dot-booked"></span>Booked</span>
-        <span><span class="dot dot-avail"></span>Available</span>
       </div>
     </div>
 
@@ -354,81 +328,17 @@ img{display:block;max-width:100%}button{cursor:pointer;font-family:inherit}a{col
 </div>
 
 <script>
-const GALLERY_IMAGES=[
-  'images/property-4/01-living-room.png',
-  'images/property-4/02-living-room-sunset.png',
-  'images/property-4/03-upper-deck.png',
-  'images/property-4/04-master-bedroom.png',
-  'images/property-4/05-master-ensuite.png',
-  'images/property-4/06-ensuite-vanity.png',
-  'images/property-4/07-ensuite-full.png',
-  'images/property-4/08-loft-bedroom.png',
-  'images/property-4/09-waterfront-bedroom.png',
-  'images/property-4/10-bathroom.png',
-  'images/property-4/11-office.png',
-  'images/property-4/12-hot-tub.png',
-  'images/property-4/13-fire-pit.png',
-  'images/property-4/14-patio-dining.png',
-  'images/property-4/15-exterior.png'
-];
+const GALLERY_IMAGES=['images/property-4/01-living-room.png','images/property-4/02-living-room-sunset.png','images/property-4/03-upper-deck.png','images/property-4/04-master-bedroom.png','images/property-4/05-master-ensuite.png','images/property-4/06-ensuite-vanity.png','images/property-4/07-ensuite-full.png','images/property-4/08-loft-bedroom.png','images/property-4/09-waterfront-bedroom.png','images/property-4/10-bathroom.png','images/property-4/11-office.png','images/property-4/12-hot-tub.png','images/property-4/13-fire-pit.png','images/property-4/14-patio-dining.png','images/property-4/15-exterior.png'];
 let lightboxIdx=0;
 function openLightbox(idx){lightboxIdx=idx;updateLightbox();document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
 function navLightbox(dir){lightboxIdx=(lightboxIdx+dir+GALLERY_IMAGES.length)%GALLERY_IMAGES.length;updateLightbox();}
 function updateLightbox(){document.getElementById('lightboxImg').src=GALLERY_IMAGES[lightboxIdx];document.getElementById('lightboxCounter').textContent=`${lightboxIdx+1} / ${GALLERY_IMAGES.length}`;}
 document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('active'))return;if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')navLightbox(-1);if(e.key==='ArrowRight')navLightbox(1);});
-
 function toggleDesc(){const more=document.getElementById('descMore');const btn=document.getElementById('readMoreBtn');if(more.style.display==='none'){more.style.display='block';btn.innerHTML='Show less &uarr;';}else{more.style.display='none';btn.innerHTML='Show more &darr;';}}
 function scrollToBooking(){const sidebar=document.getElementById('booking');if(window.innerWidth<=900){sidebar.style.display='block';sidebar.scrollIntoView({behavior:'smooth',block:'center'});document.querySelector('.mobile-booking-bar').style.display='none';}else{sidebar.scrollIntoView({behavior:'smooth',block:'start'});}}
 function openMobileNav(){document.getElementById('mobileNav').classList.add('active');}
 function closeMobileNav(){document.getElementById('mobileNav').classList.remove('active');}
-
-// Calendar
-const ICAL_URL='https://www.airbnb.ca/calendar/ical/1779188598504877219.ics?t=4b9474d755c349df983a99bbc97c3f91';
-async function loadCalendar(){
-  try{
-    const res=await fetch(`/.netlify/functions/fetch-ical?url=${encodeURIComponent(ICAL_URL)}`);
-    const text=await res.text();
-    const booked=new Set();
-    const lines=text.split(/\r?\n/);
-    let start='',end='';
-    for(const line of lines){
-      if(line.startsWith('DTSTART;VALUE=DATE:'))start=line.slice(19).trim();
-      else if(line.startsWith('DTSTART:'))start=line.slice(8,16).trim();
-      if(line.startsWith('DTEND;VALUE=DATE:'))end=line.slice(17).trim();
-      else if(line.startsWith('DTEND:'))end=line.slice(6,14).trim();
-      if(start&&end){
-        let d=new Date(start.slice(0,4)+'-'+start.slice(4,6)+'-'+start.slice(6,8));
-        const e=new Date(end.slice(0,4)+'-'+end.slice(4,6)+'-'+end.slice(6,8));
-        while(d<e){booked.add(d.toISOString().slice(0,10));d.setDate(d.getDate()+1);}
-        start='';end='';
-      }
-    }
-    renderCalendar(booked);
-  }catch(e){document.getElementById('calendarContainer').innerHTML='<p style="color:var(--gray-400);font-size:.88rem">Availability not available right now. Message us on WhatsApp to check dates.</p>';}
-}
-function renderCalendar(booked){
-  const container=document.getElementById('calendarContainer');
-  container.innerHTML='';
-  const now=new Date();
-  for(let m=0;m<2;m++){
-    const year=now.getFullYear()+(now.getMonth()+m>11?1:0);
-    const month=(now.getMonth()+m)%12;
-    const monthName=new Date(year,month,1).toLocaleString('default',{month:'long',year:'numeric'});
-    const firstDay=new Date(year,month,1).getDay();
-    const daysInMonth=new Date(year,month+1,0).getDate();
-    let html=`<div class="cal-month"><div class="cal-month-title">${monthName}</div><div class="cal-days-header"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div><div class="cal-days">`;
-    for(let i=0;i<firstDay;i++)html+=`<div class="cal-day empty">.</div>`;
-    for(let d=1;d<=daysInMonth;d++){
-      const dateStr=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-      const isBooked=booked.has(dateStr);
-      html+=`<div class="cal-day${isBooked?' booked':''}">${d}</div>`;
-    }
-    html+=`</div></div>`;
-    container.innerHTML+=html;
-  }
-}
-loadCalendar();
 </script>
 
 </body></html>
